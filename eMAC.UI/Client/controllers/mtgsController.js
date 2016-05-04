@@ -39,7 +39,7 @@
                                 }
                             }
                         }
-                        if (val.year_created == currYear) {
+                        if (val.year_created == currYear && val.year_created != localStorageYear) {
                             if (i_value == null) {
                                 i_value = val;
                             }
