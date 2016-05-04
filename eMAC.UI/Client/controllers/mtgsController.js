@@ -31,8 +31,8 @@
                     yearSelection = typeof (eMacFactory.Config().yearFilter) == "string" ? JSON.parse(eMacFactory.Config().yearFilter) : eMacFactory.Config().yearFilter,
                     i_value = null;
                 if (yearSelection.length > 1) {
-                    var filter = $filter("filter")(yearSelection, { year_created: localStorageYear != undefined ? localStorageYear : currYear });
-                    return filter.year_created;
+                    var filter = $filter("filter")(yearSelection, { year_created: !isNaN(localStorageYear) ? localStorageYear : currYear });
+                    return filter[0];
                     //angular.forEach(yearSelection, function (val, index) {
                     //    if (localStorageYear != undefined) {
                     //        if (val.year_created == localStorageYear) {
