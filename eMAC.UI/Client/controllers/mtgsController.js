@@ -1,6 +1,6 @@
 ﻿eMacApp.controller("mtgsController",
-    ["$scope", "$modal", "$window", "$location", "$timeout", "rootUrl", "meetingStatus", "$compile", "eMacFactory", "eMacDataFactory",
-    function ($scope, $modal, $window, $location, $timeout, rootUrl, meetingStatus, $compile, eMacFactory, eMacDataFactory) {
+    ["$scope", "$modal", "$window", "$location", "$timeout", "$filter", "rootUrl", "meetingStatus", "$compile", "eMacFactory", "eMacDataFactory",
+    function ($scope, $modal, $window, $location, $timeout, $filter, rootUrl, meetingStatus, $compile, eMacFactory, eMacDataFactory) {
 
         /* START PRIVATE VARIABLES */
 
@@ -31,21 +31,23 @@
                     yearSelection = typeof (eMacFactory.Config().yearFilter) == "string" ? JSON.parse(eMacFactory.Config().yearFilter) : eMacFactory.Config().yearFilter,
                     i_value = null;
                 if (yearSelection.length > 1) {
-                    angular.forEach(yearSelection, function (val, index) {
-                        if (localStorageYear != undefined) {
-                            if (val.year_created == localStorageYear) {
-                                if (i_value == null) {
-                                    i_value = val;
-                                }
-                            }
-                        }
-                        if (val.year_created == currYear && val.year_created != localStorageYear) {
-                            if (i_value == null) {
-                                i_value = val;
-                            }
-                        }
-                    });
-                    return i_value;
+                    var filter = $filter("filter")(yearSelection, { year_created: localStorageYear != undefined ? localStorageYear : currYear });
+                    return filter.year_created;
+                    //angular.forEach(yearSelection, function (val, index) {
+                    //    if (localStorageYear != undefined) {
+                    //        if (val.year_created == localStorageYear) {
+                    //            if (i_value == null) {
+                    //                i_value = val;
+                    //            }
+                    //        }
+                    //    }
+                    //    if (val.year_created == currYear && val.year_created != localStorageYear) {
+                    //        if (i_value == null) {
+                    //            i_value = val;
+                    //        }
+                    //    }
+                    //});
+                    //return i_value;
                 }
                 else {
                     return yearSelection.length == 0 ? { year_created: new Date().getFullYear() } : yearSelection[0];
