@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<end_notes>
+  <end_note
+    orderNo="1 " 
+    value="WPRO planning meetings should have relevant representations from technical programme outside the responsible division. Such representation is expected from inception of the meeting." 
+    parameter="@subScriptOne" />
+  <end_note
+    orderNo="2 "
+    value="Observers from the country where a regional meeting is held should not exceed 20% of the total number of participants."
+    parameter="@subScriptTwo" />
+  <end_note
+      orderNo="3 "
+      value="Information Circular 003/12 indicates maximum 2 staff should participate in meetings where travel costs are involved."
+      parameter="@subScriptThree" />
+</end_notes>
+
+<!--<end_notes>
+  <end_note>
+    <order_no>1 </order_no>
+    <value>WPRO planning meetings should have relevant representations from technical programme outside the responsible division. Such representation is expected from inception of the meeting.</value>
+    <parameter>@subScriptOne</parameter>
+  </end_note>
+  <end_note>
+    <order_no>2 </order_no>
+    <value>Observers from the country where a regional meeting is held should not exceed 20% of the total number of participants.</value>
+    <parameter>@subScriptTwo</parameter>
+  </end_note>
+  <end_note>
+    <order_no>3 </order_no>
+    <value>Information Circular 003/12 indicates maximum 2 staff should participate in meetings where travel costs are involved.</value>
+    <parameter>@subScriptThree</parameter>
+  </end_note>
+</end_notes>-->

@@ -1,0 +1,436 @@
+﻿@{
+        //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" data-ng-app="eMacApp">
+<head>
+    <title>eMAC</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <base href="/eMac">
+    <link id="linkRoot" href="~/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/sticky-footer-navbar.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <link href="~/Content/build.css" rel="stylesheet" />
+    <link href="~/Content/customKendo.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style type="text/css">
+        /* Start by setting display:none to make this hidden.
+           Then we position it in relation to the viewport window
+           with position:fixed. Width, height, top and left speak
+           for themselves. Background we set to 80% white with
+           our animation centered, and no-repeating */
+        .modal-spinner
+        {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba( 255, 255, 255, .8 ) url('.././Images/custom/default.gif') 50% 50% no-repeat;
+        }
+
+        .modal-spinner > span {
+            
+            font-size: 10em; 
+            margin-left: 47%; 
+            color: #1E7FB8;
+            margin-top: 35%;
+        }
+
+        /* When the body has the loading class, we turn
+           the scrollbar off with overflow:hidden */
+        body.loading
+        {
+            overflow: hidden;
+        }
+
+        /* Anytime the body has the loading class, our
+        modal element will be visible */
+        body.loading .modal-spinner
+        {
+            display: block;
+        }
+
+        #banner .row {
+            color: #000 !important;
+           padding: 2px 0px;
+        }
+        #banner h4, #banner p {
+            color: #fff !important;
+        }
+
+        .banner-content {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER AND NAVBAR -->
+        <header>
+            <nav class="navbar navbar-fixed-top">
+                <div class="container-fluid" id="banner">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="banner-content">
+                                <img class="img-responsive" alt="World Health Organization" src="~/Images/custom/wpro_logo_en2.png" style="float: left;  display: inline-block" />
+                            </div>
+                            <div class="banner-content">
+                                <img class="img-responsive" alt="World Health Organization" src="~/Images/custom/line3.png" style="margin: 0px 10px; height: 50px; width: 1px; float: left; display: inline-block" />
+                            </div>
+                            <div class="banner-content">
+                                
+                                <h4>@System.Web.Configuration.WebConfigurationManager.AppSettings["SiteTitle"]</h4>
+                                <p>Meetings and Courses System</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                        </div>
+                    </div>
+                    <div class="row" style="background-color: #CDCFD0; ">
+                        <div class="col-lg-12">
+                            <span class="pull-right" style="color: #000; padding: 5px;">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span>Current user: @User.Identity.Name.Split('\\')[1].ToLower()</span>
+                            </span>
+                        </div>
+                        <div id="curr_user" style="display: none">@User.Identity.Name.Split('\\')[1].ToLower()</div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <div class="container body-content">
+        <div data-ng-view="" autoscroll="" ng-if="!isRouteLoading" data-ng-controller="AuthenticationController">
+        </div>
+    </div>
+    <div id="RTSParser" data-href="@System.Configuration.ConfigurationManager.AppSettings["RTSParser"].ToString()"></div>
+    <footer class="footer nav navbar-fixed-bottom">
+        <div class="container-fluid" style="font-size: 10px;">
+            <div class="row">
+                <div class="col-lg-12" style="padding: 2px;">
+                    <div class="hidden-xs hidden-sm pull-left">
+                        <div>@System.Web.Configuration.WebConfigurationManager.AppSettings["Copyright"]</div>
+                    </div>
+                    <div class="hidden-xs hidden-sm pull-right">
+                        <div>@System.Web.Configuration.WebConfigurationManager.AppSettings["Developer"]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angularjs")
+    
+    <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+    <script src="~/Scripts/grid-commons.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/jszip/jszip.js"></script>
+    <script src="~/Scripts/customKendo.js"></script>
+    <script src="~/Scripts/date.js"></script>
+    <!--Client-->
+    <script src="~/Client/app.js"></script>
+    <script src="~/Client/routes.js"></script>
+    <script src="~/Client/login/login-module.js"></script>
+    <script src="~/Client/login/login-ctrl.js"></script>
+    <script src="~/Client/login/login-svc.js"></script>
+    <script src="~/Client/controllers/homeController.js"></script>
+    <script src="~/Client/controllers/mtgsController.js"></script>
+    <script src="~/Client/controllers/mtgsEditController.js"></script>
+    <script src="~/Client/services/mtgServices.js"></script>
+    <script src="~/Client/models/mtgDataModel.js"></script>
+    <script src="~/Client/services/mtgDataSource.js"></script>
+    <script src="~/Client/services/libDataService.js"></script>
+
+    <script src="~/Client/fileupload/fileUpload.module.js"></script>
+    <script src="~/Client/fileupload/fileUploads.js"></script>
+    <script src="~/Client/fileupload/fileManager.js"></script>
+    <script src="~/Client/fileupload/egFiles.js"></script>
+    <script src="~/Client/fileupload/egUpload.js"></script>
+    <script src="~/Client/fileupload/egFileUploader.js"></script>
+    <script src="~/Client/fileupload/eqConfirmClick.js"></script>
+    <script src="~/Client/fileupload/egHttpPrefix.js"></script>
+    <script src="~/Client/fileupload/fileManagerClient.js"></script>
+
+
+    <script src="~/Client/meetingreport/meetingReport.module.js"></script>
+    <script src="~/Client/meetingreport/meetingReport.js"></script>
+    <script src="~/Client/meetingreport/mtgReportManager.js"></script>
+    <script src="~/Client/meetingreport/mtgReportClient.js"></script>
+    <script src="~/Client/meetingreport/egSummRep.js"></script>
+    <script src="~/Client/meetingreport/egRepUpload.js"></script>
+    <script src="~/Client/meetingreport/egFinalRep.js"></script>
+    <script src="~/Client/meetingreport/egFinalRepUploader.js"></script>
+    <script src="~/Client/meetingreport/egSummRepUploader.js"></script>
+    <script src="~/Client/meetingreport/egRepRemove.js"></script>
+    <script src="~/Client/meetingreport/egSummRepCsUploader.js"></script>
+    <script src="~/Client/meetingreport/egSummRepCs.js"></script>
+    <script src="~/Client/meetingreport/egFinalRepCsUploader.js"></script>
+    <script src="~/Client/meetingreport/egFinalRepCs.js"></script>
+
+    <script src="~/Client/participants/participants-ib2.module.js"></script>
+    <script src="~/Client/participants/participants-ib2.js"></script>
+    <script src="~/Client/participants/participants-ib2-manager.js"></script>
+    <script src="~/Client/participants/egParticipantFile.js"></script>
+    <script src="~/Client/participants/egParticipantUpload.js"></script>
+    <script src="~/Client/participants/egParticipantsUploader.js"></script>
+    <script src="~/Client/participants/participants-ib2.client.js"></script>
+    
+    <script src="~/Client/actionhistory/actionhistory.module.js"></script>
+    <script src="~/Client/actionhistory/actionhistory.js"></script>
+    <script src="~/Client/actionhistory/actionhistory-manager.js"></script>
+    <script src="~/Client/actionhistory/actionhistory.client.js"></script>
+    
+
+    <script src="~/Client/notification/notification.module.js"></script>
+    <script src="~/Client/notification/notification.client.js"></script>
+    <script type="text/javascript">
+        @*        /**
+         * Module for displaying "Waiting for..." dialog using Bootstrap
+         *
+         * @author Eugene Maslovich <ehpc@em42.ru>
+         */*@
+
+        var waitingDialog = waitingDialog || (function ($) {
+            'use strict';
+
+            // Creating modal dialog's DOM
+            var $dialog = $(
+                '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
+                '<div class="modal-dialog modal-m">' +
+                '<div class="modal-content">' +
+                    '<div class="modal-header"><h3 style="margin:0;color:black;"></h3></div>' +
+                    '<div class="modal-body">' +
+                        '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>' +
+                    '</div>' +
+                '</div></div></div>');
+
+            return {
+            @*/**
+                * Opens our dialog
+                * @param message Custom message
+		            * @param options Custom options:
+                * 				  options.dialogSize - bootstrap postfix for dialog size, e.g. "sm", "m";
+            * 				  options.progressType - bootstrap postfix for progress bar type, e.g. "success", "warning".
+            */*@
+            show: function (message, options) {
+                // Assigning defaults
+                if (typeof options === 'undefined') {
+                    options = {};
+                }
+                if (typeof message === 'undefined') {
+                    message = 'Loading';
+                }
+                var settings = $.extend({
+                    dialogSize: 'm',
+                    progressType: '',
+                    onHide: null // This callback runs after the dialog was hidden
+                }, options);
+
+                // Configuring dialog
+                $dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
+                $dialog.find('.progress-bar').attr('class', 'progress-bar');
+                if (settings.progressType) {
+                    $dialog.find('.progress-bar').addClass('progress-bar-' + settings.progressType);
+                }
+                $dialog.find('h3').text(message);
+                // Adding callbacks
+                if (typeof settings.onHide === 'function') {
+                    $dialog.off('hidden.bs.modal').on('hidden.bs.modal', function (e) {
+                        settings.onHide.call($dialog);
+                    });
+                }
+                // Opening dialog
+                $dialog.modal();
+            },
+            /**
+             * Closes dialog
+             */
+            hide: function () {
+                $dialog.modal('hide');
+            }
+        };
+
+        })(jQuery);
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* center modal */
+            function centerModals($element) {
+                var $modals;
+                if ($element.length) {
+                    $modals = $element;
+                } else {
+                    $modals = $('.modal-vcenter:visible');
+                }
+                $modals.each(function (i) {
+                    var $clone = $(this).clone().css('display', 'block').appendTo('body');
+                    var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+                    top = top > 0 ? top : 0;
+                    $clone.remove();
+                    $(this).find('.modal-content').css("margin-top", top);
+                });
+            }
+            $('.modal-vcenter').on('show.bs.modal', function (e) {
+                centerModals($(this));
+            });
+            $(window).on('resize', centerModals);
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-bottom-custom",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "preventDuplicates": true,
+                "hideMethod": "fadeOut"
+            };
+        });
+    </script>
+    
+    <!-- The template to display files available for upload -->
+    <script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+            <td>
+                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+            </td>
+            <td>{% if (!o.options.autoUpload) { %}
+                <button class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}</td>
+        {% } else { %}
+            <td colspan="2"></td>
+        {% } %}
+        <td>{% if (!i) { %}
+            <button class="btn btn-warning cancel">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>Cancel</span>
+            </button>
+        {% } %}</td>
+    </tr>
+{% } %}
+    </script>
+    <!-- The template to display files available for download -->
+    <script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        {% if (file.error) { %}
+            <td></td>
+            <td class="name"><span>{%=file.name%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+        {% } else { %}
+            <td class="preview">{% if (file.thumbnail_url) { %}
+                <a href="{%=file.url%}" title="{%=file.name%}" data-gallery="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+            {% } %}</td>
+            <td class="name">
+                <a href="{%=file.url%}" title="{%=file.name%}" data-gallery="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+            </td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td colspan="2"></td>
+        {% } %}
+        <td>
+            <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                <i class="icon-trash icon-white"></i>
+                <span>Delete</span>
+            </button>
+            <input type="checkbox" name="delete" value="1" class="toggle">
+        </td>
+    </tr>
+{% } %}
+    </script>
+    <script>        
+        //maskedDatePicker.js
+        (function ($) {
+            var kendo = window.kendo,
+                ui = kendo.ui,
+                Widget = ui.Widget,
+                proxy = $.proxy,
+                CHANGE = "change",
+                PROGRESS = "progress",
+                ERROR = "error",
+                NS = ".generalInfo";
+
+            var MaskedDatePicker = Widget.extend({
+                init: function (element, options) {
+                    var that = this;
+                    Widget.fn.init.call(this, element, options);
+
+                    $(element).kendoMaskedTextBox({ mask: that.options.dateOptions.mask || "00/00/0000" })
+                    .kendoDatePicker({
+                        format: that.options.dateOptions.format || "dd MMM yyyy",
+                        parseFormats: that.options.dateOptions.parseFormats || ["dd/MM/yyyy", "dd/MM/yy", "dd MMM yyyy"]
+                    })
+                    .closest(".k-datepicker")
+                    .add(element)
+                    .removeClass("k-textbox");
+
+                    that.element.data("kendoDatePicker").bind("change", function () {
+                        that.trigger(CHANGE);
+                    });
+                },
+                options: {
+                    name: "MaskedDatePicker",
+                    dateOptions: {}
+                },
+                events: [
+                  CHANGE
+                ],
+                destroy: function () {
+                    var that = this;
+                    Widget.fn.destroy.call(that);
+
+                    kendo.destroy(that.element);
+                },
+                value: function (value) {
+                    var datepicker = this.element.data("kendoDatePicker");
+
+                    if (value === undefined) {
+                        return datepicker.value();
+                    }
+
+                    datepicker.value(value);
+                }
+            });
+
+            ui.plugin(MaskedDatePicker);
+
+        })(window.kendo.jQuery);
+    </script>
+</body>
+</html>

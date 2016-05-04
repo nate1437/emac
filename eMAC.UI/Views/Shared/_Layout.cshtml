@@ -1,0 +1,140 @@
+﻿@RenderBody()
+@*@RenderSection("scripts", required: false)*@
+<script type="text/ng-template" id="delete-confirm.html">
+    <div class="modal-header bg-danger"> Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  Are you sure you want to delete the meeting? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="events.confirmDelete.yes();">Yes</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="events.confirmDelete.no();">No</button>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="close.html">
+    <div class="modal-header bg-danger"> Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  All unsaved changes will be lost. Do you want to close? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="events.yes();">Yes</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="events.no();">No</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="detail-save.html">
+    <div class="modal-header bg-danger"> Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  Your changes will be saved. Do you want to continue saving? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.save();">Yes</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.hide();">No</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSave();">Cancel</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="detail-submit.html">
+    <div class="modal-header bg-danger"> Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  Your changes will be automatically saved. Do you want to continue? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.submit();">Yes</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.hide();">No</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">Cancel</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="detail-cancel-mtg.html">
+    <div class="modal-header bg-danger"> Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  Cancel this meeting. Are you sure you want to cancel? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.cancelMtg();">Yes</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">No</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">Cancel</button>
+        </div>
+    </div>
+</script>
+<!-- APPROVAL DIALOG -->
+<script type="text/ng-template" id="detail-approve.html">
+    <div class="modal-header bg-danger"> Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  You are approving this meeting. Do you want to continue? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.approve();">Yes</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">No</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">Cancel</button>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="detail-finalize.html">
+    <div class="modal-header bg-danger"> Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  Mark this item as final. Do you want to continue? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.approve();">Yes</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">No</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">Cancel</button>
+        </div>
+    </div>
+</script>
+<!-- REJECT -->
+<script type="text/ng-template" id="detail-reject.html">
+    <div class="modal-header bg-danger">Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span> You are disapproving this meeting. Please provide a reason: 
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <textarea rows="20" class="form-control noresize" ng-model="rejectRemarks" style="resize:none;"/>
+        </div>
+    </div>
+    </div>    
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.reject(rejectRemarks);">POST</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">NO</button>
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.cancelSubmit();">Cancel</button>
+        </div>
+    </div>
+</script>
+<!-- DETAIL CLOSE -->
+<script type="text/ng-template" id="detail-close.html">
+    <div class="modal-header bg-danger">Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  All unsaved changes will be lost. Do you want to close? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.cancel();">OK</button>            
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.hide();">Cancel</button>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="detail-yes-no-cancel.html">
+    <div class="modal-header bg-danger">Confirmation </div>
+    <div class="modal-body"><span class="glyphicon glyphicon-question-sign" style="font-size: 2em; color: #1E7FB8"></span>  There are changes to the record. Do you want to save ? </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-naitsirch-confirm" ng-click="$parent.yes();">Yes</button>  
+            <button type="button" class="btn btn-danger btn-naitsirch-confirm" ng-click="$parent.no();">No</button>            
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="$parent.hide();">Cancel</button>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="editor-zoom.html">
+    <div class="modal-header"> eMac editor zoom </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="well" style="margin: 0px; font-size: 14px !important;">
+                <p ng-bind-html="editorZoomValue" style="padding: 0px;"></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-default btn-naitsirch-confirm" ng-click="editorClose();">Close</button>
+        </div>
+    </div>
+</script>

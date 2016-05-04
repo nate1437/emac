@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<License Key="YIqHSZO7AQByoev3/AvBO4ybbOd1DIfGTyrlukySc858evWUaEB0Gu1cdDrgbpDNkLUg6Uh/2jR4iqSyi4ugjb9CgoKzdqBE9ldgQ++1DZO2JlQufh8IJYIJWs+h6ry5tVwXjz2ouaBdtCN6babo32VSpZWGebSFqVWuuPRSdvnbhItthzyU2cdF/cF9tuyk9Ok00+C9YZGtHpc4L+zX+feQ55aMCE/LUL8JHRYG1sqvKYhlouIUZLZplRfh58ahKkHMTxRtZIik6fwJNzEWkbvn5QqkwZR+sxux2Gte2IoCKBAriW20r/zEYTbCB6Er7yEpeMIOTCR7/wAnFkws9pN4vFVjHFo2NJ0Cfnw6PwgVaOUSDRkCKe65qPQnvuD1Ck4kZWv6+K4x8adBsKF/CwyS49O7D9Bw07ttdctNbB8UAhiPZh0t4mXOAibilGwN7UjT+9mxTclJjOeSQoUDPbEuwLYIrvrpXrlL40sRC3tyXdwBAScQSUyH+n28NvTSNCNsD2P6M5IoGwXoChjp/LiZ6cMzUXeWOvdZqyIwDyTmLthmmRVuYdf+CdEtkmaavkmao4L2qll3Bs2SNMzpqJgKpwQL/hotSGNUI4z62Pge3xHxBxMHZt+kq8pvya82YV349APB/XF5N/3zb4bl/Tgsv4dUJl8TZIl7ItRR2IH/O96JUYS/6B0LMyXJWmuHXt1f8ffJWa6cyGIqv8J3joh1ZMgDM9t1tWcRt5xAxntCTMlJu4HaqSvbE6ID2Mo8BNbdHLSNPbzudr35kPHv7tw44kODYX8tQ0ezcF7uXn5Gw4L35n59ZrixxeJSPMovROf6DvfciU94BM8pK5Hf+IMCOjuzzWc2r6cseO/zO/VYo7RxrqCC3px9GOlz/BBK/uqE638XrWCqoDfkiUJCcK5hLmf+01Y/Pi/FXvCl502TxQpZC5WJV29mNS0nmSzXEeiIAnEyOGOweV69BxPWLkgI9Dt+atxoHSWqtuZ3OwnQux+dGEpiorJT2c4lyJ7S3BodipzidYloDa8USXitNNn3G+zV9mwT7dj3BXs6da/VM7nSNFNFTBTKhvj0mgSFfpfF+NPJJgKVhlJXxDlypz3PxMUVyJPj5239IAecimi/lPPdXSObs6IdvarSOkIVc7UYlqh13BXoqj8ELrstO1tSxsgDIT7Gpw9d36TYrEYlHdfLjGTFGbMwSuwvSBidlhmjpAkP7Z+cs9pTalo+Hx3VWjWYzcRvKWzTjtZsBNczUIovX8Oqz1axUDpZ7fAcR3+wIRLBkWciO2EqZVp9MEXVjfoHUyWHKAfG1PG9PL4RfwK2kuhciH/8ebaWYetVkyq+nhS2Uj04L5prtQbCwaEdtDG5saDBVCG3/0ry9kjdC0gu7ymWpkbhpSwlLJ+2TRrLIvIrEo/mEZBb1cGmJT6UBF8dXeW6GhgW8Yt5IGo0n3OLNRQbzy94usaidY0q1/n88FRxXrQYrchzCPVN2B7rBpuuAkCvEq17aZBdTiYLScNGjS7vdOjVWL9GS7Qu" Version="1.3">
+    <Type>Runtime</Type>
+    <Username>wprosoftware</Username>
+    <Email>wprosoftware@wpro.who.int</Email>
+    <Organization>WORLD HEALTH ORGANIZATION, WPRO</Organization>
+    <LicensedDate>2016-02-02T00:00:00Z</LicensedDate>
+    <ExpiredDate>2017-02-02T00:00:00Z</ExpiredDate>
+    <Products>
+        <Product>
+            <Name>Spire.Office for .NET</Name>
+            <Version>2.12</Version>
+            <Subscription>
+                <NumberOfPermittedDeveloper>1</NumberOfPermittedDeveloper>
+                <NumberOfPermittedSite>1</NumberOfPermittedSite>
+            </Subscription>
+        </Product>
+    </Products>
+    <Issuer>
+        <Name>e-iceblue</Name>
+        <Email>sales@e-iceblue.com</Email>
+        <Url>http://www.e-iceblue.com</Url>
+    </Issuer>
+</License>

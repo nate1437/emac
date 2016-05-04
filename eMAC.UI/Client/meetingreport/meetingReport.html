@@ -1,0 +1,43 @@
+﻿<div ng-cloak>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>{{vm.title}}</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info active">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10">name</div>                        
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">created on</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">modified on</div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                    </div>
+                </li>
+                <li class="list-group-item" ng-show="vm.files.length === 0">no files</li>
+                <li ng-repeat="file in vm.files" class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext"><link onclick="vm.download(file)">{{file.name}}</link></div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{file.created | date: short}}</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{file.modified | date: short}}</div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                            <button type="button" class="btn btn-xs btn-danger" ng-click="vm.remove(file)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <eg-file-uploader></eg-file-uploader>
+        </div>        
+        <!--<div class="col-md-3 hidden-sm hidden-xs" style="height: 150px; width: 150px; margin-bottom: 5px;">
+            <img ng-src="album/{{vm.previewPhoto.name}}" style="max-height: 150px" ng-show="vm.previewPhoto" class="img-responsive" alt="vm.previewPhoto.name" />
+        </div>     -->       
+    </div>
+    <!--<div class="row">
+        <div class="col-md-9">
+            <eg-app-status></eg-app-status>
+        </div>
+    </div>-->
+</div>

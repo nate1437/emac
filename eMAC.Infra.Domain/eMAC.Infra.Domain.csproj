@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{569409DA-EDA7-4EB2-A7C6-79582A900332}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eMAC.Infra.Domain</RootNamespace>
+    <AssemblyName>eMAC.Infra.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CryptLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\CryptLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelLibrary.1.2011.7.31\lib\ExcelLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Impersonation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Impersonation.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire">
+      <HintPath>..\Libraries\Spire.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Doc">
+      <HintPath>..\Libraries\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.3.5.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS, Version=7.9.11.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Spire.XLS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionHistoryRepository.cs" />
+    <Compile Include="AttachmentsRepository.cs" />
+    <Compile Include="Helpers\ExcelReader\baseExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelReader\ExcelHelper.cs" />
+    <Compile Include="Helpers\Impersonate.cs" />
+    <Compile Include="Helpers\MiscHelper.cs" />
+    <Compile Include="Helpers\SpireHelper.cs" />
+    <Compile Include="Helpers\SpireHelperBase.cs" />
+    <Compile Include="IActionHistoryRepository.cs" />
+    <Compile Include="IAttachmentsRepository.cs" />
+    <Compile Include="ILibraryRepository.cs" />
+    <Compile Include="ILinkagesRepository.cs" />
+    <Compile Include="IMeetingActionHistoryRepository.cs" />
+    <Compile Include="IMeetingBudgetRepository.cs" />
+    <Compile Include="IMeetingDetailRepository.cs" />
+    <Compile Include="IMeetingReportRepository.cs" />
+    <Compile Include="IMeetingRepository.cs" />
+    <Compile Include="IParticipantIB2Repository.cs" />
+    <Compile Include="IParticipantsRepository.cs" />
+    <Compile Include="IRelatedMeetingRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Interfaces\ITestRepository.cs" />
+    <Compile Include="ISpireHelper.cs" />
+    <Compile Include="LibraryRepository.cs" />
+    <Compile Include="LinkagesRepository.cs" />
+    <Compile Include="MeetingBudgetRepository.cs" />
+    <Compile Include="MeetingDetailRepository.cs" />
+    <Compile Include="MeetingActionHistoryRepository.cs" />
+    <Compile Include="MeetingReportRepository.cs" />
+    <Compile Include="MeetingRepository.cs" />
+    <Compile Include="Notification\EmailSender.cs" />
+    <Compile Include="Notification\Email_Repository.cs" />
+    <Compile Include="Notification\ISender.cs" />
+    <Compile Include="Notification\XMLLoader.cs" />
+    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="ParticipantsIB2Repository.cs" />
+    <Compile Include="ParticipantsIB2Repository_atan.cs" />
+    <Compile Include="ParticipantsRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelatedMeetingRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
+    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="IReportRepository.cs" />
+    <Compile Include="ReportRepository.cs" />
+    <Compile Include="TestRepository.cs" />
+    <Compile Include="UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eMAC.Domain.Entities\eMAC.Domain.Entities.csproj">
+      <Project>{8da4b264-f1e0-4d00-83b0-d455a42599b0}</Project>
+      <Name>eMAC.Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eMAC.Infra.Common\eMAC.Infra.Common.csproj">
+      <Project>{6f12c103-ca40-4292-b59b-df4534525af6}</Project>
+      <Name>eMAC.Infra.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ParticipantsPB2Helper\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="license.elic.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

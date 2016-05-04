@@ -1,0 +1,1643 @@
+﻿@{
+    ViewBag.Title = "EditTest";
+}
+@*<div style="padding:10px;background-color: lightsteelblue;padding: 10px;border: thin solid darkgray;border-radius: 4px;">
+    <h4>Meeting elements</h4>
+</div>*@
+<link href="~/Content/mtg-edit.css" rel="stylesheet" />
+
+
+<div class="row" style="margin-top: 0;">
+    <div class="col-md-12 RbtnMargin">
+        <button type="button" class="btn btn-default btn-xs">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print preview
+        </button>
+        <button kendo-button class="pull-right" ng-click="cancel()"><span class="k-icon k-i-cancel"></span>Cancel</button>
+        <button kendo-button class="pull-right" ng-click="save()"><span class="k-icon k-i-tick"></span>Save</button>
+        <button kendo-button class="pull-right"><span class="k-icon k-i-tick"></span>Submit</button>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Meeting details</div>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="row clearfix">           
+              <div class="col-lg-12">
+                <div class="col-lg-12">
+                    <div class="form-group clearfix">
+                        <div class="col-lg-3" pull-left>
+                            <label class="col-lg-4 control-label" for="mtgNumber" style="padding-left: 0px;">Meeting no.</label>                                                
+                            <div class="col-lg-7" style="padding-left: 0px;">
+                                <input disabled ng-model="meeting.mtg_no" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="col-lg-2 control-label" for="mtgDurationFromDate">Duration</label>
+                            <div class="col-lg-4">
+                                <input kendo-date-picker id="dateDurFr" k-format="'dd MMM yyyy'" k-options="datePickerOptions" k-ng-model="meeting.start_date" style="width: 110px;"/>                            
+                            </div>
+                            <div class="col-lg-2 hidden-sm control-label" for="jobNumber">to</div> 
+                            <div class="col-lg-4">
+                                <input kendo-date-picker id="dateDurTo" k-format="'dd MMM yyyy'" k-options="datePickerOptions" k-ng-model="meeting.end_date" style="width: 110px;" />
+                            </div> 
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="col-lg-2 control-label" for="jobNumber">Venue</label>
+                            <div class="col-lg-6">
+                                <input ng-model="meeting.venue" type="text" class="form-control">
+                            </div>
+                            <div class="col-xs-4 col-lg-4" style="padding-left:0px;padding-right:0px;">
+                                <select ng-model="meeting.ctry_code" class="form-control" ng-options="s.ctry_code as s.ctry_code for s in states">
+                                    <option value="">--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <label class="col-lg-3 control-label" for="mtgStatus">Status</label>
+                            <div class="col-lg-9" style="padding-right: 0px;">
+                                <input ng-model="meeting.status" type="text" class="form-control" disabled>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group clearfix">
+                        <label class="col-lg-1 control-label" for="mtgTitle">Title</label> 
+                        <div class="col-lg-11" style="padding-left: 5px;">
+                            <input ng-model="meeting.mtg_title" type="text" class="form-control">
+                        </div>
+                    </div>                 
+                </div>
+                  <div class="col-lg-12">
+                    <div class="form-group clearfix">
+                        <div class="col-lg-3">
+                            <label class="col-lg-4 control-label" for="mtgNumber" style="padding-left: 0px;">Resp. officer</label>                                                
+                            <div class="col-lg-8" style="padding-left: 0px;">
+                                <!--<input ng-model="meeting.resp_officer" type="text" class="form-control">-->
+                                <select ng-model="meeting.resp_officer" class="form-control" ng-options="o.user_name as o.user_name for o in officers">
+                                    <option value="">--</option>
+                                </select>
+                            </div>
+                        </div>                        
+                        <!--<div class="pull-left">
+                            <label class="col-lg-5 control-label" for="jobNumber">Division</label>                            
+                            <div class="col-lg-7" style="padding-left:0px;padding-right:0px;">
+                                <select ng-model="meeting.division" class="form-control" ng-options="s.ctry_code as s.ctry_code for s in states">
+                                    <option value="">--</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="col-lg-3">
+                            <label class="col-lg-4 control-label" for="jobNumber">Org. unit</label>                            
+                            <div class="col-lg-7" style="padding-left:0px;padding-right:0px;">
+                                <select ng-model="meeting.org_unit" class="form-control" ng-options="s.org_unit as s.org_unit for s in units">
+                                    <option value="">--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="col-lg-4 control-label" for="mtgNumber" style="padding-left: 0px;">Co-resp. officer</label>                                                
+                            <div class="col-lg-6" style="padding-left: 0px;">
+                                <!--<input ng-model="meeting.co_resp_officer" type="text" class="form-control">-->
+                                <select ng-model="meeting.co_resp_officer" class="form-control" ng-options="o.user_name as o.user_name for o in officers">
+                                    <option value="">--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>           
+          </div> 
+            <hr />
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="col-lg-2" style="padding-right: 0;">   
+                        <div class="form-group clearfix">  
+                                <div class="col-lg-12 col-xs-12">
+                                    <div class="checkbox">
+                                        <label class="col-lg-3 form-control"><input type="checkbox" value="" ng-model="meeting.is_spmc_waived">SPMC waived?</label>
+                                    </div> 
+                                </div>
+                            </div>
+                        <div class="form-group clearfix">  
+                            <div class="col-lg-12 col-xs-12"  style="padding-right: 0;">
+                                <div class="checkbox">
+                                    <label class="col-lg-3 form-control"><input type="checkbox" value="" ng-model="meeting.is_four_mos_waiver_approved">4-month waiver approved?</label>
+                                </div> 
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="col-lg-2"  style="padding-right: 0;">
+                        <div class="form-group clearfix">  
+                            <div class="col-lg-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label class="col-lg-3 form-control"><input type="checkbox" value="" ng-model="meeting.is_not_wpro_mtg">Not a WPRO-led meeting?</label>
+                                </div> 
+                            </div>                        
+                        </div>
+                        <div class="form-group clearfix">  
+                            <div class="col-lg-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label class="col-lg-3 form-control"><input type="checkbox" value="" ng-model="meeting.incl_in_events_calendar">Include in Event calendar?</label>
+                                </div> 
+                            </div>                        
+                        </div>
+                        @*<div class="form-group clearfix">  
+                            <div class="col-lg-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label class="col-lg-3 form-control"><input type="checkbox" value="" ng-model="meeting.reqreport">Requires a meeting report?</label>
+                                </div> 
+                            </div>                        
+                        </div>
+                        <div class="form-group clearfix">  
+                            <div class="col-lg-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label class="col-lg-3 form-control"><input type="checkbox" value="" ng-model="meeting.reqlogo">Requires a logo?</label>
+                                </div> 
+                            </div>
+                        </div>*@ 
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group clearfix">      
+                            <div class="col-xs-12" style="padding-top:0px;">
+                                    <label class="col-lg-7 control-label" for="jobNumber">SPMC approval date</label>
+                                    <div class="col-lg-5">
+                                        <input kendo-date-picker id="dateDurFr" k-format="'dd MMM yyyy'" k-options="datePickerOptions" k-ng-model="meeting.spmc_approval_date"  style="width: 110px;"/>                                                                  
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">      
+                            <div class="col-xs-12" style="padding-top:0px;">
+                                <label class="col-lg-7 control-label" for="jobNumber">Meeting admin follow up date</label>
+                                <div class="col-lg-5">
+                                    <input kendo-date-picker id="dateDurFr" k-format="'dd MMM yyyy'" k-options="datePickerOptions" k-ng-model="meeting.mtg_admin_followup_date"  style="width: 110px;"/>                                                                  
+                                </div>                       
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group clearfix">                           
+                                    <div class="col-lg-12">
+                                        <label class="col-lg-5 control-label" for="jobNumber">Meeting type</label>                                    
+                                        <div class="col-xs-12 col-lg-7">
+                                    	        <select ng-model="meeting.mtg_type" class="form-control" ng-options="option.ref_id as option.ref_name for option in types">
+	                                                <option ng-disabled="true"  ng-selected="true" value="">Select type</option>
+	                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">                           
+                                    <div class="col-lg-12">
+                                        <label class="col-lg-5 control-label" for="jobNumber">Meeting classification</label>                                    
+                                        <div class="col-xs-12 col-lg-7">
+                                    	        <select ng-model="meeting.mtg_classification" class="form-control" ng-options="option.ref_id as option.ref_name for option in classifications | filter:{type:meeting.mtg_type}">
+	                                                <option ng-disabled="true"  ng-selected="true" value="">Select classification</option>
+	                                            </select>
+                                        </div>
+                                    </div>
+                                </div> 
+                    </div>
+                </div>
+            </div>
+            <hr />           
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="tabset">
+                        <tabset class="tabs-left">
+                            <tab heading="Internal planning">
+                                <div class="row clearfix">                                   
+                                    <div class="col-lg-9">
+                                        <h5>Internal planning</h5>
+                                        <hr />
+                                        <div class="row clearfix">
+                                            
+                                            <div class="col-lg-4 form-group clearfix">      
+                                                <div class="col-lg-12" style="padding-top:0px;">
+                                                    <label class="col-lg-2 control-label" for="jobNumber">Date</label>
+                                                    <div class="col-lg-10">
+                                                        <input kendo-date-picker id="" k-format="'dd MMM yyyy'" k-options="datePickerOptions" k-ng-model="meetingDetail.planning_mtg_date" />                                                                  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 form-group clearfix">
+                                                <div class="col-lg-12" style="padding: 0px;">
+                                                    <label class="col-lg-2 control-label" for="jobNumber">Time</label>
+                                                    <div class="col-lg-10">
+                                                        <input ng-model="meetingDetail.planning_mtg_time" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 form-group clearfix">
+                                                <div class="col-lg-12" style="padding: 0px;">
+                                                    <label class="col-lg-2 control-label" for="jobNumber">Room</label>
+                                                    <div class="col-lg-10">
+                                                        <input ng-model="meetingDetail.planning_mtg_room" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>                                         
+                                        
+                                        </div>
+                                        <hr />
+                                        <div class="row clearfix ">                               
+                                            <div class="col-lg-6">
+                                                <label class="col-md-12 edit-form-label" for="bg-info">Present</label>
+                                                <div class="col-md-12">
+                                                    <textarea class="form-control input-sm" id="" rows="12" ng-model="meetingDetail.present" style="height:inherit"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label class="col-md-12 edit-form-label" for="bg-info">Invited-unable to attend</label>
+                                                <div class="col-md-12">
+                                                    <textarea class="form-control input-sm" id="" rows="12" ng-model="meetingDetail.absent" style="height:inherit"></textarea>
+                                                </div>
+                                            </div>                                   
+                                        </div> 
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="1. Background">                         
+                                <div class="row clearfix">
+                                    <div class="col-lg-9 column">
+                                        <h5>1. Background information</h5>
+                                        <hr />
+                                        <!-- Text input-->
+                                        <div class="col-lg-6 column">
+                                            <div class="form-group">
+                                                <label class="col-md-12 edit-form-label" for="bg-info">Background Information</label>
+                                                <div class="col-md-12">
+                                                    @*<textarea class="form-control input-sm" id="dtl-bg-info" rows="15" ng-model="mtgdetails.bginfo" ></textarea>*@
+                                                    <textarea id="bg-ta" kendo-editor  
+                                                        k-ng-model="meetingDetail.background_info" 
+                                                        k-tools="[
+                                                        'formatting',
+                                                        'bold',
+                                                        'italic',
+                                                        'underline',
+                                                        'justifyLeft',
+                                                        'justifyCenter',
+                                                        'justifyRight',
+                                                        'justifyFull',
+                                                        'insertUnorderedList',
+                                                        'insertOrderedList',
+                                                        'indent',
+                                                        'outdent',
+                                                        'createLink',
+                                                        'unlink'
+                                                        ]"></textarea>
+                                                </div>
+                                                <span class="col-lg-12 text-muted">Please provide information directly related to the need and objectives of the meeting.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 column">
+                                        <!-- Text input-->
+                                        <div class="form-group">
+                                            <label class="col-md-12 edit-form-label" for="bg-info">Summary</label>
+                                            <div class="col-md-12">
+                                                @*<textarea class="form-control input-sm" id="dtl-summary" rows="15" ng-model="mtgdetails.summary"></textarea>*@
+                                                <textarea kendo-editor 
+                                                    k-ng-model="meetingDetail.summary"
+                                                    k-tools="[
+                                                    'formatting',
+                                                    'bold',
+                                                    'italic',
+                                                    'underline',
+                                                    'justifyLeft',
+                                                    'justifyCenter',
+                                                    'justifyRight',
+                                                    'justifyFull',
+                                                    'insertUnorderedList',
+                                                    'insertOrderedList',
+                                                    'indent',
+                                                    'outdent',
+                                                    'createLink',
+                                                    'unlink'
+                                                    ]"></textarea>
+                                            </div>
+                                            <span class="col-lg-12 text-muted" style="font-style:italic">Please provide just two short paragraphs including the most important points for the invitation letter.</span>
+                                        </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="2. Contribution to WHO's work">
+                              <div class="row" ng-controller="lnkgsController">
+                                    <div class="col-lg-9 col-sm-12 col-xs-12">
+                                        <h5>2. Contribution to WHO's work</h5>
+                                        <hr />
+                                        <div class="tabset-inner">
+                                            <tabset>
+                                                <tab heading="Core functions">
+                                                    <div class="row">
+                                                        <div class="col-lg-12"> 
+                                                            <span>2a. Related WHO core functions</span>                                                            
+                                                            <hr />
+                                                            <div class="form-group clearfix" ng-repeat="cfx in corefx" ng-class="{info:selected[cfx.ref_id], warning:!selected[cfx.ref_id] && maxSelected()}">  
+                                                                <div class="col-lg-12 col-xs-12">
+                                                                    <div class="checkbox">
+                                                                        <label class="col-lg-3 form-control"><input type="checkbox" data-ng-model="selectedCoreFx[cfx.ref_id]" ng-disabled="!selectedCoreFx[cfx.ref_id] && maxSelected()" ng-checked="isChecked(cfx)">{{cfx.ref_name}}</label>
+                                                                    </div> 
+                                                                </div>                        
+                                                            </div>
+                                                            <!--<div>{{selectedCoreFx}}</div>-->
+                                                        </div>
+                                                    </div>                                         
+                                                </tab>                                 
+                                                <tab heading="Relevant PB deliverables" ng-click="pbDeliverablesTab()">
+                                                    <span>2b. Contribution to WHO's programme budget</span>
+                                                    <br />
+                                                    <span class="text-muted">Identify the specific output numbers and deliverables</span>
+                                                    <hr />
+                                                    <div class="form-group clearfix">
+                                                        <div class="col-lg-12">
+                                                        <span>The workshop would also contribute to:</span>
+                                                            </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group clearfix" ng-repeat="pbCategory in pbCategories">  
+                                                                <div class="col-lg-12 col-xs-12">
+                                                                    <div class="checkbox">
+                                                                        <label class="col-lg-12"><input type="checkbox" ng-model="selectedPbCategory[pbCategory.id]" id="{{pbCategory.id}}" value="" ng-change="stateChanged(pbCategory.id)">{{pbCategory.desc}}</label>
+                                                                        <div class="form-group clearfix" ng-repeat="pbOutcome in pbOutcomes" ng-if="pbOutcome.pbcategoryid == pbCategory.id && selectedPbCategory[pbCategory.id]">  
+                                                                            <div class="col-lg-12 col-xs-12" style="padding-left:40px;" >
+                                                                                <div class="checkbox">
+                                                                                    <label class="col-lg-12" style="font-weight:normal"><input type="checkbox" ng-model="selectedPbOutcome[pbOutcome.id]" id="{{pbOutcome.id}}" value="" >{{pbOutcome.desc}}</label>
+                                                                                    <div class="form-group clearfix" ng-repeat="pbOutput in pbOutputs" ng-if="pbOutput.pboutcomeid == pbOutcome.id && selectedPbOutcome[pbOutcome.id]">  
+                                                                                        <div class="col-lg-12 col-xs-12" style="padding-left:40px;" >
+                                                                                            <div class="checkbox">
+                                                                                                <label class="col-lg-12" style="font-weight:normal"><input type="checkbox" ng-model="selectedPbOutput[pbOutput.id]" id="{{pbOutput.id}}" value="" >{{pbOutput.desc}}</label>
+                                                                                                @*<div class="checkbox">
+                                                                                                    <input type="radio" name="somethign" value="1" ng-model="checkboxSelection"/> Checkbox 1 <input type="radio" name="somethign" value="2" ng-model="checkboxSelection"/> Checkbox 2
+                                                                                                </div>*@
+                                                                                                <div class="form-group clearfix" ng-if="selectedPbOutput[pbOutput.id]">  
+                                                                                                    <div class="col-lg-12 col-xs-12" style="padding-left:40px;" >
+                                                                                                        <div class="checkbox">
+                                                                                                            <div ng-repeat="delCat in deliverableCats" class="pull-left" style="padding-right:10px;">
+                                                                                                                <input type="radio" data-ng-value="delCat" data-ng-model="$parent.delcatselected" name="del{{pbOutput.id}}" ng-checked="$index==0" />
+                                                                                                                 {{delCat.text}}
+                                                                                                            </div>                                                                                                 
+                                                                                                            <div class="clearfix"></div>
+                                                                                                            <div class="clearfix" style="border-top: thin solid lightgrey;padding-left:20px;padding-top:5px;margin-top: 5px;">
+                                                                                                                <div class="checkbox">
+                                                                                                                    <div ng-if="delcatselected.id==1" >
+                                                                                                                        <span>N/A</span>
+                                                                                                                    </div>
+                                                                                                                     <div ng-repeat="pbDeliverable in pbDeliverables| filter:{pbDelCategory:1}:{pboutputid:pbOutput.id}" style="padding-right:10px;" >
+                                                                                                                        <div ng-show="pbDeliverable.pbDelCategory==1 && pbOutput.id == pbDeliverable.pboutputid && delcatselected.id==2">
+                                                                                                                            <input type="radio" data-ng-value="pbDeliverable" data-ng-model="$parent.delselected" name="pbDel{{pbOutput.id}}" />
+                                                                                                                                {{pbDeliverable.desc}}
+                                                                                                                        </div>                                                                                                                 
+                                                                                                                    </div>
+                                                                                                                    <div ng-repeat="pbDeliverable in pbDeliverables| filter:{pbDelCategory:2}:{pboutputid:pbOutput.id}" style="padding-right:10px;" >
+                                                                                                                        <div ng-show="pbDeliverable.pbDelCategory==2 && pbOutput.id == pbDeliverable.pboutputid && delcatselected.id==3">
+                                                                                                                            <input type="radio" data-ng-value="pbDeliverable" data-ng-model="$parent.delselected" name="pbDel{{pbOutput.id}}" />
+                                                                                                                                {{pbDeliverable.desc}}
+                                                                                                                        </div>   
+                                                                                                                    </div>
+                                                                                                                    @*<div ng-repeat="pbDeliverable in pbDeliverables" style="padding-right:10px;" >
+                                                                                                                        <div ng-show="pbDeliverable.pbDelCategory==2 && pbOutput.id == pbDeliverable.pboutputid && delcatselected.id==3">
+                                                                                                                            <input type="radio" data-ng-value="pbDeliverable" data-ng-model="$parent.delselected" name="pbDel{{pbOutput.id}}" />
+                                                                                                                                {{pbDeliverable.desc}}
+                                                                                                                        </div>   
+                                                                                                                    </div>*@
+                                                                                                                    @*<div ng-repeat="pbDeliverable in pbDeliverables"  style="padding-right:10px;" ng-if="pbDeliverable.pbDelCategory==2 && pbOutput.id == pbDeliverable.pboutputid && delcatselected.id==3">
+                                                                                                                            <input type="radio" data-ng-value="pbDeliveberable" data-ng-model="$parent.delselected" name="pbDeliverables_{{pbOutput.id}}"/>
+                                                                                                                             {{pbDeliverable.desc}}
+                                                                                                                    </div> *@
+                                                                                                                    @*<div ng-repeat="pbDeliverable in pbDeliverables | filter:{pbDelCategory:1}:{pboutputid:pbOutput.id}" style="padding-right:10px;" ng-if="delcatselected.id==2" >
+                                                                                                                        <input type="radio" data-ng-value="pbDeliverable" data-ng-model="$parent.delselected" name="pbDel{{pbOutput.id}}" />
+                                                                                                                            {{pbDeliverable.desc}}
+                                                                                                                    </div>
+                                                                                                                    <div ng-repeat="pbDeliverable in pbDeliverables | filter:{pbDelCategory:2}:{pboutputid:pbOutput.id}" style="padding-right:10px;" ng-if="delcatselected.id==3" >
+                                                                                                                        <input type="radio" data-ng-value="pbDeliverable" data-ng-model="$parent.delselected" name="pbDel{{pbOutput.id}}" />
+                                                                                                                            {{pbDeliverable.desc}}
+                                                                                                                    </div>*@
+                                                                                                                </div>
+                                                                                                             </div>
+                                                                                                            @*<tabset class="innertab">
+                                                                                                                <tab heading="Country office deliverables">
+                                                                                      k                              <div class="checkbox">
+                                                                                                                        <div ng-repeat="pbDeliverable in pbDeliverables" class="pull-left" style="padding-right:10px;" ng-if="pbDeliverable.pbDelCategory==1 && pbOutput.id == pbDeliverable.pboutputid">
+                                                                                                                            <input type="radio" data-ng-value="pbDeliverable" data-ng-model="$parent.delcatselected" name="pbDeliverables_{{pbOutput.id}}" />
+                                                                                                                             {{pbDeliverable.desc}}
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </tab>
+                                                                                                              <tab heading="Regional office deliverables">
+                                                                                                                    <div ng-repeat="pbDeliveberable2 in pbDeliverables" class="pull-left" style="padding-right:10px;" ng-if="pbDeliveberable2.pbDelCategory==2 && pbOutput.id == pbDeliveberable2.pboutputid">
+                                                                                                                            <input type="radio" data-ng-value="pbDeliveberable2" data-ng-model="$parent.delselected2" name="pbDeliverables_{{pbOutput.id}}"/>
+                                                                                                                             {{pbDeliveberable2.desc}}
+                                                                                                                        </div> 
+                                                                                                                </tab>
+                                                                                                            </tabset>*@
+                                                                                                            <div>{{delcatselected}}</div>
+                                                                                                            <div>{{delselected}}</div>                                                                               
+                                                                                                        </div>                                                                                
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div> 
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> 
+                                                                            </div>                        
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>                        
+                                                            </div>
+                                                        </div>
+                                                        <div>{{selectedPbCategory}}</div>
+                                                    </div>
+                                                 @*   <div>{{selectedPbOutcome}}</div>*@
+                                                </tab>
+                                                <tab heading="Linkages to resolutions">
+                                                    <div class="row clearfix" ng-controller="resolutionsController">
+                                                        <div class="col-lg-12 column">
+                                                            <span>2c. Linkages to global and regional resolutions (where applicable)</span>
+                                                            <hr />
+                                                            <div class="form-group">                                                                
+                                                                <div class="col-lg-12">
+                                                                    <div 
+                                                                        id="resgrid"                                                                        
+                                                                        kendo-grid="resolutionsgrid"
+                                                                        k-sortable="true"
+                                                                        k-pageable="true"
+                                                                        k-filterable="true"
+                                                                        k-selectable="true"
+                                                                        k-editable= "'popup'"
+                                                                        @*k-editable='{
+                                                                            mode: "popup",
+                                                                            template: tempTemplate
+                                                                        }'
+                                                                        k-edit="editFunction"*@
+                                                                       @* k-toolbar='["create","edit","destroy"]'*@
+                                                                        k-toolbar='[ { template: createtoolbarTemplate } ]'
+                                                                        k-columns='[
+                                                                            { field: "resolutiontitle", title: "Resolution reference and title"},
+                                                                            { field: "resolutiontype", title:"Type"}    
+                                                                        ]'
+                                                                        k-data-source="resolutionsDataSource"
+                                                                        k-on-data-bound="onDataBound(kendoEvent)"
+                                                                        k-on-change="onChange(kendoEvent)">
+                                                                    </div>
+                                                                </div>                                       
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal modal-vcenter fade" id="newresofm" tabindex="-1" role="dialog">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content">                                                                    
+                                                                     <div class="modal-header bg-info"><span class="glyphicon glyphicon-info-sign"></span> New item </div>
+                                                                    <div class="modal-body">
+                                                                        <form name="formEntry" novalidate>
+                                                                            <div class="form-horizontal">
+                                                                                <div class="row clearfix">
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="form-group clearfix">
+                                                                                            <label class="col-lg-2 control-label" for="mtgNumber" style="padding-left: 0px;">Ref. and title</label>                                                
+                                                                                            <div class="col-lg-10">
+                                                                                                <input ng-model="newres.resolutiontitle" type="text" class="form-control">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group clearfix">
+                                                                                            <label class="col-lg-2 control-label" for="mtgStatus">Type</label>
+                                                                                            <div class="col-lg-2">
+                                                                                                <input type="text" class="form-control" ng-model="newres.resolutiontype" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>                                                                                    
+                                                                              </div>                                    
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>   
+                                                                    <div class="modal-footer">
+                                                                        <!--<div class="pull-left">Last updated by: {{entry.updated_by}}  |  Updated as of {{entry.date_updated}} </div>-->
+                                                                        @*<button type="button" nait-confirm-click confirm="Are you sure you want to submit your entry?" do="submit(entry)" ng-disabled="formEntry.desc.$error.required" ng-show="newMtg.status == 'Draft' || submitView" class="btn btn-primary">Submit</button>*@
+                                                                        <button type="button" ng-click="save(newres)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required" class="btn btn-primary">Save</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="close(formEntry,newres)">Close</button>
+                                                                    </div>         
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <script type="text/x-kendo-template" id="createToolbar">
+                                                            <div>
+                                                                <div class="toolbar">
+                                                                    <button kendo-button ng-click="create(this)"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                                                </div>
+                                                            </div>
+                                                        </script>
+                                                    </div>
+                                                </tab> 
+                                            </tabset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="3. Related meetings">
+                                <div class="row clearfix" ng-controller="relmtgsController">
+                                    <div class="col-lg-9 column"> 
+                                        <h5>3. Related meetings</h5>
+                                        <hr />                                  
+                                        <div class="form-group">
+                                            <div class="col-lg-12">                                                                                         
+                                                <div
+                                                    id="relmtgsgrid"
+                                                    kendo-grid="grid"
+                                                    k-column-menu="true"
+                                                    height="300"                                                    
+                                                    k-sortable="true"
+                                                    k-pageable="true"
+                                                    k-filterable="true"
+                                                    k-selectable="true"
+                                                    k-editable= "'popup'"                                                    
+                                                    @*k-editable='{
+                                                        mode: "popup",
+                                                        template: tempTemplate
+                                                    }'
+                                                    k-edit="editFunction"*@
+                                                    k-toolbar='[ { template: createtoolbarTemplate } ]'
+                                                    k-columns='[
+                                                        { field: "title", title: "Meeting title"},
+                                                        { field: "date", title:"Date of report completion",format:"{0:dd MMM yyyy}"  },
+                                                        { field: "recommendations", title:"Recommendations followed-up? Y/N & comment"  }    
+                                                    ]'
+                                                    k-data-source="relmtgsDataSource"                                                 
+                                                    k-on-data-bound="onDataBound(kendoEvent)"
+                                                    k-on-change="onChange(kendoEvent)">
+                                                </div>                                                
+                                            </div>                          
+                                        </div>
+                                    </div>
+                                    <div class="modal modal-vcenter fade" id="newrelmtgfm" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">                                                                    
+                                                <div class="modal-header bg-info"><span class="glyphicon glyphicon-info-sign"></span> New item </div>
+                                                <div class="modal-body">
+                                                    <form name="formEntry" novalidate>
+                                                        <div class="form-horizontal">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Ref. and title</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newrelmtg.title" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">                                       
+                                                                        <label class="col-lg-3 control-label" for="mtgDurationFromDate">Date of completion</label>
+                                                                        <div class="col-lg-9">
+                                                                            <input class="pull-left" kendo-date-picker id="dateDurFr" k-format="'dd MMM yyyy'" k-options="datePickerOptions" k-ng-model="newrelmtg.date" style="width: 110px;"/>                                                                            
+                                                                        </div>                                       
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgStatus">Recommendations followed up?</label>
+                                                                        <div class="col-lg-9">
+                                                                            <textarea type="text" <textarea class="form-control input-sm" rows="3" ng-model="newrelmtg.recommendations" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                                    
+                                                            </div>                                    
+                                                        </div>
+                                                    </form>
+                                                </div>   
+                                                <div class="modal-footer">
+                                                    <!--<div class="pull-left">Last updated by: {{entry.updated_by}}  |  Updated as of {{entry.date_updated}} </div>-->
+                                                    @*<button type="button" nait-confirm-click confirm="Are you sure you want to submit your entry?" do="submit(entry)" ng-disabled="formEntry.desc.$error.required" ng-show="newMtg.status == 'Draft' || submitView" class="btn btn-primary">Submit</button>*@
+                                                    <button type="button" ng-click="save(newrelmtg)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required" class="btn btn-primary">Save</button>
+                                                    <button type="button" class="btn btn-default" ng-click="close(formEntry,newres)">Close</button>
+                                                </div>         
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<script type="text/x-kendo-template" id="createToolbar">
+                                        <div>
+                                            <div class="toolbar">
+                                                <button kendo-button ng-click="create(this)"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                            </div>
+                                        </div>
+                                    </script>*@
+                                    <div id="addrelmtgstemp" style="display:none;">                                        
+                                        <div class="toolbar">
+                                            <button kendo-button ng-click="create()"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                        </div>
+                                    </div>
+                                </div>                              
+                            </tab>
+                            <tab heading="5. Objectives">
+                              <div class="row clearfix" ng-controller="objectivesController">
+                                    <div class="col-lg-9 column">     
+                                        <h5>5. Objectives</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @*<textarea class="form-control input-sm" id="dtl-bg-info" rows="15" ng-model="mtgdetails.bginfo" ></textarea>*@
+                                                <textarea kendo-editor k-ng-model="meetingDetail.objectives"></textarea>
+                                            </div>                                                                                   
+                                        </div>
+                                    </div>
+                                    <div class="modal modal-vcenter fade" id="newobjfm" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">                                                                    
+                                                <div class="modal-header bg-info"><span class="glyphicon glyphicon-info-sign"></span> New item </div>
+                                                <div class="modal-body">
+                                                    <form name="formEntry" novalidate>
+                                                        <div class="form-horizontal">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Objective</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newobj.objective" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                                    
+                                                            </div>                                    
+                                                        </div>
+                                                    </form>
+                                                </div>   
+                                                <div class="modal-footer">
+                                                    <!--<div class="pull-left">Last updated by: {{entry.updated_by}}  |  Updated as of {{entry.date_updated}} </div>-->
+                                                    @*<button type="button" nait-confirm-click confirm="Are you sure you want to submit your entry?" do="submit(entry)" ng-disabled="formEntry.desc.$error.required" ng-show="newMtg.status == 'Draft' || submitView" class="btn btn-primary">Submit</button>*@
+                                                    <button type="button" ng-click="save(newobj)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required" class="btn btn-primary">Save</button>
+                                                    <button type="button" class="btn btn-default" ng-click="close(formEntry,newobj)">Close</button>
+                                                </div>         
+                                            </div>
+                                        </div>
+                                     </div>                                   
+                                    <div id="addobjtemp" style="display:none;">                                        
+                                        <div class="toolbar">
+                                            <button kendo-button ng-click="create()"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="6-7. Sites & Languages">
+                                <div class="row clearfix" >
+                                    <div class="col-lg-9 column">
+                                        <h5>6-7. Sites & Languages</h5>
+                                        <hr />
+                                        <div class="row clearfix" >
+                                            <div class="col-lg-6 column">
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label" for="bg-info">Working language</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control input-sm" id="" ng-model="meeting.working_language"></input>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="col-lg-6 column">
+                                        <div class="form-group">
+                                            <label class="col-md-12 edit-form-label" for="bg-info">6c. If the meeting site is not the regional office, please provide an explanation.</label>
+                                            <div class="col-md-12">
+                                                <textarea class="form-control input-sm" id="" rows="10" ng-model="meetingDetail.offsite_reason" style="height:inherit"></textarea>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-lg-6 column">
+                                        <!-- Text input-->
+                                        <div class="form-group">
+                                            <label class="col-md-12 edit-form-label" for="bg-info">6d. If conference hall is reserved, do you want to avail of the WEBEX facilities.</label>
+                                            <div class="col-md-12">
+                                                <textarea class="form-control input-sm" id="" rows="10" ng-model="meetingDetail.other_facilities_reason" style="height:inherit"></textarea>
+                                            </div>
+                                        </div>
+                                        </div>                                
+                                    </div>  
+                                </div>
+                            </tab>
+                            <tab heading="8. Participants">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9 column">
+                                        <h5>8. Participants</h5>
+                                        <hr />
+                                        <div class="tabset-inner">
+                                            <tabset>
+                                                <tab heading="Criteria for participants to be invited">
+                                                    <div class="col-lg-12 column">                                   
+                                                        <div class="form-group">
+                                                            <label class="col-lg-12 edit-form-label" for="bg-info">8a. Criteria for participants to be invited</label>
+                                                            <div class="col-lg-12">
+                                                                <textarea class="form-control input-sm" id="" rows="12" ng-model="mtgdetails.participants.criteria" style="height:inherit"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                    
+                                                </tab>
+                                                <tab heading="Participants to be invited">
+                                                    <div class="row clearfix" ng-controller="participantsController">
+                                                        <div class="col-lg-12 column">                                   
+                                                           <div class="form-group">
+                                                                <label class="col-lg-12 edit-form-label" for="bg-info">8b. Participants to be invited</label>
+                                                                <div class="col-lg-12">
+                                                                    <div
+                                                                        id="participantsgrid"
+                                                                         kendo-grid="participant"                                                   
+                                                                        k-sortable="true"
+                                                                        k-pageable="true"
+                                                                        k-filterable="true"
+                                                                        k-selectable="true"
+                                                                        k-editable= "'popup'"
+                                                                        k-toolbar='[ { template: createtoolbarTemplate } ]'
+                                                                        @*k-editable='{
+                                                                            mode: "popup",
+                                                                            template: tempTemplate
+                                                                        }'
+                                                                        k-edit="editFunction"*@                                                                   
+                                                                        k-columns='[
+                                                                            { field:"ctry_code", title: "Country"},
+                                                                            { field: "no_of_participants", title:"Number"  },
+                                                                            { field: "is_self_funded", title:"WPRO/SEARO funded"  },      
+                                                                            { field: "is_self_funded", title:"Self funded"  },
+                                                                            { command: "destroy"  }   
+                                                                        ]'
+                                                                        k-data-source="participantsDataSource"
+                                                                        k-on-data-bound="onDataBound(kendoEvent)"
+                                                                        k-on-change="onChange(kendoEvent)">
+                                                                    </div>
+                                                                </div>                                       
+                                                            </div> 
+                                                        </div>
+                                                        <div>{{participantsTemp}}</div>
+                                                        <div class="modal modal-vcenter fade" id="newparticipantfm" tabindex="-1" role="dialog">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content">                                                                    
+                                                                    <div class="modal-header bg-info"><span class="glyphicon glyphicon-info-sign"></span> New item </div>
+                                                                    <div class="modal-body">
+                                                                        <form name="formEntry" novalidate>
+                                                                            <div class="form-horizontal">
+                                                                                <div class="row clearfix">
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="form-group clearfix">
+                                                                                            <label class="col-lg-3 control-label" for="mtgNumber">Country</label>                                                
+                                                                                            <div class="col-lg-5">
+                                                                                                @*<input ng-model="newparticipant.ctry_code" type="text" class="form-control">*@
+                                                                                                <select ng-model="newparticipant.ctry_code" class="form-control" ng-options="s.ctry_code as s.ctry_name for s in states">
+                                                                                                    <option value="">--</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group clearfix">
+                                                                                            <label class="col-lg-3 control-label" for="mtgNumber">Number</label>                                                
+                                                                                            <div class="col-lg-2">
+                                                                                                <input ng-model="newparticipant.no_of_participants" type="number" class="form-control" min="0">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group clearfix">
+                                                                                            <label class="col-lg-3 control-label" for="mtgNumber">WPRO/SEARO funded</label>                                                
+                                                                                            <div class="col-lg-9">
+                                                                                                <input type="checkbox" ng-model="newparticipant.is_self_funded" class="" style="height:initial">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group clearfix">
+                                                                                            <label class="col-lg-3 control-label" for="mtgNumber">Self funded</label>                                                
+                                                                                            <div class="col-lg-9">
+                                                                                                <input type="checkbox" ng-model="newparticipant.is_self_funded" class="" style="height:initial">                                                                                               
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>                                                                                    
+                                                                                </div>                                    
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <!--<div class="pull-left">Last updated by: {{entry.updated_by}}  |  Updated as of {{entry.date_updated}} </div>-->
+                                                                        @*<button type="button" nait-confirm-click confirm="Are you sure you want to submit your entry?" do="submit(entry)" ng-disabled="formEntry.desc.$error.required" ng-show="newMtg.status == 'Draft' || submitView" class="btn btn-primary">Submit</button>*@
+                                                                        <button type="button" ng-click="save(newparticipant)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required" class="btn btn-primary">Save</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="close(formEntry,newparticipant)">Close</button>
+                                                                    </div>         
+                                                                </div>
+                                                            </div>
+                                                         </div>                                   
+                                                        <div id="addparticipanttemp" style="display:none;">                                        
+                                                            <div class="toolbar">
+                                                                <button kendo-button ng-click="create()"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tab>
+                                            </tabset>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="9. Temporary advisers ">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>9. Temporary advisers</h5>
+                                        <hr />                                        
+                                        <div class="form-group">
+                                            <div class="col-lg-7">
+                                                <span>Proposed temporary advisers </span><span class="text-danger"><i>(including contact details for invitation letter)</i></span>
+                                                <br />
+                                                <span class="text-muted">After each proposal explain specifically why this TA is selected and their intended role in the meeting.</span>
+                                                @*<textarea class="form-control input-sm" id="dtl-bg-info" rows="15" ng-model="mtgdetails.bginfo" ></textarea>*@
+                                                
+                                            </div>
+                                            <div class="">
+                                                <div class="col-lg-7">
+                                                    <textarea kendo-editor 
+                                                    k-ng-model="meetingDetail.temporary_advisers"
+                                                    k-tools="[
+                                                        'formatting',
+                                                        'bold',
+                                                        'italic',
+                                                        'underline',
+                                                        'justifyLeft',
+                                                        'justifyCenter',
+                                                        'justifyRight',
+                                                        'justifyFull',
+                                                        'insertUnorderedList',
+                                                        'insertOrderedList',
+                                                        'indent',
+                                                        'outdent',
+                                                        'createLink',
+                                                        'unlink'
+                                                        ]"></textarea>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <div class="panel panel-default" style="margin:0px;">
+                                                        <div class="panel-heading" style="background-color:#61cdbf"><span class="glyphicon glyphicon-info-sign" style="color:#fff"></span> Sample input</div>
+                                                        <div class="panel-body">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-1">
+                                                                    <p>(1)</p>
+                                                                </div>
+                                                                <div class="col-lg-10">
+                                                                    <p>Professor Irma R. Makalinao</p>
+                                                                    <p>Professor of Pharmacology and Toxicology</p>
+                                                                    <p>College of Medicine</p>
+                                                                    <p>University of the Philippines</p>
+                                                                    <p>Manila, Philippines </p>
+                                                                    <p>Tel. No:	+63 2 5262265</p>
+                                                                    <p>E-mail:	irmakalinao@gmail.com </p>
+                                                                    <p>As a regional expert on environmental toxicology, she will give a lecture on basic knowledge on environmental toxicology and an introduction on overall understanding on risk factor and exposure.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*<textarea class="form-control input-sm" id="" rows="15" style="height: inherit;" disabled>
+                                                    (1)	Professor Irma R. Makalinao
+                                                        Professor of Pharmacology and Toxicology
+                                                        College of Medicine
+                                                        University of the Philippines
+                                                        Manila, Philippines 
+                                                        Tel. No:	+63 2 5262265
+                                                        E-mail:	irmakalinao@gmail.com 
+                                                        As a regional expert on environmental toxicology, she will give a lecture on basic knowledge on environmental toxicology and an introduction on overall understanding on risk factor and exposure.
+                                                </textarea>*@
+                                            </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="modal modal-vcenter fade" id="newtempadvfm" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">                                                                    
+                                                <div class="modal-header bg-info"><span class="glyphicon glyphicon-info-sign"></span> New item </div>
+                                                <div class="modal-body">
+                                                    <form name="formEntry" novalidate>
+                                                        <div class="form-horizontal">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Name</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newtempadv.name" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Position</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newtempadv.position" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Institution</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newtempadv.institution" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Address</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newtempadv.address" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Te. No.</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newtempadv.telno" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">E-mail</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newtempadv.email" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Comment</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newtempadv.comment" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                                    
+                                                            </div>                                    
+                                                        </div>
+                                                    </form>
+                                                </div>   
+                                                <div class="modal-footer">
+                                                    <!--<div class="pull-left">Last updated by: {{entry.updated_by}}  |  Updated as of {{entry.date_updated}} </div>-->
+                                                    @*<button type="button" nait-confirm-click confirm="Are you sure you want to submit your entry?" do="submit(entry)" ng-disabled="formEntry.desc.$error.required" ng-show="newMtg.status == 'Draft' || submitView" class="btn btn-primary">Submit</button>*@
+                                                    <button type="button" ng-click="save(newtempadv)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required" class="btn btn-primary">Save</button>
+                                                    <button type="button" class="btn btn-default" ng-click="close(formEntry,newtempadv)">Close</button>
+                                                </div>         
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                    <div id="addtempadvtemp" style="display:none;">                                        
+                                        <div class="toolbar">
+                                            <button kendo-button ng-click="create()"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                        
+                            <tab heading="10. Representatives/Observers">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>10. Representatives/Observers</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-lg-7">
+                                                <span>The following agencies will be invited to send representatives at their own expense:</span>
+                                                <br />
+                                                <span class="text-muted">Comment on observers, where relevant: </span>
+                                            </div>                                        
+                                            <div class="">                                            
+                                                <div class="col-lg-7">
+                                                    @*<textarea class="form-control input-sm" id="dtl-bg-info" rows="15" ng-model="mtgdetails.bginfo" ></textarea>*@
+                                                    <textarea kendo-editor 
+                                                        ng-model="meetingDetail.representatives_observers"
+                                                        k-tools="[
+                                                            'formatting',
+                                                            'bold',
+                                                            'italic',
+                                                            'underline',
+                                                            'justifyLeft',
+                                                            'justifyCenter',
+                                                            'justifyRight',
+                                                            'justifyFull',
+                                                            'insertUnorderedList',
+                                                            'insertOrderedList',
+                                                            'indent',
+                                                            'outdent',
+                                                            'createLink',
+                                                            'unlink'
+                                                            ]"></textarea>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                        <div class="panel panel-default" style="margin:0px;">
+                                                            <div class="panel-heading" style="background-color:#61cdbf"><span class="glyphicon glyphicon-info-sign" style="color:#fff"></span> Sample input</div>
+                                                            <div class="panel-body">
+                                                                <div class="row clearfix">
+                                                                    <div class="col-lg-1">
+                                                                        <p>(1)</p>
+                                                                    </div>
+                                                                    <div class="col-lg-10">
+                                                                        <p>Professor Irma R. Makalinao</p>
+                                                                        <p>Professor of Pharmacology and Toxicology</p>
+                                                                        <p>College of Medicine</p>
+                                                                        <p>University of the Philippines</p>
+                                                                        <p>Manila, Philippines </p>
+                                                                        <p>Tel. No:	+63 2 5262265</p>
+                                                                        <p>E-mail:	irmakalinao@gmail.com </p>
+                                                                        <p>As a regional expert on environmental toxicology, she will give a lecture on basic knowledge on environmental toxicology and an introduction on overall understanding on risk factor and exposure.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @*<textarea class="form-control input-sm" id="" rows="15" style="height: inherit;" disabled>
+                                                        (1)	Professor Irma R. Makalinao
+                                                            Professor of Pharmacology and Toxicology
+                                                            College of Medicine
+                                                            University of the Philippines
+                                                            Manila, Philippines 
+                                                            Tel. No:	+63 2 5262265
+                                                            E-mail:	irmakalinao@gmail.com 
+                                                            As a regional expert on environmental toxicology, she will give a lecture on basic knowledge on environmental toxicology and an introduction on overall understanding on risk factor and exposure.
+                                                    </textarea>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal modal-vcenter fade" id="newrepfm" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">                                                                    
+                                                <div class="modal-header bg-info"><span class="glyphicon glyphicon-info-sign"></span> New item </div>
+                                                <div class="modal-body">
+                                                    <form name="formEntry" novalidate>
+                                                        <div class="form-horizontal">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Representative</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newrep.representative" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Comment</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newrep.comment" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                                    
+                                                            </div>                                    
+                                                        </div>
+                                                    </form>
+                                                </div>   
+                                                <div class="modal-footer">
+                                                    <!--<div class="pull-left">Last updated by: {{entry.updated_by}}  |  Updated as of {{entry.date_updated}} </div>-->
+                                                    @*<button type="button" nait-confirm-click confirm="Are you sure you want to submit your entry?" do="submit(entry)" ng-disabled="formEntry.desc.$error.required" ng-show="newMtg.status == 'Draft' || submitView" class="btn btn-primary">Submit</button>*@
+                                                    <button type="button" ng-click="save(newrep)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required" class="btn btn-primary">Save</button>
+                                                    <button type="button" class="btn btn-default" ng-click="close(formEntry,newrep)">Close</button>
+                                                </div>         
+                                            </div>
+                                        </div>
+                                     </div>                                   
+                                    <div id="addobjtemp" style="display:none;">                                        
+                                        <div class="toolbar">
+                                            <button kendo-button ng-click="create()"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="11. Secretariat roles">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>11. Secretariat and their respective roles</h5>
+                                        <hr /> 
+                                        <div class="tabset-inner">
+                                            <tabset>
+                                                <tab heading="WHO/WPRO">
+                                                    <div class="col-lg-12 column">                                  
+                                                        <div class="form-group">
+                                                            <div class="col-lg-12">
+                                                                <span>11a. WHO/WPRO</span>
+                                                                <br />
+                                                                <span class="text-muted">Proposed WPRO staff (after each proposal explain specifically why the staff should participate and their intended role in the meeting).</span>
+                                                                <textarea class="form-control input-sm" id="" rows="12" ng-model="meetingDetail.secretariat_wpro" style="height: inherit;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                    
+                                                </tab>
+                                                <tab heading="WHO/WPRO/Country Office Staff">
+                                                    <div class="col-lg-12 column">                                   
+                                                        <div class="form-group">
+                                                            <div class="col-lg-12">
+                                                                <span>11b. WHO/WPRO/Country Office Staff</span>
+                                                                <br />
+                                                                <span class="text-muted">Proposed country office staff (after each proposal, explain specifically why the staff member should participate and their intended role in the meeting).</span>
+                                                                <textarea class="form-control input-sm" id="" rows="12" ng-model="meetingDetail.secretariat_co" style="height: inherit;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </tab>
+                                                <tab heading="WHO Headquarters">
+                                                    <div class="col-lg-12 column">                                   
+                                                        <div class="form-group">
+                                                            <div class="col-lg-12">
+                                                                <span>11c. WHO Headquarters (at own expense)</span>
+                                                            <br />
+                                                                <span class="text-muted">Proposed HQ staff (after each proposal explain specifically why the staff member should participate and their intended role in the meeting).</span>
+                                                                <textarea class="form-control input-sm" id="" rows="12" ng-model="meetingDetail.secretariat_hq" style="height: inherit;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </tab>
+                                                <tab heading="Other Regions">
+                                                    <div class="col-lg-12 column">                                   
+                                                        <div class="form-group">
+                                                            <div class="col-lg-12">
+                                                                <span>11d. Other Regions (at own expense)</span>
+                                                             <br />
+                                                                <span class="text-muted">Proposed staff from other regions (after each proposal explain specifically why the staff member should participate and their intended role in the meeting).</span>
+                                                                <textarea class="form-control input-sm" id="" rows="12" ng-model="meetingDetail.secretariat_other_regions" style="height: inherit;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </tab>
+                                                <tab heading="Other UN Organizations">
+                                                    <div class="col-lg-12 column">                                   
+                                                        <div class="form-group">
+                                                            <div class="col-lg-12">
+                                                                <span>11e. Other UN Organizations (at own expense)</span>
+                                                                <textarea class="form-control input-sm" id="" rows="12" ng-model="meetingDetail.secretariat_other_un_agencies" style="height: inherit;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </tab>
+                                            </tabset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="12. Secretarial assistance">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>12. Secretarial assistance</h5>
+                                        <hr /> 
+                                        <div class="form-group">
+                                            <label class="col-lg-12 edit-form-label" for="bg-info">Secretarial assistance</label>
+                                            <div class="col-lg-12">
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.secretarial_assistance" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="13. Courtesy expense">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                         <h5>13. Courtesy expense</h5>
+                                        <hr /> 
+                                        <div class="form-group">
+                                            <label class="col-lg-12 edit-form-label" for="bg-info">Courtesy expense</label>
+                                            <div class="col-lg-12">
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.courtesy_expense" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="14. Daily allowance">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>14. Daily subsistence allowance/daily allowance</h5>
+                                        <hr /> 
+                                        <div class="form-group">
+                                            <label class="col-lg-12 edit-form-label" for="bg-info">Daily allowance</label>
+                                            <div class="col-lg-12">
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.daily_allowance" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="15. S&E">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>15.	Supplies and equipment</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <label class="col-lg-12 edit-form-label" for="bg-info">Supplies and equipment</label>
+                                            <div class="col-lg-12">
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.supplies_and_equipment" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="16. Co-sponsorship & WHO logo">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>16.	Co-sponsorship and WHO logo</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>16a. Is this a co-sponsored meeting?</span>
+                                            <br />
+                                                <span class="text-muted">Who is the co-sponsoring partner?</span>
+                                                <textarea class="form-control input-sm" id="" rows="6" ng-model="meetingDetail.cosponsorship" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                            <span>16b. If co-sponsored meeting, requesting use of WHO logo?</span>
+                                            <br />
+                                                <span class="text-muted">Will co-sponsor's logo be used?  Do you need to request permission to use the WHO logo with co-sponsor's?</span>
+                                                <textarea class="form-control input-sm" id="" rows="6" ng-model="meetingDetail.logo_request" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="17. Meeting report">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>17. Meeting report</h5>
+                                        <hr />
+                                         <span class="text-muted" for="bg-info">A summary meeting report is to be completed and approved two weeks following the meeting end date using the Summary Meeting Report template. The final report is due three months after the meeting.</span>
+                                        <br />
+                                        <br />
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                            <span>17a. Are there any anticipated delays in producing the meeting reports?</span>
+                                            
+                                                <textarea class="form-control input-sm" id="" rows="2" ng-model="meetingDetail.mtg_report_delays" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>17b. Is the meeting report to be prepared by the co-sponsor, i.e.the report will not form part of the WPR meeting report series?</span>
+                                                <textarea class="form-control input-sm" id="" rows="2" ng-model="meetingDetail.mtg_report_cosponsor" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <span class="text-muted" for="bg-info">A summary meeting report is to be completed and approved two weeks following the meeting end date using the Summary Meeting Report template. The final report is due three months after the meeting.</span>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="18. Monitoring">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>18.	Monitoring, assessment and follow-up</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>18a. How will the objectives of the meeting be assessed?</span>
+                                                <textarea class="form-control input-sm" id="" rows="7" ng-model="meetingDetail.monitoring_objective" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>18b. Are there other anticipated follow-up actions to the meeting?</span>                                            
+                                                <textarea class="form-control input-sm" id="" rows="7" ng-model="meetingDetail.monitoring_followup_actions" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="19. Communication activities">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>19.	Communication activities (where applicable)</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>Is PIO assistance required e.g. press release, press conference, development of graphic materials, development of advocacy documents, etc.</span>                                            
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.pio_assistance" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="20. Conflict of interest">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>20. Conflict of interest</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>Conflict of interest</span>                                            
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.conflict_of_interest" style="height: inherit;"></textarea>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="21. Budget">
+                                <div class="row clearfix" ng-controller="budgetsController">
+                                    <div class="col-lg-9 column">
+                                        <h5>21.	Budgetary information</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <label class="col-lg-12 edit-form-label" for="bg-info">Budget</label>
+                                            <div class="col-lg-12">
+                                                <div
+                                                    id="budgetsgrid"                                                     
+                                                    kendo-grid="grid"
+                                                    k-sortable="true"
+                                                    k-filterable="true"
+                                                    k-selectable="true"
+                                                    k-editable= "'popup'"
+                                                    @*k-editable='{
+                                                        mode: "popup",
+                                                        template: tempTemplate
+                                                    }'
+                                                    k-edit="editFunction"*@
+                                                    k-toolbar='[ { template: createtoolbarTemplate } ]'
+                                                    k-columns='[
+                                                        { field: "ptaeo", title: "PTAEO"},
+                                                        { field: "srcoffund", title:"Source of fund"  },
+                                                        { field: "fundsavailable", title:"Funds available"  },
+                                                        { field: "estcost", title:"Estimated cost"  } 
+                                                    ]'
+                                                    k-data-source="budgetsDataSource"
+                                                    k-on-data-bound="onDataBound(kendoEvent)"
+                                                    k-on-change="onChange(kendoEvent)">
+                                                </div>
+                                            </div>                                       
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>Comment</span>
+                                                <textarea class="form-control input-sm" id="" rows="2" ng-model="meetingDetail.budgetary_comments"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal modal-vcenter fade" id="newbudgetfm" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">                                                                    
+                                                <div class="modal-header bg-info"><span class="glyphicon glyphicon-info-sign"></span> New item </div>
+                                                <div class="modal-body">
+                                                    <form name="formEntry" novalidate>
+                                                        <div class="form-horizontal">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">PATEO</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newbudget.ptaeo" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Source of fund</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newbudget.srcoffund" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Funds available</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newbudget.fundsavailable" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group clearfix">
+                                                                        <label class="col-lg-3 control-label" for="mtgNumber">Estimated cost</label>                                                
+                                                                        <div class="col-lg-9">
+                                                                            <input ng-model="newbudget.estcost" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                                    
+                                                            </div>                                    
+                                                        </div>
+                                                    </form>
+                                                </div>   
+                                                <div class="modal-footer">
+                                                    <!--<div class="pull-left">Last updated by: {{entry.updated_by}}  |  Updated as of {{entry.date_updated}} </div>-->
+                                                    @*<button type="button" nait-confirm-click confirm="Are you sure you want to submit your entry?" do="submit(entry)" ng-disabled="formEntry.desc.$error.required" ng-show="newMtg.status == 'Draft' || submitView" class="btn btn-primary">Submit</button>*@
+                                                    <button type="button" ng-click="save(newbudget)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required" class="btn btn-primary">Save</button>
+                                                    <button type="button" class="btn btn-default" ng-click="close(formEntry,newbudget)">Close</button>
+                                                </div>         
+                                            </div>
+                                        </div>
+                                     </div>                                   
+                                    <div id="addobjtemp" style="display:none;">                                        
+                                        <div class="toolbar">
+                                            <button kendo-button ng-click="create()"><span class="k-icon k-i-plus"></span><span> New item</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="22. APW">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>22.	Agreement for Performance of Work (APW)</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>Agreement for Performance of Work (APW)</span>
+                                            
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.apw" style="height:inherit"></textarea>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="23. Certificates">
+                                <div class="row clearfix">
+                                    <div class="col-lg-9">
+                                        <h5>23.	Certificates</h5>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <span>Certificates</span>
+                                                <textarea class="form-control input-sm" id="" rows="14" ng-model="meetingDetail.certificates" style="height:inherit"></textarea>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </tab>
+                           @* <tab heading="Secretariat">
+
+                            </tab>
+                            <tab heading="Secretarial assistance">
+
+                            </tab>
+                            <tab heading="Meeting Report">
+                                <tabset>
+                                    <tab heading="Report production"></tab>
+                                    <tab heading="Report recommendations"></tab>
+                                    </tabset>
+                            </tab>
+                            <tab heading="Additional Information">
+                                <tabset>
+                                    <tab heading="Resource mobilization"></tab>
+                                    <tab heading="Parallel events"></tab>
+                                    <tab heading="In-house support services"></tab>
+                                    </tabset>
+                            </tab>*@
+                        </tabset>
+                        </div>
+                    </div>
+            </div>    
+            <hr />
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="pull-right">Last updated by: {{meeting.updated_by}}  |  Updated as of {{meeting.date_updated}} </div>
+                </div>
+@*                <div class="col-lg-6">
+                   <div class="form-group clearfix">   
+                        <div class="col-xs-12 col-lg-12" style="padding-top:0px;">
+                                <label class="col-lg-3 control-label" for="jobNumber">Updated by</label>
+                                <div class="col-lg-5">
+                                        <input ng-model="meeting.createdby" type="text" class="form-control" disabled>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group clearfix">  
+                        <div class="col-xs-12 col-lg-12" style="padding-top:0px;">
+                            <label class="col-lg-3 control-label" for="jobNumber">Last updated</label>
+                            <div class="col-lg-5">
+                                    <input ng-model="meeting.lastupdate" type="text" class="form-control" disabled>
+                            </div>
+                        </div>                            
+                    </div> 
+                </div>*@
+            </div>                
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 RbtnMargin" style="padding-top:10px;">        
+        <button kendo-button class="pull-right" ng-click="cancel()"><span class="k-icon k-i-cancel"></span>Cancel</button>
+        <button kendo-button class="pull-right" ng-click="save()"><span class="k-icon k-i-tick"></span>Save</button>
+        <button kendo-button class="pull-right"><span class="k-icon k-i-tick"></span>Submit</button>
+    </div>
+</div>
+
+<div style="padding: 20px;margin-top:10px;display:none;">
+    <pre class="col-xs-12">{{meeting}}</pre>
+</div>
+<script type="text/javascript">
+    //$('#bg-ta').kendoEditor({
+    //    tools: [
+    //        "bold",
+    //        "italic",
+    //        "underline",
+    //        "strikethrough",
+    //        "justifyLeft",
+    //        "justifyCenter",
+    //        "justifyRight",
+    //        "justifyFull",
+    //        "insertUnorderedList",
+    //        "insertOrderedList",
+    //        "indent",
+    //        "outdent",
+    //        "createLink",
+    //        "unlink",
+    //        "subscript",
+    //        "superscript",
+    //        "viewHtml",
+    //        "formatting"
+    //    ]
+    //});
+</script>
+@*<div class="container">
+	<div class="row">
+		<div class="span12">
+            <p class="lead">Bare minimum radio button tabs example:</p>
+            <div id="tab" class="btn-group" data-toggle="buttons-radio">
+              <a href="#prices" class="btn active" data-toggle="tab">Prices</a>
+              <a href="#features" class="btn" data-toggle="tab">Features</a>
+              <a href="#requests" class="btn" data-toggle="tab">Requests</a>
+              <a href="#contact" class="btn"  data-toggle="tab">Contact</a>
+            </div>
+             
+            <div class="tab-content">
+              <div class="tab-pane active" id="prices">Prices content</div>
+              <div class="tab-pane" id="features">Features Content</div>
+              <div class="tab-pane" id="requests">Requests Content</div>
+              <div class="tab-pane" id="contact">Contact Content</div>
+            </div>
+             
+             
+            <hr>
+             
+            <p class="lead">More complex content example:</p>
+            <div id="tab" class="btn-group" data-toggle="buttons-radio">
+              <a href="#prices2" class="btn btn-large btn-info active" data-toggle="tab">Prices</a>
+              <a href="#features2" class="btn btn-large btn-info" data-toggle="tab">Features</a>
+              <a href="#requests2" class="btn btn-large btn-info" data-toggle="tab">Requests</a>
+              <a href="#contact2" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+                <a href="#contact2" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+                <a href="#contact2" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+                <a href="#contact2" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+                <a href="#contact2" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+            </div>
+             
+            <div class="tab-content">
+              <div class="tab-pane active" id="prices2">
+                <br>
+                <p class="lead">Prices content</p>
+                <div class="row">
+                    <div class="span3">
+                      <img src="http://placehold.it/200x200">  
+                    </div>
+                    <div class="span9">
+                      <p>There are now two rates of Capital Gains Tax (CGT) for individuals. A standard rate of 18% and a higher rate of 28%. The annual exempt amount is still £10,100 for ’10-’11. For more information on CGT please see the factsheet we have put together, which is available to download below.</p> 
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="features2">
+                    <br>
+                <p class="lead">Features content</p>
+                <div class="row">
+                    <div class="span6">
+                      <p>For a full list of our services including support and consultancy for start-up businesses please see the Our Services section of the website. Alternatively if you have a specific service or question in mind please don’t hesitate to contact us to discuss this using the contact details on the Contact Us page of the site.</p> 
+                    </div>
+                    <div class="span6">
+                      <img src="http://placehold.it/400x400">  
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="requests2">
+                    <br>
+                <p class="lead">Requests content</p>
+                <div class="row">
+                    <div class="span3">
+                      <img src="http://placehold.it/200x200">  
+                    </div>
+                    <div class="span5">
+                      <p>There are now two rates of Capital Gains Tax (CGT) for individuals. A standard rate of 18% and a higher rate of 28%. The annual exempt amount is still £10,100 for ’10-’11. For more information on CGT please see the factsheet we have put together, which is available to download below.</p> 
+                    </div>
+                    <div class="span4">
+                      <img src="http://placehold.it/400x200">  
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="contact2">
+                    <br>
+                <p class="lead">Contact Us</p>
+                <form class="well span8">
+                  <div class="row">
+                        <div class="span3">
+                            <label>First Name</label>
+                            <input type="text" class="span3" placeholder="Your First Name">
+                            <label>Last Name</label>
+                            <input type="text" class="span3" placeholder="Your Last Name">
+                            <label>Email Address</label>
+                            <input type="text" class="span3" placeholder="Your email address">
+                            <label>Subject
+                            <select id="subject" name="subject" class="span3">
+                                <option value="na" selected="">Choose One:</option>
+                                <option value="service">General Customer Service</option>
+                                <option value="suggestions">Suggestions</option>
+                                <option value="product">Product Support</option>
+                            </select>
+                            </label>
+                        </div>
+                        <div class="span5">
+                            <label>Message</label>
+                            <textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary pull-right">Send</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="container">
+    <div class="page-header">
+        <h3>Add the (.grid-divider) class to any row to separate grid columns with equal height lines.</h3>
+    </div>
+    <div class="row grid-divider">
+    <div class="col-sm-4">
+      <div class="col-padding">
+        <h3>Column 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima expedita incidunt rerum.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="col-padding">
+        <h3>Column 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate placeat suscipit maxime tenetur officiis asperiores quae molestias fugiat praesentium dolorum.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="col-padding">
+        <h3>Column 3</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab veniam aperiam numquam cupiditate maiores repudiandae ea dicta, sunt rerum corporis. Ab veniam aperiam numquam cupiditate maiores repudiandae ea dicta, sunt rerum corporis. Ab veniam aperiam numquam cupiditate maiores repudiandae ea dicta.</p>
+      </div>
+    </div>
+    </div>
+
+</div>*@

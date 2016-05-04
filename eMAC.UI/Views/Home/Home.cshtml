@@ -1,0 +1,316 @@
+﻿<div class="ng-cloak">
+    <div id="example">
+        <div class="row clearfix">
+            <div class="form-group form-inline clearfix">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-left: 5px" >
+                    <label class="control-label" style="font-weight: normal">Year: </label>
+                    <select id="years"
+                        class="form-control"
+                        ng-options="year.year_created as year.year_created for year in models.years"
+                        ng-model="models.selectedYear.year_created" />
+                    <select
+                        class="form-control"
+                        ng-options="item.value as item.description for item in models.unitFilterOptions"
+                        ng-model="models.unitFilter" />
+                    <button type="button"
+                        class="btn btn-default"
+                        ng-if="$parent.models.settings.addButton"
+                        ng-click="events.create()"
+                        style="padding: 2px 12px;">
+                        <span class="k-icon k-i-plus"></span> New meeting</button>
+                </div>
+            </div>
+        </div>
+
+        <div grid-context gc-target-element="kendo.kendogrid.elem"
+            res-grid="kendo.kendogrid.elem" 
+            res-margin-bottom="0" 
+            res-min-height="480" 
+            res-offset-top="170" 
+            ng-dblclick="events.dblClick($event)" 
+            data-target="eMac_MainGrid"
+            id="hgrid"
+            height="700"
+            k-column-menu="true"
+            kendo-grid="kendo.kendogrid.elem"        
+            k-sortable="true"
+            k-pageable="kendo.kendogrid.pageable"
+            k-filterable="true"
+            k-selectable="true"
+            k-resizable="true"    
+            k-columns='[
+                { "field":"mtg_no", title: "Meeting No.", width: "95px"},
+                { "field": "mtg_title", title:"Title", width: "320px" },
+                { "field": "venue", title:"Venue", width: "100px" },
+                { "field": "start_date", title:"Start Date", template: "#= DateFormat({ value: start_date, format: \"dd MMM yyyy\"}) #",  width: "85px" },
+                { "field": "end_date", title:"End Date",template: "#= DateFormat({ value: start_date, format: \"dd MMM yyyy\"}) #", width: "80px" },            
+                { "field": "org_unit", title:"Org. Unit", width: "80px"},
+                { "field": "resp_officer_name", title:"Resp. Off.", width: "140px" },
+                { "field": "status", title:"Status", width: "120px", 
+                    template:"#if(angular.lowercase(status) == \"draft\"){#
+                                    <span class=\"label label-warning grid-label col-lg-11\">Draft</span>
+                                #}
+                                else if(angular.lowercase(status) == \"finalized\"){#
+                                    <span class=\"label label-success grid-label col-lg-11\">Finalized</span>
+                                #}
+                                else if(angular.lowercase(status)==\"submitted for spmc\"){#
+                                    <span class=\"label label-info grid-label col-lg-11\">Submitted - SPMC</span>
+                                #}
+                                else if(angular.lowercase(status)==\"submitted for finalization\"){#
+                                    <span class=\"label label-info grid-label col-lg-11\">Submitted - Final</span>
+                                #}
+                                else if(angular.lowercase(status)==\"approved for spmc\"){#
+                                    <span class=\"label label-primary grid-label col-lg-11\">Approved - SPMC</span>
+                                #}
+                                else if(angular.lowercase(status)==\"revise for spmc\"){#
+                                    <span class=\"label label-danger grid-label col-lg-11\">Revise - SPMC</span>
+                                #}
+                                else if(angular.lowercase(status)==\"revise for finalization\"){#
+                                    <span class=\"label label-danger grid-label col-lg-11\">Revise - Final</span>
+                                #}
+                                else if(angular.lowercase(status)==\"cancelled\"){#
+                                    <span class=\"label label-default grid-label col-lg-11\">Cancelled</span>
+                                #}
+                                #"
+                },
+                { "command":  "",template: templates.toolbar, display:"none",width: "80px"}
+            ]'
+            k-data-source="kendo.kendogrid.dataSource"
+            k-on-data-bound="kendo.kendogrid.dataBound($event)" >
+        </div>
+    </div>
+
+        <div center-modal class="modal fade" id="newMtgForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <button type="button" class="close" ng-click="events.close(formEntry,models.newMeeting)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h5 class="modal-title default" style="color:#fff">Meeting details</h5>
+                    </div>
+                    <div class="modal-body">
+                                       
+                        <form name="formEntry" id="employeeForm" novalidate>
+                            <div class="form-horizontal">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-12">
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-3 control-label" for="mtgNumber" style="padding-right: 0px;">Meeting no.</label>                                                
+                                                <div class="col-lg-3">
+                                                    <input ng-model="models.newMeeting.mtg_no" type="text" class="form-control" disabled>
+                                                </div>
+                                                <label class="col-lg-4 control-label" for="mtgStatus" style="padding-right:0px">Status</label>
+                                                <div class="col-lg-2">
+                                                    <input type="text" class="form-control" disabled ng-model="models.newMeeting.status" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">                                    
+                                            <div class="form-group clearfix required">                                       
+                                                <label class="col-lg-3 control-label" for="mtgNumber" style="padding-right: 0px;">Title</label>                                                
+                                                <div class="col-lg-9">
+                                                    <input ng-model="models.newMeeting.mtg_title" type="text" class="form-control" name="title" required maxlength="250">
+                                                </div>                                   
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group clearfix required">                                       
+                                                <label class="col-lg-3 control-label" for="mtgDurationFromDate" style="padding-right:0px">Start date</label>
+                                                <div class="col-lg-3">
+                                                    <input class="myPicker pull-left" id="dateDurFr" ng-model="models.newMeeting.start_date" name="start_date" required style="width: 110px;"/>
+                                                    <input ng-model="models.newMeeting.start_date" type="text" class="form-control" name="title" required style="display:none">
+                                                </div>                                            
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group clearfix required">                                       
+                                                <label class="col-lg-3 control-label" for="mtgDurationFromDate" style="padding-right:0px">End date</label>
+                                                <div class="col-lg-3">                                            
+                                                    <input class="myPicker pull-left" id="dateDurTo" ng-model="models.newMeeting.end_date" name="end_date" required  style="width: 110px;"/>
+                                                    <input ng-model="models.newMeeting.end_date" type="text" class="form-control" name="title" required style="display:none">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group clearfix ">                                           
+                                                <label class="col-lg-3 control-label" for="jobNumber" style="padding-right:0px">Venue</label>
+                                                <div class="col-lg-4">
+                                                    <input ng-model="models.newMeeting.city" type="text" class="form-control" maxlength="50">
+                                                </div>
+                                                <div class="col-lg-5" style="padding-left:0px;">
+                                                    <select ng-model="models.newMeeting.ctry" class="form-control" ng-options="s.ctry_code as s.ctry_name for s in models.states">
+                                                        <option value="">--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group clearfix required">
+                                                <label class="col-lg-3 control-label" for="jobNumber" style="padding-right:0px">Org. unit</label>
+                                                <div class="col-xs-4 col-lg-3">
+                                                    <select ng-model="models.newMeeting.unit" class="form-control" ng-options="s.org_unit as s.org_unit for s in models.units" required>
+                                                        <option value="">--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group clearfix required">
+                                                <label class="col-lg-3 control-label" for="jobNumber" style="padding-right:0px">Responsible officer</label>
+                                                <div class="col-lg-5">
+                                                    <select ng-model="models.newMeeting.resp_officer" class="form-control" ng-options="o.user_name as o.resp_officer_name for o in models.officers" required>
+                                                        <option value="">--</option>
+                                                    </select>
+                                                </div>                                            
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group clearfix">                                           
+                                                <label class="col-lg-3 control-label" for="jobNumber" style="padding-right:0px">Co-responsible officer</label>
+                                                <div class="col-lg-5">
+                                                    <select ng-model="models.newMeeting.co_resp_officer" class="form-control" ng-options="o.user_name as o.resp_officer_name for o in models.officers">
+                                                        <option value="">--</option>
+                                                    </select>
+                                                </div>                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>                    
+                    </div>   
+                    <div class="modal-footer">
+                        <button type="button" ng-click="events.save(models.newMeeting)" ng-disabled="!formEntry.$dirty || formEntry.desc.$error.required || formEntry.$invalid" ng-show="newMtg.status == 'Reject' || saveView || newMtg.status != 'Approved'" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" ng-click="events.close(formEntry,models.newMeeting)">Close</button>
+                    </div>         
+                </div>
+            </div>
+        </div>
+        <!-- toolbar -->
+        <div id="toolbartemp" style="display:none;">  
+            <em kendo-button ng-click="events.viewGrid(this)"><span class="k-icon k-i-pencil"></span><span style="font-style:normal"> Edit</span></em>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        renderKdatePicker("myPicker");
+    });
+</script>
+<script type="text/x-kendo-template" id="toolbar">       
+    <div>
+        <button kendo-button ng-click="showDetails(this)"><span class="k-icon k-i-tick"></span>Edit Details</button>
+    </div>
+    <div>
+        <button kendo-button ng-click="showDetails(this)"><span class="k-icon k-i-tick"></span>Edit Details</button>
+    </div>
+</script>
+<script type="text/x-kendo-template" id="createToolbar">
+<div>
+    <div class="toolbar">
+        <button kendo-button ng-click="create(this)"><span class="k-icon k-i-plus"></span><span> New meeting</span></button>
+    </div>
+</div>
+</script>
+<script type="text/x-kendo-template" id="createTemp" style="width:250px;">
+        <div class="form-horizontal">
+           <div class="col-lg-4">
+                        <div class="form-group clearfix">                            
+                            <label class="col-lg-4 control-label" for="mtgNumber">Meeting no.</label>                                                
+                            <div class="col-lg-8">
+                                <input disabled ng-model="meeting.meetingNumber" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group clearfix">
+                            <label class="col-lg-3 control-label" for="mtgShrtTitle">Short title</label>
+                            <div class="col-lg-9">
+                                <input ng-model="meeting.mtgShortTitle" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group clearfix">
+                            <label class="col-lg-4 control-label" for="mtgStatus">Status</label>
+                            <div class="col-lg-8">
+                                <input ng-model="meeting.mtgStatus" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>      
+        </div>
+            @*<label my-directive>Discontinued <input type="checkbox" ng-change="dataItem.dirty=true" ng-model="dataItem.Discontinued" /></label>*@
+</script>
+<style type="text/css">
+    #fieldlist
+    {
+        margin: 0;
+        padding: 0;
+    }
+
+        #fieldlist li
+        {
+            list-style: none;
+            padding-bottom: .7em;
+            text-align: left;
+        }
+
+        #fieldlist label
+        {
+            display: block;
+            padding-bottom: .3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: #444;
+        }
+
+        #fieldlist li.status
+        {
+            text-align: center;
+        }
+
+        #fieldlist li .k-widget:not(.k-tooltip),
+        #fieldlist li .k-textbox
+        {
+            margin: 0 5px 5px 0;
+        }
+
+    .confirm
+    {
+        padding-top: 1em;
+    }
+
+    .valid
+    {
+        color: green;
+    }
+
+    .invalid
+    {
+        color: red;
+    }
+
+    #fieldlist li input[type="checkbox"]
+    {
+        margin: 0 5px 0 0;
+    }
+
+    span.k-widget.k-tooltip-validation
+    {
+        display: inline-block;
+        width: 160px;
+        text-align: left;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        background: none;
+        box-shadow: none;
+        color: red;
+    }
+
+    .k-tooltip-validation .k-warning
+    {
+        display: none;
+    }
+</style>
