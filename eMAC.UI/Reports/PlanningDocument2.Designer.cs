@@ -26,6 +26,10 @@ namespace eMAC.UI.Reports
             Telerik.Reporting.TableGroup tableGroup14 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup15 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
+            this.textBox1 = new Telerik.Reporting.TextBox();
+            this.textBox7 = new Telerik.Reporting.TextBox();
+            this.textBox9 = new Telerik.Reporting.TextBox();
+            this.textBox3 = new Telerik.Reporting.TextBox();
             this.detail = new Telerik.Reporting.DetailSection();
             this.part_2_label = new Telerik.Reporting.HtmlTextBox();
             this.secretariat_roles_label = new Telerik.Reporting.HtmlTextBox();
@@ -39,10 +43,6 @@ namespace eMAC.UI.Reports
             this.who_hq_roles_label = new Telerik.Reporting.HtmlTextBox();
             this.other_un_roles_label = new Telerik.Reporting.HtmlTextBox();
             this.other_un_roles = new Telerik.Reporting.HtmlTextBox();
-            this.conflict_of_interest_label = new Telerik.Reporting.HtmlTextBox();
-            this.conflict_of_interest = new Telerik.Reporting.HtmlTextBox();
-            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
-            this.page_number = new Telerik.Reporting.HtmlTextBox();
             this.panel1 = new Telerik.Reporting.Panel();
             this.secretarial_assistance = new Telerik.Reporting.HtmlTextBox();
             this.secretarial_assistance_label = new Telerik.Reporting.HtmlTextBox();
@@ -77,6 +77,8 @@ namespace eMAC.UI.Reports
             this.communication_activities_label = new Telerik.Reporting.HtmlTextBox();
             this.communication_activities = new Telerik.Reporting.HtmlTextBox();
             this.panel9 = new Telerik.Reporting.Panel();
+            this.conflict_of_interest_label = new Telerik.Reporting.HtmlTextBox();
+            this.conflict_of_interest = new Telerik.Reporting.HtmlTextBox();
             this.panel10 = new Telerik.Reporting.Panel();
             this.budgetary_comments = new Telerik.Reporting.TextBox();
             this.multiple_funding = new Telerik.Reporting.Table();
@@ -88,10 +90,6 @@ namespace eMAC.UI.Reports
             this.textBox17 = new Telerik.Reporting.TextBox();
             this.textBox11 = new Telerik.Reporting.TextBox();
             this.textBox14 = new Telerik.Reporting.TextBox();
-            this.textBox1 = new Telerik.Reporting.TextBox();
-            this.textBox7 = new Telerik.Reporting.TextBox();
-            this.textBox9 = new Telerik.Reporting.TextBox();
-            this.textBox3 = new Telerik.Reporting.TextBox();
             this.budget_info = new Telerik.Reporting.Table();
             this.budget_info_estimated_cost_label = new Telerik.Reporting.TextBox();
             this.budget_info_estimated_cost = new Telerik.Reporting.TextBox();
@@ -110,7 +108,69 @@ namespace eMAC.UI.Reports
             this.spmc_notes = new Telerik.Reporting.HtmlTextBox();
             this.end_notes = new Telerik.Reporting.HtmlTextBox();
             this.end_notes_title = new Telerik.Reporting.HtmlTextBox();
+            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
+            this.page_number = new Telerik.Reporting.HtmlTextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            // 
+            // textBox1
+            // 
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.2543749809265137D), Telerik.Reporting.Drawing.Unit.Cm(1.4904862642288208D));
+            this.textBox1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.textBox1.Style.Font.Name = "Courier New";
+            this.textBox1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox1.Value = "Estimated cost (USD)";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.3072915077209473D), Telerik.Reporting.Drawing.Unit.Cm(1.4904862642288208D));
+            this.textBox7.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox7.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.textBox7.Style.Font.Name = "Courier New";
+            this.textBox7.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox7.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox7.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox7.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox7.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox7.Value = "Funds available (USD)";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.1254875659942627D), Telerik.Reporting.Drawing.Unit.Cm(1.4904862642288208D));
+            this.textBox9.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox9.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.textBox9.Style.Font.Name = "Courier New";
+            this.textBox9.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox9.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox9.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox9.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox9.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox9.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox9.Value = "Source of funds";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.9104156494140625D), Telerik.Reporting.Drawing.Unit.Cm(1.4904868602752686D));
+            this.textBox3.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox3.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.textBox3.Style.Font.Name = "Courier New";
+            this.textBox3.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox3.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox3.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox3.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox3.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox3.Value = "PTAEO";
             // 
             // detail
             // 
@@ -248,42 +308,6 @@ namespace eMAC.UI.Reports
             this.other_un_roles.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.8100004196167D), Telerik.Reporting.Drawing.Unit.Cm(0.800000011920929D));
             this.other_un_roles.Style.Font.Name = "Courier New";
             this.other_un_roles.Value = "";
-            // 
-            // conflict_of_interest_label
-            // 
-            this.conflict_of_interest_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.0002018610539380461D), Telerik.Reporting.Drawing.Unit.Cm(8.4108773279467641E-09D));
-            this.conflict_of_interest_label.Name = "conflict_of_interest_label";
-            this.conflict_of_interest_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.594158172607422D), Telerik.Reporting.Drawing.Unit.Cm(0.67055767774581909D));
-            this.conflict_of_interest_label.Style.Font.Name = "Courier New";
-            this.conflict_of_interest_label.Value = "<strong>20.&nbsp;<span >Conflict of interest</span></strong>";
-            // 
-            // conflict_of_interest
-            // 
-            this.conflict_of_interest.CanShrink = true;
-            this.conflict_of_interest.KeepTogether = false;
-            this.conflict_of_interest.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.87312495708465576D), Telerik.Reporting.Drawing.Unit.Cm(0.71974068880081177D));
-            this.conflict_of_interest.Name = "conflict_of_interest";
-            this.conflict_of_interest.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.721233367919922D), Telerik.Reporting.Drawing.Unit.Cm(0.61697351932525635D));
-            this.conflict_of_interest.Style.Font.Name = "Courier New";
-            this.conflict_of_interest.Value = "";
-            // 
-            // pageHeaderSection1
-            // 
-            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.1000001430511475D);
-            this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.page_number});
-            this.pageHeaderSection1.Name = "pageHeaderSection1";
-            this.pageHeaderSection1.PrintOnFirstPage = false;
-            // 
-            // page_number
-            // 
-            this.page_number.CanShrink = true;
-            this.page_number.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00020024616969749332D), Telerik.Reporting.Drawing.Unit.Cm(0.00010002215276472271D));
-            this.page_number.Name = "page_number";
-            this.page_number.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.659799575805664D), Telerik.Reporting.Drawing.Unit.Cm(1.0999001264572144D));
-            this.page_number.Style.Font.Name = "Courier New";
-            this.page_number.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.page_number.Value = "=\"-\" + PageNumber + \"-\"";
             // 
             // panel1
             // 
@@ -601,6 +625,24 @@ namespace eMAC.UI.Reports
             this.panel9.Name = "panel9";
             this.panel9.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.621036529541016D), Telerik.Reporting.Drawing.Unit.Cm(1.3367142677307129D));
             // 
+            // conflict_of_interest_label
+            // 
+            this.conflict_of_interest_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.0002018610539380461D), Telerik.Reporting.Drawing.Unit.Cm(8.4108773279467641E-09D));
+            this.conflict_of_interest_label.Name = "conflict_of_interest_label";
+            this.conflict_of_interest_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.594158172607422D), Telerik.Reporting.Drawing.Unit.Cm(0.67055767774581909D));
+            this.conflict_of_interest_label.Style.Font.Name = "Courier New";
+            this.conflict_of_interest_label.Value = "<strong>20.&nbsp;<span >Conflict of interest</span></strong>";
+            // 
+            // conflict_of_interest
+            // 
+            this.conflict_of_interest.CanShrink = true;
+            this.conflict_of_interest.KeepTogether = false;
+            this.conflict_of_interest.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.87312495708465576D), Telerik.Reporting.Drawing.Unit.Cm(0.71974068880081177D));
+            this.conflict_of_interest.Name = "conflict_of_interest";
+            this.conflict_of_interest.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.721233367919922D), Telerik.Reporting.Drawing.Unit.Cm(0.61697351932525635D));
+            this.conflict_of_interest.Style.Font.Name = "Courier New";
+            this.conflict_of_interest.Value = "";
+            // 
             // panel10
             // 
             this.panel10.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
@@ -813,69 +855,9 @@ namespace eMAC.UI.Reports
             this.textBox14.StyleName = "";
             this.textBox14.Value = "TOTAL";
             // 
-            // textBox1
-            // 
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.2543749809265137D), Telerik.Reporting.Drawing.Unit.Cm(1.4904862642288208D));
-            this.textBox1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.textBox1.Style.Font.Name = "Courier New";
-            this.textBox1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox1.Value = "Estimated cost (USD)";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.3072915077209473D), Telerik.Reporting.Drawing.Unit.Cm(1.4904862642288208D));
-            this.textBox7.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox7.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.textBox7.Style.Font.Name = "Courier New";
-            this.textBox7.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox7.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox7.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox7.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox7.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox7.Value = "Funds available (USD)";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.1254875659942627D), Telerik.Reporting.Drawing.Unit.Cm(1.4904862642288208D));
-            this.textBox9.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox9.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.textBox9.Style.Font.Name = "Courier New";
-            this.textBox9.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox9.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox9.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox9.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox9.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox9.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox9.Value = "Source of funds";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.9104156494140625D), Telerik.Reporting.Drawing.Unit.Cm(1.4904868602752686D));
-            this.textBox3.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox3.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.textBox3.Style.Font.Name = "Courier New";
-            this.textBox3.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox3.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox3.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox3.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox3.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox3.Value = "PTAEO";
-            // 
             // budget_info
             // 
-            this.budget_info.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(5.1383628845214844D)));
+            this.budget_info.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(5.1383624076843262D)));
             this.budget_info.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(8.4618377685546875D)));
             this.budget_info.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.73201262950897217D)));
             this.budget_info.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.60999947786331177D)));
@@ -1103,10 +1085,11 @@ namespace eMAC.UI.Reports
             this.end_notes.KeepTogether = false;
             this.end_notes.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.87312501668930054D), Telerik.Reporting.Drawing.Unit.Cm(11.5D));
             this.end_notes.Name = "end_notes";
-            this.end_notes.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.591731071472168D), Telerik.Reporting.Drawing.Unit.Cm(0.55825334787368774D));
+            this.end_notes.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.591730117797852D), Telerik.Reporting.Drawing.Unit.Cm(0.55825334787368774D));
             this.end_notes.Style.Font.Name = "Courier New";
-            this.end_notes.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.end_notes.Value = "<span style=\"font-size: 9pt\">@endNotes</span>";
+            this.end_notes.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            this.end_notes.Value = "<span style=\"font-size: 8pt; padding-right: 5px; padding-left: 5px;\">@endNotes</s" +
+    "pan>";
             // 
             // end_notes_title
             // 
@@ -1115,6 +1098,24 @@ namespace eMAC.UI.Reports
             this.end_notes_title.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.464855194091797D), Telerik.Reporting.Drawing.Unit.Cm(0.69999825954437256D));
             this.end_notes_title.Style.Font.Name = "Courier New";
             this.end_notes_title.Value = "<strong><span>End notes</span></strong>";
+            // 
+            // pageHeaderSection1
+            // 
+            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.1000001430511475D);
+            this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.page_number});
+            this.pageHeaderSection1.Name = "pageHeaderSection1";
+            this.pageHeaderSection1.PrintOnFirstPage = false;
+            // 
+            // page_number
+            // 
+            this.page_number.CanShrink = true;
+            this.page_number.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00020024616969749332D), Telerik.Reporting.Drawing.Unit.Cm(0.00010002215276472271D));
+            this.page_number.Name = "page_number";
+            this.page_number.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.659799575805664D), Telerik.Reporting.Drawing.Unit.Cm(1.0999001264572144D));
+            this.page_number.Style.Font.Name = "Courier New";
+            this.page_number.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.page_number.Value = "=\"-\" + PageNumber + \"-\"";
             // 
             // PlanningDocument2
             // 

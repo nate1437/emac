@@ -137,7 +137,7 @@ namespace eMAC.UI.Reports
                         end_notes_title.Visible = false;
                     }
 
-                    if (!_meeting.Rows[0]["status"].ToString().Equals("Finalize"))
+                    if (!_meeting.Rows[0]["status"].ToString().ToUpper().Equals("FINALIZED"))
                     {
                         spmc_notes.Visible = false;
                         smpcnotes_title.Visible = false;
