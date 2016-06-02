@@ -116,7 +116,7 @@
         <div data-ng-view="" autoscroll="" ng-if="!isRouteLoading" data-ng-controller="AuthenticationController">
         </div>
     </div>
-    <div id="RTSParser" data-href="@System.Configuration.ConfigurationManager.AppSettings["RTSParser"].ToString()"></div>
+    <div id="RTSParser" data-href="@System.Configuration.ConfigurationManager.AppSettings["RTSParser"].ToString()" data-enabled="@System.Configuration.ConfigurationManager.AppSettings["RTSEnable"].ToString()"></div>
     <footer class="footer nav navbar-fixed-bottom">
         <div class="container-fluid" style="font-size: 10px;">
             <div class="row">

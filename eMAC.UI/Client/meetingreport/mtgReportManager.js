@@ -253,7 +253,9 @@
                                                     }
                                                 });
 
-                                                mtgReportClient.postToRTS(rtsparse);
+                                                if (angular.element("#RTSParser").data("enabled") == "ON") {
+                                                    mtgReportClient.postToRTS(rtsparse);
+                                                }
 
                                                 //toastr.info(result.rts_response);
                                             }
