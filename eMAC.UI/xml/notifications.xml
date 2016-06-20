@@ -79,7 +79,7 @@
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
           Dear [AUTHOR],&lt;br&gt;&lt;br&gt;
-          The meeting record with number [MEETING_NUMBER] has been disapproved.&lt;br&gt;&lt;br&gt;
+          The meeting record with number [MEETING_NUMBER] has been returned.&lt;br&gt;&lt;br&gt;
 		  Reason: [DISAPPROVAL_REASON]&lt;br&gt;&lt;br&gt;
           You may access the meeting &lt;a href='[TEMPLATE_URL]' target='_blank'&gt;here&lt;/a&gt;.
           &lt;br&gt;&lt;br&gt;

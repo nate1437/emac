@@ -61,19 +61,8 @@ namespace eMAC.Infra.Domain
 
             try
             {
-                // load notification from XML
                 message.Append(loader.LoadMessageFromXML(XMLFile, "LIB_MESSAGE/MESSAGE", "code", "CREATION", "body"));
                 EmailSubject = loader.LoadMessageFromXML(XMLFile, "LIB_MESSAGE/MESSAGE", "code", "CREATION", "subject").Replace("[MEETING_NUMBER]", mtgNumber);
-
-                //message.Replace("[AUTHOR]", authorName);
-                //message.Replace("[DURATION]", duration);
-                //message.Replace("[TEMPLATE_URL]", templateURL);
-                //message.Replace("[DATA_URL]", dataURL);
-                //message.Replace("[DUE_DATE]", dueDate);
-                //message.Replace("[SITE_URL]", WebsiteURL);
-                //message.Replace("[APPNAME]", ApplicationName);
-                //message.Replace("[MR_ID]", mr_id);
-
                 EmailMessage = message.ToString();
             }
             catch (Exception ex)

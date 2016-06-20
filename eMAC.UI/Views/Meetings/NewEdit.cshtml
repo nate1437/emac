@@ -24,7 +24,7 @@
                     ng-show="(rejectDetailBtnEnable && meeting.status=='Submitted for SPMC') || (approveDetailBtnEnable && meeting.status=='Draft')"
                     ng-disabled="meeting.status=='Draft'"
                     ng-click="confirmReject()">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reject
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Return
                 </button>
                 <button type="button" class="btn btn-info btn-xs"
                     ng-show="(finalDetailBtnEnable && (meeting.status == 'Approved for SPMC' || meeting.status == 'Submitted for Finalization')) || (finalDetailBtnEnable && (meeting.status=='Revise for SPMC' || meeting.status=='Revise for Finalization'))"

@@ -957,7 +957,7 @@
 
         // CLOSE
         $scope.confirmClose = function () {
-            if (mtgObjectChanged || mtgDetailObjectChanged) {
+            if ((mtgObjectChanged || mtgDetailObjectChanged) && ($scope.submitDetailBtnEnable && $scope.meeting.status === 'Draft')) {
                 $scope.modal = $modal.open({
                     animation: true,
                     templateUrl: 'detail-yes-no-cancel.html',

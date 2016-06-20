@@ -24,11 +24,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <style type="text/css">
-        /* Start by setting display:none to make this hidden.
-           Then we position it in relation to the viewport window
-           with position:fixed. Width, height, top and left speak
-           for themselves. Background we set to 80% white with
-           our animation centered, and no-repeating */
+        
         .modal-spinner
         {
             display: none;
@@ -49,15 +45,11 @@
             margin-top: 35%;
         }
 
-        /* When the body has the loading class, we turn
-           the scrollbar off with overflow:hidden */
         body.loading
         {
             overflow: hidden;
         }
 
-        /* Anytime the body has the loading class, our
-        modal element will be visible */
         body.loading .modal-spinner
         {
             display: block;
@@ -74,9 +66,81 @@
         .banner-content {
             margin-top: 5px;
         }
+       /* #header {
+            color: #CCFFFf;
+            background-color: #1E7FB8;
+            padding: 10px 0px;
+            margin-left: 10px;
+        }
+            #header div {
+                float: left;
+            }
+            #header h4 {
+                margin-top: 0px;
+                margin-bottom: 8px;
+            }
+
+        #logo {
+            color: #CCFFFf;
+            background-color: #1E7FB8;
+            padding: 10px 30px;
+            margin-left: 15px;
+            margin-right: -67px;
+        }*/
+
     </style>
 </head>
 <body>
+   @* <div class="row" id="banner">
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="logo">
+                
+                <img class="img-responsive" alt="World Health Organization" src="~/Images/custom/wpro_logo_en2.png" style="float: left; display: inline-block" />
+                <img class="img-responsive" alt="World Health Organization" src="~/Images/custom/line3.png" style="margin: 0px 10px; height: 50px; width: 1px; float: left; display: inline-block" />
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" id="header">
+                <div id="headerTitle">
+
+                    <h4>eMAC</h4>
+                    <p>Meetings and Courses System</p>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <nav class="navbar navbar-default" >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li style="border-right: 1px solid #fff" ng-class="{active: true}">
+                        <a>
+                            <span class="glyphicon glyphicon-home"></span>&nbsp<span class="navbar-item-text">Home</span>&nbsp
+                        </a>
+                    </li>
+                    <li style="border-right: 1px solid #fff" >
+                        <a>
+                            <span class="fa fa-file-text-o"></span>&nbsp<span class="navbar-item-text">Reports</span>&nbsp
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="currentuser"><span class="glyphicon glyphicon-user"></span>&nbspCurrent user:&nbsp<span id="curr_user">@User.Identity.Name.Split('\\')[1].ToLower()</span></a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>*@
     <div class="container">
         <!-- HEADER AND NAVBAR -->
         <header>
@@ -101,6 +165,7 @@
                     </div>
                     <div class="row" style="background-color: #CDCFD0; ">
                         <div class="col-lg-12">
+                            
                             <span class="pull-right" style="color: #000; padding: 5px;">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span>Current user: @User.Identity.Name.Split('\\')[1].ToLower()</span>
