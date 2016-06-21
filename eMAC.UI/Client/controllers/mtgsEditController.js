@@ -866,6 +866,7 @@
 
         // save log action
         $scope.saveLogAction = function (remarks) {
+            debugger;
             var jsonData = {
                 mtgUpdateStatusObj: {
                     mtg_id: $scope.meeting.mtg_id,
@@ -876,7 +877,7 @@
                 }
             };
 
-            if (jsonData.mtgUpdateStatusObj.remarks === '')
+            if (remarks === '')
                 jsonData.mtgUpdateStatusObj.remarks = "Status changed to " + "\'" + $scope.meeting.status + "\' by " + $('#curr_user').text();
             else
                 jsonData.mtgUpdateStatusObj.remarks = remarks;

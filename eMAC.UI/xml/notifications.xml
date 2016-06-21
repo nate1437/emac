@@ -1,5 +1,5 @@
 ﻿<LIB_MESSAGE>
-  <MESSAGE code="CREATION" subject="Creation of Meeting: [MEETING_NUMBER]"
+  <MESSAGE code="CREATION" subject="Creation of Meeting: eMac [MEETING_NUMBER]"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
           Dear [AUTHOR],&lt;br&gt;&lt;br&gt;
@@ -9,122 +9,138 @@
           Please upload your report via this &lt;a href='[DATA_URL][MR_ID]' target='_blank'&gt;link&lt;/a&gt; by [DUE_DATE]. 
           Your report will be edited and then approved by Senior Management prior to transmittal to Government.
           &lt;br&gt;&lt;br&gt;
-          Please contact us at &lt;a href='mailto:MAC@wpro.who.int'&gt;MAC@wpro.who.int&lt;/a&gt; for any queries on this process.
+          Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;
           eMAC team
           &lt;br&gt;&lt;br&gt;
           &lt;font style='font-family:Calibri;font-size:12px;'&gt;
+          &lt;p&gt;___________________________________________&lt;br&gt;
           This is a system generated message from the &lt;a href='[SITE_URL]'&gt;[APPNAME]&lt;/a&gt;.
+          &lt;/p&gt;
           &lt;/font&gt;
           &lt;/p&gt;&lt;/font&gt;">
   </MESSAGE>
-  <MESSAGE code="SUBMISSION" subject="[MEETING_NUMBER] | [MEETING_STATUS]"
+  <MESSAGE code="SUBMISSION" subject="eMac No. [MEETING_NUMBER]: [MEETING_NAME] | [MEETING_STATUS]"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
-          The record with number [MEETING_NUMBER] has been added by [AUTHOR] and is waiting for your approval.&lt;br&gt;
-          Please click &lt;a href='[TEMPLATE_URL]' target='_blank'&gt;here&lt;/a&gt; to approve/reject.
-          &lt;br&gt;&lt;br&gt;          
-          Please contact us at &lt;a href='mailto:MAC@wpro.who.int'&gt;MAC@wpro.who.int&lt;/a&gt; for any queries on this process.
+          eMac [MEETING_NUMBER] has been No. [MEETING_STATUS] by [AUTHOR] and is waiting for your approval.&lt;br&gt;&lt;br&gt;
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
+          &lt;br&gt;
+          Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;
           eMAC team
+          &lt;br&gt;
+          &lt;a href='[APP_URL]' target='_blank'&gt;[APP_URL]&lt;/a&gt;
           &lt;br&gt;&lt;br&gt;
-          &lt;font style='font-family:Calibri;font-size:12px;'&gt;
-          This is a system generated message from the &lt;a href='[SITE_URL]'&gt;[APPNAME]&lt;/a&gt;.
+          &lt;font style='font-family:Calibri;font-size:12px;font-style:italic;'&gt;
+          &lt;p&gt;___________________________________________&lt;br&gt;
+          ***Please do not reply to this automated message. ***
+          &lt;/p&gt;
           &lt;/font&gt;
           &lt;/p&gt;&lt;/font&gt;">
   </MESSAGE>
-  <MESSAGE code="APPROVAL" subject="[MEETING_NUMBER] | [MEETING_STATUS]"
+  <MESSAGE code="APPROVAL" subject="eMac No. [MEETING_NUMBER]: [MEETING_NAME] | [MEETING_STATUS]"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
-          Dear [AUTHOR],&lt;br&gt;&lt;br&gt;
-          The meeting record with number [MEETING_NUMBER] has been approved. 
-          Please click &lt;a href='[TEMPLATE_URL]' target='_blank'&gt;here&lt;/a&gt; to access the report.
+          This is to inform you that eMac No. [MEETING_NUMBER] '[MEETING_NAME]' has been approved.&lt;br&gt;&lt;br&gt;
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
           &lt;br&gt;&lt;br&gt;
-          You will not be able to alter the details of this meeting until it is returned for further revisions.
-          &lt;br&gt;&lt;br&gt;
-          Please contact us at &lt;a href='mailto:MAC@wpro.who.int'&gt;MAC@wpro.who.int&lt;/a&gt; for any queries on this process.
+          Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;
           eMAC team
+          &lt;br&gt;
+          &lt;a href='[APP_URL]' target='_blank'&gt;[APP_URL]&lt;/a&gt;
           &lt;br&gt;&lt;br&gt;
-          &lt;font style='font-family:Calibri;font-size:12px;'&gt;
-          This is a system generated message from the &lt;a href='[SITE_URL]'&gt;[APPNAME]&lt;/a&gt;.
+          &lt;font style='font-family:Calibri;font-size:12px;font-style:italic;'&gt;
+          &lt;p&gt;___________________________________________&lt;br&gt;
+          ***Please do not reply to this automated message. ***
+          &lt;/p&gt;
           &lt;/font&gt;
           &lt;/p&gt;&lt;/font&gt;">
   </MESSAGE>
-  <MESSAGE code="FINALIZED" subject="[MEETING_NUMBER] | [MEETING_STATUS]"
+  <MESSAGE code="FINALIZED" subject="eMac No. [MEETING_NUMBER]: [MEETING_NAME] | [MEETING_STATUS]"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
-          Dear [AUTHOR],&lt;br&gt;&lt;br&gt;
-          The meeting record with number [MEETING_NUMBER] has been finalized.           
-          You may access the meeting &lt;a href='[TEMPLATE_URL]' target='_blank'&gt;here&lt;/a&gt;.
+          This is to inform you that eMac No. [MEETING_NUMBER] '[MEETING_NAME]' has been Finalized.&lt;br&gt;&lt;br&gt;
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
           &lt;br&gt;&lt;br&gt;
-          Please contact us at &lt;a href='mailto:MAC@wpro.who.int'&gt;MAC@wpro.who.int&lt;/a&gt; for any queries on this process.
+          Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;
           eMAC team
+          &lt;br&gt;
+          &lt;a href='[APP_URL]' target='_blank'&gt;[APP_URL]&lt;/a&gt;
           &lt;br&gt;&lt;br&gt;
-          &lt;font style='font-family:Calibri;font-size:12px;'&gt;
-          This is a system generated message from the &lt;a href='[SITE_URL]'&gt;[APPNAME]&lt;/a&gt;.
+          &lt;font style='font-family:Calibri;font-size:12px;font-style:italic;'&gt;
+          &lt;p&gt;___________________________________________&lt;br&gt;
+          ***Please do not reply to this automated message. ***
+          &lt;/p&gt;
           &lt;/font&gt;
           &lt;/p&gt;&lt;/font&gt;">
   </MESSAGE>
-  <MESSAGE code="REJECTED" subject="[MEETING_NUMBER] | [MEETING_STATUS]"
+  <MESSAGE code="REJECTED" subject="eMac No. [MEETING_NUMBER]: [MEETING_NAME] | [MEETING_STATUS]"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
-          Dear [AUTHOR],&lt;br&gt;&lt;br&gt;
-          The meeting record with number [MEETING_NUMBER] has been returned.&lt;br&gt;&lt;br&gt;
-		  Reason: [DISAPPROVAL_REASON]&lt;br&gt;&lt;br&gt;
-          You may access the meeting &lt;a href='[TEMPLATE_URL]' target='_blank'&gt;here&lt;/a&gt;.
-          &lt;br&gt;&lt;br&gt;
-          Please contact us at &lt;a href='mailto:MAC@wpro.who.int'&gt;MAC@wpro.who.int&lt;/a&gt; for any queries on this process.
+          eMac No. [MEETING_NUMBER] was returned with the following comments:&lt;br&gt;&lt;br&gt;
+          &lt;p style='font-family:Calibri;font-size:14px;font-style: underlined; margin-left: 20px;' &gt;&lt;b&gt;[DISAPPROVAL_REASON]&lt;/b&gt;&lt;/p&gt;
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.&lt;br&gt;
+          Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;
           eMAC team
+          &lt;br&gt;
+          &lt;a href='[APP_URL]' target='_blank'&gt;[APP_URL]&lt;/a&gt;
           &lt;br&gt;&lt;br&gt;
-          &lt;font style='font-family:Calibri;font-size:12px;'&gt;
-          This is a system generated message from the &lt;a href='[SITE_URL]'&gt;[APPNAME]&lt;/a&gt;.
+          &lt;font style='font-family:Calibri;font-size:12px;font-style:italic;'&gt;
+          &lt;p&gt;___________________________________________&lt;br&gt;
+          ***Please do not reply to this automated message. ***
+          &lt;/p&gt;
           &lt;/font&gt;
           &lt;/p&gt;&lt;/font&gt;">
   </MESSAGE>
-  <MESSAGE code="FINAL_REP_SUBMISSION" subject="[MEETING_NUMBER] | [MEETING_STATUS]"
+  <MESSAGE code="FINAL_REP_SUBMISSION" subject="eMac No. [MEETING_NUMBER]: [MEETING_NAME] | Final report submitted"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
-          A final report file for the record with number [MEETING_NUMBER] has been added by [AUTHOR].&lt;br&gt;
-          Please click &lt;a href='[TEMPLATE_URL]' target='_blank'&gt;here&lt;/a&gt; to view the document inside the 'Meeting report' tab.
-          &lt;br&gt;&lt;br&gt;          
-          Please contact us at &lt;a href='mailto:MAC@wpro.who.int'&gt;MAC@wpro.who.int&lt;/a&gt; for any queries on this process.
-          &lt;br&gt;&lt;br&gt;
+          A final report for eMac No. [MEETING_NUMBER] has been uploaded by [AUTHOR].&lt;br&gt;&lt;br&gt;
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
+          &lt;br&gt;&lt;br&gt;    
           Kind regards,
           &lt;br&gt;
           eMAC team
+          &lt;br&gt;
+          &lt;a href='[APP_URL]' target='_blank'&gt;[APP_URL]&lt;/a&gt;
           &lt;br&gt;&lt;br&gt;
-          &lt;font style='font-family:Calibri;font-size:12px;'&gt;
-          This is a system generated message from the &lt;a href='[SITE_URL]'&gt;[APPNAME]&lt;/a&gt;.
+          &lt;font style='font-family:Calibri;font-size:12px;font-style:italic;'&gt;
+          &lt;p&gt;___________________________________________&lt;br&gt;
+          ***Please do not reply to this automated message. ***
+          &lt;/p&gt;
           &lt;/font&gt;
           &lt;/p&gt;&lt;/font&gt;">
   </MESSAGE>
-  <MESSAGE code="SUMM_REP_SUBMISSION" subject="[MEETING_NUMBER] | [MEETING_STATUS]"
+  <MESSAGE code="SUMM_REP_SUBMISSION" subject="eMac No. [MEETING_NUMBER]: [MEETING_NAME] | Summary report submitted"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
-          A summary report file for the record with number [MEETING_NUMBER] has been added by [AUTHOR].&lt;br&gt;
-          Please click &lt;a href='[TEMPLATE_URL]' target='_blank'&gt;here&lt;/a&gt; to view the document inside the 'Meeting report' tab.
-          &lt;br&gt;&lt;br&gt;          
-          Please contact us at &lt;a href='mailto:MAC@wpro.who.int'&gt;MAC@wpro.who.int&lt;/a&gt; for any queries on this process.
+          A summary report for eMac No. [MEETING_NUMBER] has been uploaded by [AUTHOR].&lt;br&gt;&lt;br&gt;
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;
           eMAC team
+          &lt;br&gt;
+          &lt;a href='[APP_URL]' target='_blank'&gt;[APP_URL]&lt;/a&gt;
           &lt;br&gt;&lt;br&gt;
-          &lt;font style='font-family:Calibri;font-size:12px;'&gt;
-          This is a system generated message from the &lt;a href='[SITE_URL]'&gt;[APPNAME]&lt;/a&gt;.
+          &lt;font style='font-family:Calibri;font-size:12px;font-style:italic;'&gt;
+          &lt;p&gt;___________________________________________&lt;br&gt;
+          ***Please do not reply to this automated message. ***
+          &lt;/p&gt;
           &lt;/font&gt;
           &lt;/p&gt;&lt;/font&gt;">
   </MESSAGE>
