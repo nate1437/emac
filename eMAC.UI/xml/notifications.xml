@@ -46,9 +46,9 @@
   <MESSAGE code="APPROVAL" subject="eMac No. [MEETING_NUMBER]: [MEETING_NAME] | [MEETING_STATUS]"
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
-          This is to inform you that eMac No. [MEETING_NUMBER] '[MEETING_NAME]' has been approved.&lt;br&gt;&lt;br&gt;
+          This is to inform you that eMac No. [MEETING_NUMBER] has been approved.&lt;br&gt;&lt;br&gt;
           Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
-          &lt;br&gt;&lt;br&gt;
+          &lt;br&gt;
           Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
@@ -69,7 +69,7 @@
           &lt;p&gt;
           This is to inform you that eMac No. [MEETING_NUMBER] '[MEETING_NAME]' has been Finalized.&lt;br&gt;&lt;br&gt;
           Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
-          &lt;br&gt;&lt;br&gt;
+          &lt;br&gt;
           Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
@@ -89,7 +89,7 @@
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
           eMac No. [MEETING_NUMBER] was returned with the following comments:&lt;br&gt;&lt;br&gt;
-          &lt;p style='font-family:Calibri;font-size:14px;font-style: underlined; margin-left: 20px;' &gt;&lt;b&gt;[DISAPPROVAL_REASON]&lt;/b&gt;&lt;/p&gt;
+          &lt;p style='font-family:Calibri;font-size:14px;font-style: underlined; margin-left: 20px;' &gt;[DISAPPROVAL_REASON]&lt;/p&gt;
           Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.&lt;br&gt;
           Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
@@ -110,8 +110,9 @@
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
           A final report for eMac No. [MEETING_NUMBER] has been uploaded by [AUTHOR].&lt;br&gt;&lt;br&gt;
-          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
-          &lt;br&gt;&lt;br&gt;    
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.&lt;br&gt;
+          Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
+          &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;
           eMAC team
@@ -129,7 +130,8 @@
       body="&lt;font style='font-family:Calibri;font-size:14px;'&gt;
           &lt;p&gt;
           A summary report for eMac No. [MEETING_NUMBER] has been uploaded by [AUTHOR].&lt;br&gt;&lt;br&gt;
-          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.
+          Please click &lt;a href='[APP_URL]' target='_blank'&gt;here&lt;/a&gt; to view the details.&lt;br&gt;
+          Please contact us at &lt;a href='mailto:[MAC_MAILBOX]'&gt;[MAC_MAILBOX]&lt;/a&gt; for any queries on this process.
           &lt;br&gt;&lt;br&gt;
           Kind regards,
           &lt;br&gt;

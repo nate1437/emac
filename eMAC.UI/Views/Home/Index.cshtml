@@ -90,7 +90,7 @@
 
     </style>
 </head>
-<body>
+<body   data-ng-controller="AuthenticationController">
    @* <div class="row" id="banner">
 
         <div class="row">
@@ -165,7 +165,16 @@
                     </div>
                     <div class="row" style="background-color: #CDCFD0; ">
                         <div class="col-lg-12">
-                            
+
+                            <span class="pull-left" style="color: #000; padding: 5px;" id="menu">
+                                <a ng-click="events.viewHome($event)" >
+                                    <span class="fa fa-home"></span>&nbsp<span class="navbar-item-text">Home</span>&nbsp
+                                </a>&nbsp|&nbsp
+                                <a ng-click="events.viewReport($event)" >
+                                    <span class="fa fa-file-text-o"></span>&nbsp<span class="navbar-item-text">Reports</span>&nbsp
+                                </a>
+                                
+                            </span>
                             <span class="pull-right" style="color: #000; padding: 5px;">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span>Current user: @User.Identity.Name.Split('\\')[1].ToLower()</span>
@@ -178,7 +187,7 @@
         </header>
     </div>
     <div class="container body-content">
-        <div data-ng-view="" autoscroll="" ng-if="!isRouteLoading" data-ng-controller="AuthenticationController">
+        <div data-ng-view="" autoscroll="" ng-if="!isRouteLoading">
         </div>
     </div>
     <div id="RTSParser" data-href="@System.Configuration.ConfigurationManager.AppSettings["RTSParser"].ToString()" data-enabled="@System.Configuration.ConfigurationManager.AppSettings["RTSEnable"].ToString()"></div>

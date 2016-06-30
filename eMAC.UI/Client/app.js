@@ -370,6 +370,15 @@ eMacApp.controller("AuthenticationController",
                     }
                 }
             });
+
+            $scope.events = {
+                viewReport: function (e) {
+                    $location.path(base + "meetings/reports");
+                },
+                viewHome: function (e) {
+                    $location.path(base);
+                }
+            }
             
             loginFactory.getUserData($scope.user)
             .then(function (result) {
