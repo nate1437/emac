@@ -14,15 +14,15 @@ namespace eMAC.UI.Reports
             Telerik.Reporting.TableGroup tableGroup3 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup4 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup5 = new Telerik.Reporting.TableGroup();
-            Telerik.Reporting.TableGroup tableGroup11 = new Telerik.Reporting.TableGroup();
-            Telerik.Reporting.TableGroup tableGroup12 = new Telerik.Reporting.TableGroup();
-            Telerik.Reporting.TableGroup tableGroup13 = new Telerik.Reporting.TableGroup();
-            Telerik.Reporting.TableGroup tableGroup14 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup6 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup7 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup8 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup9 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup10 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup11 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup12 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup13 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup14 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule3 = new Telerik.Reporting.Drawing.StyleRule();
@@ -33,6 +33,12 @@ namespace eMAC.UI.Reports
             this.related_meetings_header2 = new Telerik.Reporting.TextBox();
             this.htmlTextBox4 = new Telerik.Reporting.HtmlTextBox();
             this.htmlTextBox3 = new Telerik.Reporting.HtmlTextBox();
+            this.linkage_resolution_header1 = new Telerik.Reporting.TextBox();
+            this.linkage_resolution_header2 = new Telerik.Reporting.TextBox();
+            this.htmlTextBox2 = new Telerik.Reporting.HtmlTextBox();
+            this.participants_header1 = new Telerik.Reporting.TextBox();
+            this.participants_header2 = new Telerik.Reporting.TextBox();
+            this.participants_header3 = new Telerik.Reporting.TextBox();
             this.detail = new Telerik.Reporting.DetailSection();
             this.panel3 = new Telerik.Reporting.Panel();
             this.objectives = new Telerik.Reporting.HtmlTextBox();
@@ -54,8 +60,6 @@ namespace eMAC.UI.Reports
             this.part_1_label = new Telerik.Reporting.HtmlTextBox();
             this.background_info_label = new Telerik.Reporting.HtmlTextBox();
             this.background_info = new Telerik.Reporting.HtmlTextBox();
-            this.summary_label = new Telerik.Reporting.HtmlTextBox();
-            this.summary_info = new Telerik.Reporting.HtmlTextBox();
             this.title_label = new Telerik.Reporting.HtmlTextBox();
             this.proposed_title = new Telerik.Reporting.HtmlTextBox();
             this.panel5 = new Telerik.Reporting.Panel();
@@ -68,22 +72,6 @@ namespace eMAC.UI.Reports
             this.dates_label = new Telerik.Reporting.HtmlTextBox();
             this.offsite_reason_label = new Telerik.Reporting.HtmlTextBox();
             this.offsite_reason = new Telerik.Reporting.HtmlTextBox();
-            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
-            this.page_number = new Telerik.Reporting.HtmlTextBox();
-            this.contribution_program_budget_label = new Telerik.Reporting.HtmlTextBox();
-            this.linkage_resolution_header2 = new Telerik.Reporting.TextBox();
-            this.panel4 = new Telerik.Reporting.Panel();
-            this.programme_budget_panel = new Telerik.Reporting.Panel();
-            this.contribution_info_label = new Telerik.Reporting.HtmlTextBox();
-            this.related_core_functions_label = new Telerik.Reporting.HtmlTextBox();
-            this.core_functions = new Telerik.Reporting.HtmlTextBox();
-            this.linkage_resolution = new Telerik.Reporting.Table();
-            this.linkage_resolution_field1 = new Telerik.Reporting.TextBox();
-            this.linkage_resolution_field2 = new Telerik.Reporting.TextBox();
-            this.linkage_resolution_field3 = new Telerik.Reporting.TextBox();
-            this.linkage_resolution_header1 = new Telerik.Reporting.TextBox();
-            this.htmlTextBox2 = new Telerik.Reporting.HtmlTextBox();
-            this.htmlTextBox1 = new Telerik.Reporting.HtmlTextBox();
             this.working_language = new Telerik.Reporting.HtmlTextBox();
             this.working_language_label = new Telerik.Reporting.HtmlTextBox();
             this.representative_observer = new Telerik.Reporting.HtmlTextBox();
@@ -97,13 +85,26 @@ namespace eMAC.UI.Reports
             this.textBox1 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
             this.textBox3 = new Telerik.Reporting.TextBox();
-            this.participants_header1 = new Telerik.Reporting.TextBox();
-            this.participants_header2 = new Telerik.Reporting.TextBox();
-            this.participants_header3 = new Telerik.Reporting.TextBox();
             this.participants_invite_label = new Telerik.Reporting.HtmlTextBox();
             this.participants_criteria = new Telerik.Reporting.HtmlTextBox();
             this.participants_criteria_label = new Telerik.Reporting.HtmlTextBox();
             this.participants_label = new Telerik.Reporting.HtmlTextBox();
+            this.contribution_info_label = new Telerik.Reporting.HtmlTextBox();
+            this.panel4 = new Telerik.Reporting.Panel();
+            this.contribution_program_budget_label = new Telerik.Reporting.HtmlTextBox();
+            this.programme_budget_panel = new Telerik.Reporting.Panel();
+            this.related_core_functions_label = new Telerik.Reporting.HtmlTextBox();
+            this.core_functions = new Telerik.Reporting.HtmlTextBox();
+            this.linkage_resolution = new Telerik.Reporting.Table();
+            this.linkage_resolution_field1 = new Telerik.Reporting.TextBox();
+            this.linkage_resolution_field2 = new Telerik.Reporting.TextBox();
+            this.linkage_resolution_field3 = new Telerik.Reporting.TextBox();
+            this.htmlTextBox1 = new Telerik.Reporting.HtmlTextBox();
+            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
+            this.page_number = new Telerik.Reporting.HtmlTextBox();
+            this.panel1 = new Telerik.Reporting.Panel();
+            this.summary_info = new Telerik.Reporting.HtmlTextBox();
+            this.summary_label = new Telerik.Reporting.HtmlTextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // related_meetings_header1
@@ -166,6 +167,97 @@ namespace eMAC.UI.Reports
             this.htmlTextBox3.StyleName = "";
             this.htmlTextBox3.Value = "Recommendations<br />followed-up?<br />Y/N &amp; comment";
             // 
+            // linkage_resolution_header1
+            // 
+            this.linkage_resolution_header1.Name = "linkage_resolution_header1";
+            this.linkage_resolution_header1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.99316960573196411D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
+            this.linkage_resolution_header1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.linkage_resolution_header1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.linkage_resolution_header1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            // 
+            // linkage_resolution_header2
+            // 
+            this.linkage_resolution_header2.Name = "linkage_resolution_header2";
+            this.linkage_resolution_header2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.19378662109375D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
+            this.linkage_resolution_header2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.linkage_resolution_header2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_header2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.linkage_resolution_header2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_header2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.linkage_resolution_header2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.linkage_resolution_header2.Value = "Resolution Reference and Title";
+            // 
+            // htmlTextBox2
+            // 
+            this.htmlTextBox2.Name = "htmlTextBox2";
+            this.htmlTextBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3220565319061279D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
+            this.htmlTextBox2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.htmlTextBox2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            this.htmlTextBox2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.htmlTextBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.htmlTextBox2.StyleName = "";
+            this.htmlTextBox2.Value = "(G)lobal<br />or<br />(R)egional";
+            // 
+            // participants_header1
+            // 
+            this.participants_header1.KeepTogether = false;
+            this.participants_header1.Name = "participants_header1";
+            this.participants_header1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.8805761337280273D), Telerik.Reporting.Drawing.Unit.Cm(0.92080330848693848D));
+            this.participants_header1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.participants_header1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.participants_header1.Style.Font.Bold = true;
+            this.participants_header1.Style.Font.Underline = false;
+            this.participants_header1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.participants_header1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.participants_header1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.participants_header1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.participants_header1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.participants_header1.Value = "Countries and areas";
+            // 
+            // participants_header2
+            // 
+            this.participants_header2.Name = "participants_header2";
+            this.participants_header2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.4866585731506348D), Telerik.Reporting.Drawing.Unit.Cm(0.92080318927764893D));
+            this.participants_header2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.participants_header2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.participants_header2.Style.Font.Bold = true;
+            this.participants_header2.Style.Font.Underline = false;
+            this.participants_header2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.participants_header2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.participants_header2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.participants_header2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.participants_header2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.participants_header2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Top;
+            this.participants_header2.Value = "No.";
+            // 
+            // participants_header3
+            // 
+            this.participants_header3.Name = "participants_header3";
+            this.participants_header3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.338529109954834D), Telerik.Reporting.Drawing.Unit.Cm(0.92080330848693848D));
+            this.participants_header3.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.participants_header3.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.participants_header3.Style.Font.Bold = true;
+            this.participants_header3.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.participants_header3.Style.Font.Underline = false;
+            this.participants_header3.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.participants_header3.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.participants_header3.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.participants_header3.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.participants_header3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.participants_header3.Value = "Funding Source";
+            // 
             // detail
             // 
             this.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(42.884746551513672D);
@@ -182,8 +274,6 @@ namespace eMAC.UI.Reports
             this.part_1_label,
             this.background_info_label,
             this.background_info,
-            this.summary_label,
-            this.summary_info,
             this.title_label,
             this.proposed_title,
             this.panel5,
@@ -192,7 +282,8 @@ namespace eMAC.UI.Reports
             this.related_core_functions_label,
             this.core_functions,
             this.linkage_resolution,
-            this.htmlTextBox1});
+            this.htmlTextBox1,
+            this.panel1});
             this.detail.Name = "detail";
             // 
             // panel3
@@ -432,26 +523,6 @@ namespace eMAC.UI.Reports
             this.background_info.Style.Font.Name = "Courier New";
             this.background_info.Value = "";
             // 
-            // summary_label
-            // 
-            this.summary_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.20219211280345917D), Telerik.Reporting.Drawing.Unit.Cm(8.1298761367797852D));
-            this.summary_label.Name = "summary_label";
-            this.summary_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.297805786132813D), Telerik.Reporting.Drawing.Unit.Cm(0.45493453741073608D));
-            this.summary_label.Style.Font.Name = "Courier New";
-            this.summary_label.Value = "&nbsp;&nbsp;&nbsp;<strong><span><em>Summary</em></span></strong>";
-            // 
-            // summary_info
-            // 
-            this.summary_info.CanShrink = true;
-            this.summary_info.KeepTogether = false;
-            this.summary_info.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00020022391981910914D), Telerik.Reporting.Drawing.Unit.Cm(8.988621711730957D));
-            this.summary_info.Name = "summary_info";
-            this.summary_info.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499797821044922D), Telerik.Reporting.Drawing.Unit.Cm(0.45493656396865845D));
-            this.summary_info.Style.BackgroundColor = System.Drawing.Color.Empty;
-            this.summary_info.Style.Font.Italic = true;
-            this.summary_info.Style.Font.Name = "Courier New";
-            this.summary_info.Value = "";
-            // 
             // title_label
             // 
             this.title_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(21.529853820800781D));
@@ -573,206 +644,6 @@ namespace eMAC.UI.Reports
             this.offsite_reason.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.721208572387695D), Telerik.Reporting.Drawing.Unit.Cm(0.800000011920929D));
             this.offsite_reason.Style.Font.Name = "Courier New";
             this.offsite_reason.Value = "";
-            // 
-            // pageHeaderSection1
-            // 
-            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.1000001430511475D);
-            this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.page_number});
-            this.pageHeaderSection1.Name = "pageHeaderSection1";
-            this.pageHeaderSection1.PrintOnFirstPage = false;
-            // 
-            // page_number
-            // 
-            this.page_number.CanShrink = true;
-            this.page_number.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00020024616969749332D), Telerik.Reporting.Drawing.Unit.Cm(0.00010002215276472271D));
-            this.page_number.Name = "page_number";
-            this.page_number.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.60246467590332D), Telerik.Reporting.Drawing.Unit.Cm(1.0999001264572144D));
-            this.page_number.Style.Font.Name = "Courier New";
-            this.page_number.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.page_number.Value = "=\"-\" + PageNumber + \"-\"";
-            // 
-            // contribution_program_budget_label
-            // 
-            this.contribution_program_budget_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.9988508736714721E-05D), Telerik.Reporting.Drawing.Unit.Cm(0D));
-            this.contribution_program_budget_label.Name = "contribution_program_budget_label";
-            this.contribution_program_budget_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499996185302734D), Telerik.Reporting.Drawing.Unit.Cm(0.55493485927581787D));
-            this.contribution_program_budget_label.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            this.contribution_program_budget_label.Style.Font.Name = "Courier New";
-            this.contribution_program_budget_label.Value = "&nbsp;&nbsp;&nbsp;&nbsp;2b. Contribution to WHO\'s programme budget:";
-            // 
-            // linkage_resolution_header2
-            // 
-            this.linkage_resolution_header2.Name = "linkage_resolution_header2";
-            this.linkage_resolution_header2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.19378662109375D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
-            this.linkage_resolution_header2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.linkage_resolution_header2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_header2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.linkage_resolution_header2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_header2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.linkage_resolution_header2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.linkage_resolution_header2.Value = "Resolution Reference and Title";
-            // 
-            // panel4
-            // 
-            this.panel4.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.contribution_program_budget_label,
-            this.programme_budget_panel});
-            this.panel4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(12.117916107177734D));
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.500096321105957D), Telerik.Reporting.Drawing.Unit.Cm(1.3437583446502686D));
-            this.panel4.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
-            // 
-            // programme_budget_panel
-            // 
-            this.programme_budget_panel.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.6841176748275757D), Telerik.Reporting.Drawing.Unit.Cm(0.55513513088226318D));
-            this.programme_budget_panel.Name = "programme_budget_panel";
-            this.programme_budget_panel.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.723403930664063D), Telerik.Reporting.Drawing.Unit.Cm(0.64375805854797363D));
-            this.programme_budget_panel.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
-            // 
-            // contribution_info_label
-            // 
-            this.contribution_info_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(10.001249313354492D));
-            this.contribution_info_label.Name = "contribution_info_label";
-            this.contribution_info_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.5D), Telerik.Reporting.Drawing.Unit.Cm(0.55493485927581787D));
-            this.contribution_info_label.Style.Font.Name = "Courier New";
-            this.contribution_info_label.Value = "<strong>2.&nbsp;&nbsp;<span>Contribution to WHO\'s work:</span></strong>";
-            // 
-            // related_core_functions_label
-            // 
-            this.related_core_functions_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(10.900833129882813D));
-            this.related_core_functions_label.Name = "related_core_functions_label";
-            this.related_core_functions_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499799728393555D), Telerik.Reporting.Drawing.Unit.Cm(0.55493485927581787D));
-            this.related_core_functions_label.Style.Font.Name = "Courier New";
-            this.related_core_functions_label.Value = "&nbsp;&nbsp;&nbsp;&nbsp;2a. Related WHO core functions";
-            // 
-            // core_functions
-            // 
-            this.core_functions.CanShrink = true;
-            this.core_functions.KeepTogether = false;
-            this.core_functions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.66080319881439209D), Telerik.Reporting.Drawing.Unit.Cm(11.482915878295898D));
-            this.core_functions.Name = "core_functions";
-            this.core_functions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.793777465820313D), Telerik.Reporting.Drawing.Unit.Cm(0.45493477582931519D));
-            this.core_functions.Style.Font.Name = "Courier New";
-            this.core_functions.Value = "";
-            // 
-            // linkage_resolution
-            // 
-            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.99300795793533325D)));
-            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.19378662109375D)));
-            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.3220560550689697D)));
-            this.linkage_resolution.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.88194400072097778D)));
-            this.linkage_resolution.Body.SetCellContent(0, 0, this.linkage_resolution_field1);
-            this.linkage_resolution.Body.SetCellContent(0, 1, this.linkage_resolution_field2);
-            this.linkage_resolution.Body.SetCellContent(0, 2, this.linkage_resolution_field3);
-            tableGroup11.Name = "tableGroup";
-            tableGroup11.ReportItem = this.linkage_resolution_header1;
-            tableGroup12.Name = "tableGroup1";
-            tableGroup12.ReportItem = this.linkage_resolution_header2;
-            tableGroup13.Name = "tableGroup2";
-            tableGroup13.ReportItem = this.htmlTextBox2;
-            this.linkage_resolution.ColumnGroups.Add(tableGroup11);
-            this.linkage_resolution.ColumnGroups.Add(tableGroup12);
-            this.linkage_resolution.ColumnGroups.Add(tableGroup13);
-            this.linkage_resolution.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.linkage_resolution_field1,
-            this.linkage_resolution_field2,
-            this.linkage_resolution_field3,
-            this.linkage_resolution_header1,
-            this.linkage_resolution_header2,
-            this.htmlTextBox2});
-            this.linkage_resolution.KeepTogether = false;
-            this.linkage_resolution.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.96948373317718506D), Telerik.Reporting.Drawing.Unit.Cm(14.843124389648438D));
-            this.linkage_resolution.Name = "linkage_resolution";
-            this.linkage_resolution.NoDataStyle.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            tableGroup14.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup14.Name = "detailTableGroup";
-            this.linkage_resolution.RowGroups.Add(tableGroup14);
-            this.linkage_resolution.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.50885009765625D), Telerik.Reporting.Drawing.Unit.Cm(1.9931937456130981D));
-            this.linkage_resolution.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
-            this.linkage_resolution.Style.Font.Name = "Courier New";
-            this.linkage_resolution.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            this.linkage_resolution.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            this.linkage_resolution.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            this.linkage_resolution.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            // 
-            // linkage_resolution_field1
-            // 
-            this.linkage_resolution_field1.Name = "linkage_resolution_field1";
-            this.linkage_resolution_field1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.99300813674926758D), Telerik.Reporting.Drawing.Unit.Cm(0.88194370269775391D));
-            this.linkage_resolution_field1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.linkage_resolution_field1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_field1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_field1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(3D);
-            this.linkage_resolution_field1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(3D);
-            this.linkage_resolution_field1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_field1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.linkage_resolution_field1.Value = "= \"(\" + Fields.row_num + \")\"";
-            // 
-            // linkage_resolution_field2
-            // 
-            this.linkage_resolution_field2.CanShrink = true;
-            this.linkage_resolution_field2.Name = "linkage_resolution_field2";
-            this.linkage_resolution_field2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.193784713745117D), Telerik.Reporting.Drawing.Unit.Cm(0.88194370269775391D));
-            this.linkage_resolution_field2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.linkage_resolution_field2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_field2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_field2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.linkage_resolution_field2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_field2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_field2.Value = "= Fields.resolution_title";
-            // 
-            // linkage_resolution_field3
-            // 
-            this.linkage_resolution_field3.Name = "linkage_resolution_field3";
-            this.linkage_resolution_field3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3220565319061279D), Telerik.Reporting.Drawing.Unit.Cm(0.88194370269775391D));
-            this.linkage_resolution_field3.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.linkage_resolution_field3.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_field3.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_field3.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_field3.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_field3.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_field3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.linkage_resolution_field3.Value = "= Substr(Fields.type,0,1)";
-            // 
-            // linkage_resolution_header1
-            // 
-            this.linkage_resolution_header1.Name = "linkage_resolution_header1";
-            this.linkage_resolution_header1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.99316960573196411D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
-            this.linkage_resolution_header1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.linkage_resolution_header1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.linkage_resolution_header1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            // 
-            // htmlTextBox2
-            // 
-            this.htmlTextBox2.Name = "htmlTextBox2";
-            this.htmlTextBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3220565319061279D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
-            this.htmlTextBox2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.htmlTextBox2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            this.htmlTextBox2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.htmlTextBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.htmlTextBox2.StyleName = "";
-            this.htmlTextBox2.Value = "(G)lobal<br />or<br />(R)egional";
-            // 
-            // htmlTextBox1
-            // 
-            this.htmlTextBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.022915840148926D));
-            this.htmlTextBox1.Name = "htmlTextBox1";
-            this.htmlTextBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.5D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
-            this.htmlTextBox1.Style.Font.Name = "Courier New";
-            this.htmlTextBox1.Value = "&nbsp;&nbsp;&nbsp;&nbsp;2c. Linkages to global and regional resolutions";
             // 
             // working_language
             // 
@@ -957,54 +828,6 @@ namespace eMAC.UI.Reports
             this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             this.textBox3.StyleName = "";
             // 
-            // participants_header1
-            // 
-            this.participants_header1.KeepTogether = false;
-            this.participants_header1.Name = "participants_header1";
-            this.participants_header1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.8805761337280273D), Telerik.Reporting.Drawing.Unit.Cm(0.92080330848693848D));
-            this.participants_header1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.participants_header1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.participants_header1.Style.Font.Bold = true;
-            this.participants_header1.Style.Font.Underline = false;
-            this.participants_header1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.participants_header1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.participants_header1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.participants_header1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.participants_header1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.participants_header1.Value = "Countries and areas";
-            // 
-            // participants_header2
-            // 
-            this.participants_header2.Name = "participants_header2";
-            this.participants_header2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.4866585731506348D), Telerik.Reporting.Drawing.Unit.Cm(0.92080318927764893D));
-            this.participants_header2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.participants_header2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.participants_header2.Style.Font.Bold = true;
-            this.participants_header2.Style.Font.Underline = false;
-            this.participants_header2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.participants_header2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.participants_header2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.participants_header2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.participants_header2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.participants_header2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Top;
-            this.participants_header2.Value = "No.";
-            // 
-            // participants_header3
-            // 
-            this.participants_header3.Name = "participants_header3";
-            this.participants_header3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.338529109954834D), Telerik.Reporting.Drawing.Unit.Cm(0.92080330848693848D));
-            this.participants_header3.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.participants_header3.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.participants_header3.Style.Font.Bold = true;
-            this.participants_header3.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.participants_header3.Style.Font.Underline = false;
-            this.participants_header3.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.participants_header3.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.participants_header3.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.participants_header3.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.participants_header3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.participants_header3.Value = "Funding Source";
-            // 
             // participants_invite_label
             // 
             this.participants_invite_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(10.34519100189209D));
@@ -1038,6 +861,192 @@ namespace eMAC.UI.Reports
             this.participants_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.502193450927734D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
             this.participants_label.Style.Font.Name = "Courier New";
             this.participants_label.Value = "<strong>8.&nbsp;&nbsp;<span >Participants</span></strong>";
+            // 
+            // contribution_info_label
+            // 
+            this.contribution_info_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(10.001249313354492D));
+            this.contribution_info_label.Name = "contribution_info_label";
+            this.contribution_info_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.5D), Telerik.Reporting.Drawing.Unit.Cm(0.55493485927581787D));
+            this.contribution_info_label.Style.Font.Name = "Courier New";
+            this.contribution_info_label.Value = "<strong>2.&nbsp;&nbsp;<span>Contribution to WHO\'s work:</span></strong>";
+            // 
+            // panel4
+            // 
+            this.panel4.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.contribution_program_budget_label,
+            this.programme_budget_panel});
+            this.panel4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(12.117916107177734D));
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.500096321105957D), Telerik.Reporting.Drawing.Unit.Cm(1.3437583446502686D));
+            this.panel4.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
+            // 
+            // contribution_program_budget_label
+            // 
+            this.contribution_program_budget_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.9988508736714721E-05D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.contribution_program_budget_label.Name = "contribution_program_budget_label";
+            this.contribution_program_budget_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499996185302734D), Telerik.Reporting.Drawing.Unit.Cm(0.55493485927581787D));
+            this.contribution_program_budget_label.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Cm(0D);
+            this.contribution_program_budget_label.Style.Font.Name = "Courier New";
+            this.contribution_program_budget_label.Value = "&nbsp;&nbsp;&nbsp;&nbsp;2b. Contribution to WHO\'s programme budget:";
+            // 
+            // programme_budget_panel
+            // 
+            this.programme_budget_panel.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.6841176748275757D), Telerik.Reporting.Drawing.Unit.Cm(0.55513513088226318D));
+            this.programme_budget_panel.Name = "programme_budget_panel";
+            this.programme_budget_panel.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.723403930664063D), Telerik.Reporting.Drawing.Unit.Cm(0.64375805854797363D));
+            this.programme_budget_panel.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
+            // 
+            // related_core_functions_label
+            // 
+            this.related_core_functions_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(10.900833129882813D));
+            this.related_core_functions_label.Name = "related_core_functions_label";
+            this.related_core_functions_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499799728393555D), Telerik.Reporting.Drawing.Unit.Cm(0.55493485927581787D));
+            this.related_core_functions_label.Style.Font.Name = "Courier New";
+            this.related_core_functions_label.Value = "&nbsp;&nbsp;&nbsp;&nbsp;2a. Related WHO core functions";
+            // 
+            // core_functions
+            // 
+            this.core_functions.CanShrink = true;
+            this.core_functions.KeepTogether = false;
+            this.core_functions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.66080319881439209D), Telerik.Reporting.Drawing.Unit.Cm(11.482915878295898D));
+            this.core_functions.Name = "core_functions";
+            this.core_functions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.793777465820313D), Telerik.Reporting.Drawing.Unit.Cm(0.45493477582931519D));
+            this.core_functions.Style.Font.Name = "Courier New";
+            this.core_functions.Value = "";
+            // 
+            // linkage_resolution
+            // 
+            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.99300789833068848D)));
+            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.19378662109375D)));
+            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.3220558166503906D)));
+            this.linkage_resolution.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.88194400072097778D)));
+            this.linkage_resolution.Body.SetCellContent(0, 0, this.linkage_resolution_field1);
+            this.linkage_resolution.Body.SetCellContent(0, 1, this.linkage_resolution_field2);
+            this.linkage_resolution.Body.SetCellContent(0, 2, this.linkage_resolution_field3);
+            tableGroup11.Name = "tableGroup";
+            tableGroup11.ReportItem = this.linkage_resolution_header1;
+            tableGroup12.Name = "tableGroup1";
+            tableGroup12.ReportItem = this.linkage_resolution_header2;
+            tableGroup13.Name = "tableGroup2";
+            tableGroup13.ReportItem = this.htmlTextBox2;
+            this.linkage_resolution.ColumnGroups.Add(tableGroup11);
+            this.linkage_resolution.ColumnGroups.Add(tableGroup12);
+            this.linkage_resolution.ColumnGroups.Add(tableGroup13);
+            this.linkage_resolution.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.linkage_resolution_field1,
+            this.linkage_resolution_field2,
+            this.linkage_resolution_field3,
+            this.linkage_resolution_header1,
+            this.linkage_resolution_header2,
+            this.htmlTextBox2});
+            this.linkage_resolution.KeepTogether = false;
+            this.linkage_resolution.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.96948373317718506D), Telerik.Reporting.Drawing.Unit.Cm(14.843124389648438D));
+            this.linkage_resolution.Name = "linkage_resolution";
+            this.linkage_resolution.NoDataStyle.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            tableGroup14.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup14.Name = "detailTableGroup";
+            this.linkage_resolution.RowGroups.Add(tableGroup14);
+            this.linkage_resolution.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.50885009765625D), Telerik.Reporting.Drawing.Unit.Cm(1.9931937456130981D));
+            this.linkage_resolution.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
+            this.linkage_resolution.Style.Font.Name = "Courier New";
+            this.linkage_resolution.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Cm(0D);
+            this.linkage_resolution.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
+            this.linkage_resolution.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
+            this.linkage_resolution.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Cm(0D);
+            // 
+            // linkage_resolution_field1
+            // 
+            this.linkage_resolution_field1.Name = "linkage_resolution_field1";
+            this.linkage_resolution_field1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.99300813674926758D), Telerik.Reporting.Drawing.Unit.Cm(0.88194370269775391D));
+            this.linkage_resolution_field1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.linkage_resolution_field1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_field1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_field1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(3D);
+            this.linkage_resolution_field1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(3D);
+            this.linkage_resolution_field1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_field1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.linkage_resolution_field1.Value = "= \"(\" + Fields.row_num + \")\"";
+            // 
+            // linkage_resolution_field2
+            // 
+            this.linkage_resolution_field2.CanShrink = true;
+            this.linkage_resolution_field2.Name = "linkage_resolution_field2";
+            this.linkage_resolution_field2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.193784713745117D), Telerik.Reporting.Drawing.Unit.Cm(0.88194370269775391D));
+            this.linkage_resolution_field2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.linkage_resolution_field2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_field2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_field2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.linkage_resolution_field2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_field2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_field2.Value = "= Fields.resolution_title";
+            // 
+            // linkage_resolution_field3
+            // 
+            this.linkage_resolution_field3.Name = "linkage_resolution_field3";
+            this.linkage_resolution_field3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3220565319061279D), Telerik.Reporting.Drawing.Unit.Cm(0.88194370269775391D));
+            this.linkage_resolution_field3.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.linkage_resolution_field3.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_field3.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_field3.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_field3.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_field3.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_field3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.linkage_resolution_field3.Value = "= Substr(Fields.type,0,1)";
+            // 
+            // htmlTextBox1
+            // 
+            this.htmlTextBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.022915840148926D));
+            this.htmlTextBox1.Name = "htmlTextBox1";
+            this.htmlTextBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.5D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
+            this.htmlTextBox1.Style.Font.Name = "Courier New";
+            this.htmlTextBox1.Value = "&nbsp;&nbsp;&nbsp;&nbsp;2c. Linkages to global and regional resolutions";
+            // 
+            // pageHeaderSection1
+            // 
+            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.1000001430511475D);
+            this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.page_number});
+            this.pageHeaderSection1.Name = "pageHeaderSection1";
+            this.pageHeaderSection1.PrintOnFirstPage = false;
+            // 
+            // page_number
+            // 
+            this.page_number.CanShrink = true;
+            this.page_number.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00020024616969749332D), Telerik.Reporting.Drawing.Unit.Cm(0.00010002215276472271D));
+            this.page_number.Name = "page_number";
+            this.page_number.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.60246467590332D), Telerik.Reporting.Drawing.Unit.Cm(1.0999001264572144D));
+            this.page_number.Style.Font.Name = "Courier New";
+            this.page_number.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.page_number.Value = "=\"-\" + PageNumber + \"-\"";
+            // 
+            // panel1
+            // 
+            this.panel1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.summary_info,
+            this.summary_label});
+            this.panel1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(8.1000003814697266D));
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499796867370606D), Telerik.Reporting.Drawing.Unit.Cm(1.3169866800308228D));
+            // 
+            // summary_info
+            // 
+            this.summary_info.CanShrink = true;
+            this.summary_info.KeepTogether = false;
+            this.summary_info.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.86205005645751953D));
+            this.summary_info.Name = "summary_info";
+            this.summary_info.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499797821044922D), Telerik.Reporting.Drawing.Unit.Cm(0.45493656396865845D));
+            this.summary_info.Style.BackgroundColor = System.Drawing.Color.Empty;
+            this.summary_info.Style.Font.Italic = true;
+            this.summary_info.Style.Font.Name = "Courier New";
+            this.summary_info.Value = "";
+            // 
+            // summary_label
+            // 
+            this.summary_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.17573606967926025D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
+            this.summary_label.Name = "summary_label";
+            this.summary_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.297805786132813D), Telerik.Reporting.Drawing.Unit.Cm(0.45493453741073608D));
+            this.summary_label.Style.Font.Name = "Courier New";
+            this.summary_label.Value = "&nbsp;&nbsp;&nbsp;<strong><span><em>Summary</em></span></strong>";
             // 
             // PlanningDocument
             // 
@@ -1107,8 +1116,6 @@ namespace eMAC.UI.Reports
         private Telerik.Reporting.HtmlTextBox title_label;
         private Telerik.Reporting.HtmlTextBox proposed_title;
         private Telerik.Reporting.HtmlTextBox background_info;
-        private Telerik.Reporting.HtmlTextBox summary_label;
-        private Telerik.Reporting.HtmlTextBox summary_info;
         private Telerik.Reporting.HtmlTextBox meeting_title;
         private Telerik.Reporting.Panel panel2;
         private Telerik.Reporting.Table related_meetings;
@@ -1168,5 +1175,8 @@ namespace eMAC.UI.Reports
         private Telerik.Reporting.HtmlTextBox participants_criteria;
         private Telerik.Reporting.HtmlTextBox participants_criteria_label;
         private Telerik.Reporting.HtmlTextBox participants_label;
+        private Telerik.Reporting.Panel panel1;
+        private Telerik.Reporting.HtmlTextBox summary_info;
+        private Telerik.Reporting.HtmlTextBox summary_label;
     }
 }

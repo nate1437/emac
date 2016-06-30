@@ -166,7 +166,7 @@
                     <div class="row" style="background-color: #CDCFD0; ">
                         <div class="col-lg-12">
 
-                            <span class="pull-left" style="color: #000; padding: 5px;" id="menu">
+                            @*<span class="pull-left" style="color: #000; padding: 5px;" id="menu">
                                 <a ng-click="events.viewHome($event)" >
                                     <span class="fa fa-home"></span>&nbsp<span class="navbar-item-text">Home</span>&nbsp
                                 </a>&nbsp|&nbsp
@@ -174,7 +174,7 @@
                                     <span class="fa fa-file-text-o"></span>&nbsp<span class="navbar-item-text">Reports</span>&nbsp
                                 </a>
                                 
-                            </span>
+                            </span>*@
                             <span class="pull-right" style="color: #000; padding: 5px;">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span>Current user: @User.Identity.Name.Split('\\')[1].ToLower()</span>
@@ -228,6 +228,7 @@
     <script src="~/Client/controllers/homeController.js"></script>
     <script src="~/Client/controllers/mtgsController.js"></script>
     <script src="~/Client/controllers/mtgsEditController.js"></script>
+    <script src="~/Client/controllers/mtgReportsController.js"></script>
     <script src="~/Client/services/mtgServices.js"></script>
     <script src="~/Client/models/mtgDataModel.js"></script>
     <script src="~/Client/services/mtgDataSource.js"></script>
