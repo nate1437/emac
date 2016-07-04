@@ -284,11 +284,14 @@
     <Content Include="Client\services\mtgDataSource.js" />
     <Content Include="Client\services\mtgServices.js" />
     <Content Include="Client\services\userService.js" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-dropdownhover.css" />
     <Content Include="Content\build.css" />
     <Content Include="Content\customKendo.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\kendo-editor.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\bootstrap-dropdownhover.js" />
     <Content Include="Scripts\customKendo.js" />
     <Content Include="Scripts\date.js" />
     <Content Include="Scripts\grid-commons.js" />

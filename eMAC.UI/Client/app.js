@@ -349,6 +349,7 @@ eMacApp.controller("AuthenticationController",
             }).then(function (result) {
                 if (result != undefined) {
                     if (result.op) {
+                        debugger;
                         $scope.factories.app.User("data", result.user_details);
 
                             $scope.models.settings = {
@@ -373,7 +374,7 @@ eMacApp.controller("AuthenticationController",
 
             $scope.events = {
                 viewReport: function (e) {
-                    $location.path(base + "meetings/reports");
+                    $location.path(base + "meetings/reports/" + e);
                 },
                 viewHome: function (e) {
                     $location.path(base);

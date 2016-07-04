@@ -158,7 +158,7 @@ namespace eMAC.UI.api
                             notifyObject.status.ToLower().Equals("submitted for finalization"))
                         {
                             sendTo = Email;
-                            sendCc = string.Format("{0};{1}{2}", EmailCc, meetingObjectData.updated_by, AppEmailSuffix);
+                            sendCc = string.Format("{0};{1}{2}", EmailCc, meetingObjectData.mtg_assistant, AppEmailSuffix);
                             EmailBCC = EmailBcc;
                             email_repo.MeetingUserAction(id, meetingObjectData, notifyObject.action_by, TemplateLink, EmailLink);
                         }
@@ -168,48 +168,12 @@ namespace eMAC.UI.api
                             (notifyObject.status.ToLower().Equals("revise for spmc") || notifyObject.status.ToLower().Equals("revise for finalization")))
                         {
                             sendTo = userObjectData.email;
-                            sendCc = string.Format("{0}{1};{2}",meetingObjectData.created_by, AppEmailSuffix, EmailCc);
+                            sendCc = string.Format("{0};{1}{2}", EmailCc, meetingObjectData.mtg_assistant, AppEmailSuffix);
                             EmailBCC = EmailBcc;
 
                             email_repo.MeetingMacAction(id, notifyObject.status, meetingObjectData, TemplateLink, EmailLink, (notifyObject.status.ToLower().Equals("revise for spmc") || notifyObject.status.ToLower().Equals("revise for finalization")) ? notifyObject.remarks : "");
                         }
-
-                        //// approving
-                        //else if (notifyObject.status.ToLower() == "approved for spmc")
-                        //{
-                        //    sendTo = userObjectData.email;
-                        //    sendCc = meetingObjectData.created_by + "@wpro.who.int;" + EmailCc;
-                        //    EmailBCC = EmailBcc;
-
-                        //    // send aproval
-                        //    email_repo.ApproveMeeting(id, meetingObjectData.mtg_no, meetingObjectData.resp_officer, TemplateLink, EmailLink);
-                        //}
-                        //// finalizing
-                        //else if (notifyObject.status.ToLower() == "finalized")
-                        //{
-                        //    sendTo = userObjectData.email;
-                        //    sendCc = meetingObjectData.created_by + "@wpro.who.int;" + EmailCc;
-                        //    EmailBCC = EmailBcc;
-                        //    //sendTo = userObjectData.email;
-                        //    //sendCc = meetingObjectData.created_by + "@wpro.who.int";
-                        //    //EmailBCC = "";
-
-                        //    // send aproval
-                        //    email_repo.FinalizeMeeting(id.ToString(), meetingObjectData.mtg_no, meetingObjectData.resp_officer, TemplateLink, EmailLink);
-                        //}
-                        //// rejecting
-                        //else if (notifyObject.status.ToLower() == "revise for spmc" || notifyObject.status.ToLower() == "revise for finalization")
-                        //{
-                        //    sendTo = userObjectData.email;
-                        //    sendCc = meetingObjectData.created_by + "@wpro.who.int;" + EmailCc;
-                        //    EmailBCC = EmailBcc;
-                        //    //sendTo = userObjectData.email;
-                        //    //sendCc = meetingObjectData.created_by + "@wpro.who.int";
-                        //    //EmailBCC = "";
-
-                        //    // send aproval
-                        //    email_repo.RejectMeeting(id.ToString(), meetingObjectData.mtg_no, meetingObjectData.resp_officer, notifyObject.remarks, TemplateLink, EmailLink);
-                        //}                        
+          
                     }
 
                     if (value["mtgReportData"] != null || value["finMtgReportData"] != null)
@@ -225,36 +189,12 @@ namespace eMAC.UI.api
 
                         //set up mail recipients
                         sendTo = Email;
-                        sendCc = string.Format("{0}{1};{2}",meetingObjectData.updated_by, AppEmailSuffix, EmailCc);
+                        sendCc = string.Format("{0};{1}{2}", EmailCc, meetingObjectData.mtg_assistant, AppEmailSuffix);
                         EmailBCC = EmailCc;
 
                         // send aproval
                         email_repo.MeetingReportAction(id, value["mtgReportData"] != null ? "SUMM_REP_SUBMISSION" : "FINAL_REP_SUBMISSION", meetingObjectData, mtgReportObjectData.summary_report_uploaded_by, TemplateLink, EmailLink);
                     }
-
-                    //if (value["mtgReportData"] != null)
-                    //{
-
-                    //}
-                    //if (value["finMtgReportData"] != null)
-                    //{
-                    //    mtgReportParameters.Add("@mtg_id", id);
-                    //    var mtgReportObjData = _mtgReportRepo.GetEntity(StoredProcs.MtgReportObjectGet, mtgReportParameters);
-                    //    var mtgReportObject = JsonConvert.SerializeObject(mtgReportObjData.Tables[0]);
-                    //    var mtgReportObjectData = JsonConvert.DeserializeObject<List<MeetingFinalReport>>(mtgReportObject.ToString()).FirstOrDefault();
-
-                    //    //var teststr = Convert.ToString(value["newParticipants"]);
-                    //    NotifyObject notifyObject = JsonConvert.DeserializeObject<NotifyObject>(Convert.ToString(value["finMtgReportData"]));
-
-                    //    //set up mail recipients
-                    //    sendTo = Email;
-                    //    sendCc = EmailCc;
-                    //    EmailBCC = EmailBcc;
-
-                    //    // send aproval
-                    //    email_repo.FinalMeetingReportSubmit(id.ToString(), meetingObjectData.mtg_no, mtgReportObjectData.final_report_uploaded_by, notifyObject.remarks, TemplateLink, EmailLink);
-
-                    //}
 
                     EmailSender sender = new EmailSender(SMTPServer, AdminEmail, AdminEmailName);
                     StringBuilder emailHeader = new StringBuilder();

@@ -13,6 +13,8 @@
     <link id="linkRoot" href="~/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-dropdownhover.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
     <link href="~/Content/sticky-footer-navbar.css" rel="stylesheet" />
@@ -157,7 +159,7 @@
                             <div class="banner-content">
                                 
                                 <h4>@System.Web.Configuration.WebConfigurationManager.AppSettings["SiteTitle"]</h4>
-                                <p>Meetings and Courses System</p>
+                                <p>Meetings and Courses System </p>
                             </div>
                         </div>
                         <div class="col-lg-2">
@@ -165,16 +167,18 @@
                     </div>
                     <div class="row" style="background-color: #CDCFD0; ">
                         <div class="col-lg-12">
-
-                            @*<span class="pull-left" style="color: #000; padding: 5px;" id="menu">
-                                <a ng-click="events.viewHome($event)" >
+                            <div class="dropdown pull-left" style="color: #000; padding: 5px;" id="menu" ng-if="isAdmin || isApprover">
+                                <a ng-click="events.viewHome($event)">
                                     <span class="fa fa-home"></span>&nbsp<span class="navbar-item-text">Home</span>&nbsp
                                 </a>&nbsp|&nbsp
-                                <a ng-click="events.viewReport($event)" >
+                                <a class="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
                                     <span class="fa fa-file-text-o"></span>&nbsp<span class="navbar-item-text">Reports</span>&nbsp
                                 </a>
-                                
-                            </span>*@
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="events.viewReport('meeting')">Meeting statistics</a></li>
+                                    <li><a ng-click="events.viewReport('participant')">Participant statistics</a></li>
+                                </ul>
+                            </div>
                             <span class="pull-right" style="color: #000; padding: 5px;">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span>Current user: @User.Identity.Name.Split('\\')[1].ToLower()</span>
@@ -208,7 +212,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularjs")
-    
+    <script src="~/Scripts/bootstrap-dropdownhover.js"></script>
+    <script src="//@System.Configuration.ConfigurationManager.AppSettings["tableauServer"].ToString()/javascripts/api/tableau_v8.js"></script>
     <script src="~/Scripts/kendo/kendo.all.min.js"></script>
     <script src="~/Scripts/grid-commons.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>

@@ -89,6 +89,7 @@ namespace eMAC.Infra.Domain
                 
                 message
                     .Replace("[TEMPLATE_URL]", templateURL + mtgId.ToString())
+                    .Replace("[MEETING_STATUS]", meetingObjectData.status)
                     .Replace("[APP_URL]", WebsiteURL)
                     .Replace("[MEETING_NAME]", meetingObjectData.mtg_title)
                     .Replace("[DISAPPROVAL_REASON]", remarks)
@@ -117,6 +118,7 @@ namespace eMAC.Infra.Domain
                 message
                     .Replace("[APP_URL]", WebsiteURL)
                     .Replace("[MEETING_NUMBER]", mtgDetails.mtg_no)
+                    .Replace("[MEETING_STATUS]", mtgDetails.status)
                     .Replace("[AUTHOR]", uploadedBy);
 
                 EmailMessage = message.ToString();
