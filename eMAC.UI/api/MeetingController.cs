@@ -172,7 +172,6 @@ namespace eMAC.UI.api
             try
             {
                 var parameters = new Dictionary<string, object>();
-
                 parameters.Add("@mtg_title", Convert.ToString(value["mtg_title"]));
                 parameters.Add("@start_date", Convert.ToDateTime(Convert.ToString(value["start_date"])));
                 parameters.Add("@end_date", Convert.ToDateTime(Convert.ToString(value["end_date"])));
@@ -180,6 +179,7 @@ namespace eMAC.UI.api
                 parameters.Add("@org_unit", Convert.ToString(value["unit"]));
                 parameters.Add("@resp_officer", Convert.ToString(value["resp_officer"]));
                 parameters.Add("@co_resp_officer", Convert.ToString(value["co_resp_officer"]));
+                parameters.Add("@mtg_assistant", Convert.ToString(value["mtg_assistant"]));
                 parameters.Add("@venue", Convert.ToString(value["city"]));
                 parameters.Add("@ctry_code", Convert.ToString(value["ctry"]));
                 parameters.Add("@status", Convert.ToString(value["status"]));

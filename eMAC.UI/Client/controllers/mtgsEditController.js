@@ -54,6 +54,7 @@
                     states: JSON.parse(n.ctryList),
                     units: JSON.parse(n.orgUnitList),
                     officers: JSON.parse(n.officerList),
+                    mtg_assistants: JSON.parse(n.assistantList),
                     classifications: JSON.parse(n.mtgClassList),
                     types: JSON.parse(n.mtgTypeList),
                     corefx: JSON.parse(n.coreFunctionList),
@@ -171,8 +172,6 @@
             return endNote;
         }
 
-
-
         var findParamter = function (nValue) {
             var paramAddress = "";
             $.each(end_note_defaults, function (index, value) {
@@ -241,6 +240,7 @@
                     $scope.units = JSON.parse(result.orgUnitList);
                     $scope.officers = JSON.parse(result.officerList);
                     $scope.classifications = JSON.parse(result.mtgClassList);
+                    $scope.mtg_assistants = JSON.parse(result.assistantList),
                     $scope.types = JSON.parse(result.mtgTypeList);
                     $scope.corefx = JSON.parse(result.coreFunctionList);
                     $scope.resolutionTypes = JSON.parse(result.resolutionTypeList);
@@ -289,6 +289,30 @@
 
         angular.element("#mtgTitle").focus();
 
+        $scope.$watch("meeting.is_not_wpro_mtg", function (n, o) {
+            if (n != o) {
+                if (n) {
+                    $scope.meeting.needs_summary_report = false;
+                    $scope.meeting.needs_final_report = false;
+                    $scope.meeting.needs_summary_report = false;
+                    $scope.meeting.needs_final_report = false;
+                }
+                else {
+                    var value = parseInt($scope.meeting.mtg_classification);
+                    if (value > 0) {
+                        if (value == 6 || value == 8) {
+                            $scope.meeting.needs_final_report = false;
+                        }
+                        else {
+                            $scope.meeting.needs_final_report = true;
+                        }
+                        if (!$scope.meeting.needs_summary_report)
+                            $scope.meeting.needs_summary_report = true;
+                    }
+                }
+            }
+        });
+
         $scope.$watch('meetingDetail', function (newValue, oldValue) {
 
 
@@ -326,15 +350,18 @@
         }, true);
 
         $scope.$watch('meeting.mtg_classification', function (newValue, oldValue) {
-            if (newValue != oldValue) {
+            if (newValue != oldValue && !$scope.meeting.is_not_wpro_mtg) {
                 //$scope.dataHasChanged = angular.equals($scope.meeting, $scope.originalMtg);
                 //mtgObjectChanged = !angular.equals(newValue, $scope.originalMtg);
                 //alert(newValue);
                 if (newValue == 6 || newValue == 8) {
                     $scope.meeting.needs_final_report = false;
                 }
-                else
+                else {
                     $scope.meeting.needs_final_report = true;
+                }
+                if (!$scope.meeting.needs_summary_report)
+                    $scope.meeting.needs_summary_report = true;
             }
         }, true);
 
@@ -415,12 +442,19 @@
         }
 
         $scope.save = function () {
-            debugger;
             mtgFactory.showLoader(true);
             //displayOverlay();
             //$('#newMtgForm').modal('show');
             var jsonData = {};
 
+            if ($scope.meeting.mtg_assistant == undefined ||
+                $scope.meeting.mtg_assistant == "") {
+
+                toastr.warning("Meeting assistant required!", "Validation");
+                eMacFactory.Loader.hide();
+                $("#mtgassitant").focus();
+                return
+            }
             // get current user
             var curr_user = $('#curr_user').text();
             jsonData['curr_user'] = curr_user;
@@ -430,6 +464,8 @@
                 // update mtgobject
                 $scope.meeting.updated_by = curr_user;
                 // dates
+
+
                 if ($scope.meeting.start_date && $scope.meeting.start_date !== '') {
                     var newDate = kendo.parseDate($scope.meeting.start_date, 'dd/MM/yyyy');
                     if (newDate)
@@ -866,6 +902,7 @@
 
         // save log action
         $scope.saveLogAction = function (remarks) {
+            debugger;
             var jsonData = {
                 mtgUpdateStatusObj: {
                     mtg_id: $scope.meeting.mtg_id,
@@ -876,7 +913,7 @@
                 }
             };
 
-            if (jsonData.mtgUpdateStatusObj.remarks === '')
+            if (remarks === '')
                 jsonData.mtgUpdateStatusObj.remarks = "Status changed to " + "\'" + $scope.meeting.status + "\' by " + $('#curr_user').text();
             else
                 jsonData.mtgUpdateStatusObj.remarks = remarks;
@@ -957,7 +994,7 @@
 
         // CLOSE
         $scope.confirmClose = function () {
-            if (mtgObjectChanged || mtgDetailObjectChanged) {
+            if ((mtgObjectChanged || mtgDetailObjectChanged) && $scope.saveDetailBtnEnable && ($scope.isAdmin || $scope.isApprover || $scope.meeting.status === 'Draft')) {//)) {
                 $scope.modal = $modal.open({
                     animation: true,
                     templateUrl: 'detail-yes-no-cancel.html',

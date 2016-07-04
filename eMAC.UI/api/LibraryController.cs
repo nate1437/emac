@@ -44,16 +44,18 @@ namespace eMAC.UI.api
             var orgUnit = JsonConvert.SerializeObject(list.Tables[5]);
             // officers
             var officer = JsonConvert.SerializeObject(list.Tables[6]);
+            // meeting assistant
+            var meetingAssistant = JsonConvert.SerializeObject(list.Tables[7]);
             // resolution types
-            var resolutionType = JsonConvert.SerializeObject(list.Tables[7]);
+            var resolutionType = JsonConvert.SerializeObject(list.Tables[8]);
             // participant funding source
-            var participantFundSrc = JsonConvert.SerializeObject(list.Tables[8]);
+            var participantFundSrc = JsonConvert.SerializeObject(list.Tables[9]);
             // pb categories
-            var pbCategories = JsonConvert.SerializeObject(list.Tables[9]);
+            var pbCategories = JsonConvert.SerializeObject(list.Tables[10]);
             // pb outcome
-            var pbOutcomes = JsonConvert.SerializeObject(list.Tables[10]);
+            var pbOutcomes = JsonConvert.SerializeObject(list.Tables[11]);
             // pb output
-            var pbOutputs = JsonConvert.SerializeObject(list.Tables[11]);
+            var pbOutputs = JsonConvert.SerializeObject(list.Tables[12]);
 
             var data = new Dictionary<string, string>();
             data.Add("ctryList", ctryList);
@@ -63,6 +65,7 @@ namespace eMAC.UI.api
             data.Add("yearFilter", yearFilter);
             data.Add("orgUnitList", orgUnit);
             data.Add("officerList", officer);
+            data.Add("assistantList", meetingAssistant);
             data.Add("resolutionTypeList", resolutionType);
             data.Add("participantFundSrcList", participantFundSrc);
             data.Add("pbCategoryList", pbCategories);

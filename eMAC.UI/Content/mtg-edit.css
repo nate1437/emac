@@ -24,6 +24,11 @@ label {
 
 }
 
+    label.required:after {
+        content: "*"!important;
+        color: red!important;
+    }
+
 @media (min-width: 1200px) {
     .col-lg-4c {
         width: 31% !important;

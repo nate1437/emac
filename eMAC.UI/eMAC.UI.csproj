@@ -233,6 +233,7 @@
     <Content Include="Client\controllers\homeController.js" />
     <Content Include="Client\controllers\mtgsController.js" />
     <Content Include="Client\controllers\mtgsEditController.js" />
+    <Content Include="Client\controllers\mtgReportsController.js" />
     <Content Include="Client\fileupload\egHttpPrefix.js" />
     <Content Include="Client\fileupload\egFiles.js" />
     <Content Include="Client\fileupload\egFileUploader.html" />
@@ -283,11 +284,14 @@
     <Content Include="Client\services\mtgDataSource.js" />
     <Content Include="Client\services\mtgServices.js" />
     <Content Include="Client\services\userService.js" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-dropdownhover.css" />
     <Content Include="Content\build.css" />
     <Content Include="Content\customKendo.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\kendo-editor.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\bootstrap-dropdownhover.js" />
     <Content Include="Scripts\customKendo.js" />
     <Content Include="Scripts\date.js" />
     <Content Include="Scripts\grid-commons.js" />
@@ -1259,6 +1263,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="templates\ib2\template.docx" />
+    <Content Include="Views\Meetings\_ReportsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\" />

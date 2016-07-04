@@ -24,7 +24,7 @@
                     ng-show="(rejectDetailBtnEnable && meeting.status=='Submitted for SPMC') || (approveDetailBtnEnable && meeting.status=='Draft')"
                     ng-disabled="meeting.status=='Draft'"
                     ng-click="confirmReject()">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reject
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Return
                 </button>
                 <button type="button" class="btn btn-info btn-xs"
                     ng-show="(finalDetailBtnEnable && (meeting.status == 'Approved for SPMC' || meeting.status == 'Submitted for Finalization')) || (finalDetailBtnEnable && (meeting.status=='Revise for SPMC' || meeting.status=='Revise for Finalization'))"
@@ -89,20 +89,20 @@
             <div class="form-horizontal">
                 <div class="form-group clearfix required">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                                <label class="col-lg-5 col-md-6 col-sm-6 col-xs-12 control-label" for="mtgNumber">Meeting no.</label>
-                                <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12" style="padding: 0px;">
+                        <div class="col-lg-12" style="padding: 0px 15px 0px 0px">
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                <label class="col-lg-7 col-md-6 col-sm-6 col-xs-12 control-label" style="padding-left:0px" for="mtgNumber">Meeting no.</label>
+                                <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12" style="padding: 0px;">
                                     <input readonly ng-model="meeting.mtg_no" type="text" class="form-control" >
                                 </div>
                             </div>
-                            <div class="col-lg-7 col-md-7 col-sm-5 col-xs-12">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                                 <label class="col-lg-1 col-md-1 col-sm-2 col-xs-12 control-label" for="mtgTitle">Title</label>
                                 <div class="col-lg-11 col-md-11 col-sm-10 col-xs-12" style="padding: 0px;">
                                     <input ng-model="meeting.mtg_title" type="text" id="mtgTitle" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                 <label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label" for="mtgStatus">Status</label>
                                 <div class="col-lg-7 col-md-6 col-sm-5 col-xs-12" style="padding: 0px;">
                                     <input ng-model="meeting.status" type="text" class="form-control" disabled>
@@ -114,59 +114,76 @@
                 </div>
                 <div class="form-group clearfix required">
                     <div class="row">
-                        <div class="col-lg-5 col-md-6 col-sm-5 col-xs-12">
-                            <div class="col-lg-12">
-                                <label class="col-lg-3 col-md-3 control-label" for="mtgDurationFromDate">Duration</label>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="padding: 0px 15px 0px 0px" >
+                            <div class="row">
+                                <label class="col-lg-3 col-md-3 control-label" for="mtgDurationFromDate" style="margin-top: 5px; padding: 0px 15px 0px 0px"">Duration</label>
                                 <div class="col-lg-9 col-md-9" style="padding: 0px;">
-                                    <input class="myPicker" ng-model="meeting.start_date" style="width: 157px;" /> 
+                                    <input class="myPicker" ng-model="meeting.start_date" style="width: 160px;" />
                                     <label class="control-label control-label-z" for="mtgDurationToDate">to</label>
-                                    <input id="mtg-end-date" class="myPicker" ng-model="meeting.end_date" style="width: 157px;" />
+                                    <input id="mtg-end-date" class="myPicker" ng-model="meeting.end_date" style="width: 160px;" />
                                 </div>
-                                <input ng-model="meeting.end_date" type="text" class="form-control" name="title" required style="display: none">
+                                <input ng-model="meeting.end_date" id="mtgDurationFromDate" type="text" class="form-control" name="title" required style="display: none">
                                 <input ng-model="meeting.start_date" type="text" class="form-control" name="title" required style="display: none">
                             </div>
-                            <div class="col-lg-12" style="margin-top:5px;">
+                            <div class="row" style="margin-top: 5px;">
                                 <label class="col-lg-3 control-label control-label-z" for="jobNumber">Venue</label>
                                 <div class="col-lg-3" style="padding: 0px;">
                                     <input ng-model="meeting.venue" type="text" class="form-control">
                                 </div>
-                                <div class="col-lg-6" style="padding: 0px; padding-left:5px !important">
+                                <div class="col-lg-5">
                                     <select ng-model="meeting.ctry_code" class="form-control" ng-options="s.ctry_code as s.ctry_name for s in states">
                                         <option value="">--</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-7 col-md-6 col-sm-7 col-xs-12">
-                            <div class="col-lg-6" style="padding: 0px;" >
-                                <div class="col-lg-12"style="padding: 0px;" >
-                                    <label class="col-lg-4 control-label" for="jobNumber" >Org. unit</label>
-                                    <div class="col-lg-8" style="padding: 0px; ">
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"  style="padding: 0px 15px 0px 0px" >
+                            <div class="row" style="padding: 0px 15px 0px 0px" >
+                                <div class="col-lg-6" style="padding: 0px 15px 0px 0px" >
+                                    <label class="col-lg-4 control-label" for="jobNumber">Org. unit</label>
+                                    <div class="col-lg-8" style="padding: 0px;">
                                         <select ng-model="meeting.org_unit" class="form-control" ng-options="s.org_unit as s.org_unit for s in units">
                                             <option value="">--</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-12" style="padding: 0px;margin-top:5px;">
-                                    <label class="col-lg-4 control-label" for="mtgNumber" >Resp. officer</label>
-                                    <div class="col-lg-8" style="padding: 0px;" >
-                                        <select ng-model="meeting.resp_officer" class="form-control" ng-options="o.user_name as o.resp_officer_name for o in officers">
-                                            <option value="">--</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6" style="padding: 0px;" >
-                                <div class="col-lg-12" >
-                                    <label class="col-lg-4 control-label control-label-z" for="mtgNumber">Co-resp. officer</label>
-                                    <div class="col-lg-8" style="padding: 0px;" >
+                                <div class="col-lg-6" style="padding: 0px 15px 0px 0px" >
+                                    <label class="col-lg-5 control-label control-label-z" for="mtgNumber">Co-resp. officer</label>
+                                    <div class="col-lg-7" style="padding: 0px;">
                                         <select ng-model="meeting.co_resp_officer" class="form-control" ng-options="o.user_name as o.resp_officer_name for o in officers">
                                             <option value="">--</option>
                                         </select>
                                     </div>
+
                                 </div>
                             </div>
+                            <div class="row" style="padding: 0px 15px 0px 0px" >
+                                <div class="col-lg-6" style="padding: 0px 15px 0px 0px" >
+
+                                    <div class="col-lg-12" style="padding: 0px; margin-top: 5px;">
+                                        <label class="col-lg-4 control-label" for="mtgNumber">Resp. officer</label>
+                                        <div class="col-lg-8" style="padding: 0px;">
+                                            <select ng-model="meeting.resp_officer" class="form-control" ng-options="o.user_name as o.resp_officer_name for o in officers">
+                                                <option value="">--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" style="padding: 0px 15px 0px 0px" >
+
+                                    <div class="col-lg-12" style="padding: 0px; margin-top: 5px;">
+                                        <label class="col-lg-5 control-label control-label-z required" for="mtgassistant">Meeting asst.</label>
+                                        <div class="col-lg-7" style="padding: 0px;">
+                                            <select ng-model="meeting.mtg_assistant" id="mtgassistant" required class="form-control" ng-options="o.user_name as o.staff_name for o in models.mtg_assistants">
+                                                <option value="">--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
+                        
                     </div>
                 </div>  
             </div>
@@ -218,7 +235,7 @@
                                 <div class="col-lg-12">
                                     <label class="col-lg-5 control-label" for="jobNumber">Meeting type</label>
                                     <div class="col-xs-12 col-lg-7">
-                                        <select ng-model="meeting.mtg_type" class="form-control ng-pristine ng-untouched ng-valid" ng-options="option.meeting_type_id as option.meeting_type_name for option in types"><option ng-disabled="true" ng-selected="true" value="" class="" selected="selected" disabled="disabled">Select type</option><option value="number:19" label="Meetings for the Exchange of Information">Meetings for the Exchange of Information</option><option value="number:20" label="Meeting of Experts" selected="selected">Meeting of Experts</option></select>
+                                        <select ng-model="meeting.mtg_type" class="form-control ng-pristine ng-untouched ng-valid" ng-options="option.meeting_type_id as option.meeting_type_name for option in types"><option ng-disabled="true" ng-selected="true" value="" class="" selected="selected" disabled="disabled">Select type</option></select>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +243,7 @@
                                 <div class="col-lg-12">
                                     <label class="col-lg-5 control-label" for="jobNumber">Meeting classification</label>
                                     <div class="col-xs-12 col-lg-7">
-                                        <select ng-model="meeting.mtg_classification" class="form-control ng-pristine ng-untouched ng-valid" ng-options="option.meeting_classification_id as option.meeting_classification_name for option in classifications | filter:{meeting_type_id:meeting.mtg_type}"><option ng-disabled="true" ng-selected="true" value="" class="" selected="selected" disabled="disabled">Select classification</option><option value="number:7" label="Advisory committee">Advisory committee</option><option value="number:17" label="Working group">Working group</option><option value="number:15" label="Task force">Task force</option><option value="number:13" label="Meetings of subcommittees of advisory committees">Meetings of subcommittees of advisory committees</option><option value="number:10" label="Meeting">Meeting</option><option value="number:11" label="Other Scientific/Technical committee-type meeting">Other Scientific/Technical committee-type meeting</option></select>
+                                        <select ng-model="meeting.mtg_classification"o class="form-control ng-pristine ng-untouched ng-valid" ng-options="option.meeting_classification_id as option.meeting_classification_name for option in classifications | filter:{meeting_type_id:meeting.mtg_type}"><option ng-disabled="true" ng-selected="true" value="" class="" selected="selected" disabled="disabled">Select classification</option></select>
                                     </div>
                                 </div>
                             </div>
@@ -245,11 +262,11 @@
                                 <div class="col-lg-12 col-xs-12" style="padding-left: 0px;">
                                     <label class="col-lg-3 control-label" for="jobNumber"></label>
                                     <div class="checkbox abc-checkbox abc-checkbox-primary checkbox-inline">
-                                        <input id="needs_summary_report" type="checkbox" ng-disabled="isUser" ng-model="meeting.needs_summary_report">
+                                        <input id="needs_summary_report" type="checkbox" ng-disabled="isUser || meeting.is_not_wpro_mtg" ng-model="meeting.needs_summary_report">
                                         <label for="needs_summary_report">Summary Report?</label>
                                     </div> 
                                     <div class="checkbox abc-checkbox abc-checkbox-primary checkbox-inline">
-                                        <input id="needs_final_report" type="checkbox" ng-model="meeting.needs_final_report" ng-disabled="isUser || meeting.mtg_classification==6 || meeting.mtg_classification==8">
+                                        <input id="needs_final_report" type="checkbox" ng-disabled="meeting.is_not_wpro_mtg" ng-model="meeting.needs_final_report" ng-disabled="isUser || meeting.mtg_classification==6 || meeting.mtg_classification==8">
                                         <label for="needs_final_report">Final Report?</label>
                                     </div> 
                                 </div>

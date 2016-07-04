@@ -29,6 +29,12 @@ namespace eMAC.UI.Controllers
             return PartialView();
         }
 
+        [HttpGet]
+        public ActionResult Reports()
+        {
+            return PartialView("_ReportsPartial");
+        }
+
         public ActionResult EditTest()
         {
             return PartialView();

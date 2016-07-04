@@ -60,8 +60,6 @@ namespace eMAC.UI.Reports
             this.part_1_label = new Telerik.Reporting.HtmlTextBox();
             this.background_info_label = new Telerik.Reporting.HtmlTextBox();
             this.background_info = new Telerik.Reporting.HtmlTextBox();
-            this.title_label = new Telerik.Reporting.HtmlTextBox();
-            this.proposed_title = new Telerik.Reporting.HtmlTextBox();
             this.panel5 = new Telerik.Reporting.Panel();
             this.dates_sites_label = new Telerik.Reporting.HtmlTextBox();
             this.avail_webex = new Telerik.Reporting.HtmlTextBox();
@@ -105,6 +103,9 @@ namespace eMAC.UI.Reports
             this.panel1 = new Telerik.Reporting.Panel();
             this.summary_info = new Telerik.Reporting.HtmlTextBox();
             this.summary_label = new Telerik.Reporting.HtmlTextBox();
+            this.panel6 = new Telerik.Reporting.Panel();
+            this.proposed_title = new Telerik.Reporting.HtmlTextBox();
+            this.title_label = new Telerik.Reporting.HtmlTextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // related_meetings_header1
@@ -274,8 +275,6 @@ namespace eMAC.UI.Reports
             this.part_1_label,
             this.background_info_label,
             this.background_info,
-            this.title_label,
-            this.proposed_title,
             this.panel5,
             this.contribution_info_label,
             this.panel4,
@@ -283,7 +282,8 @@ namespace eMAC.UI.Reports
             this.core_functions,
             this.linkage_resolution,
             this.htmlTextBox1,
-            this.panel1});
+            this.panel1,
+            this.panel6});
             this.detail.Name = "detail";
             // 
             // panel3
@@ -522,23 +522,6 @@ namespace eMAC.UI.Reports
             this.background_info.Style.BackgroundColor = System.Drawing.Color.Empty;
             this.background_info.Style.Font.Name = "Courier New";
             this.background_info.Value = "";
-            // 
-            // title_label
-            // 
-            this.title_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(21.529853820800781D));
-            this.title_label.Name = "title_label";
-            this.title_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499999046325684D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
-            this.title_label.Style.Font.Name = "Courier New";
-            this.title_label.Value = "<strong>4.&nbsp;&nbsp;<span>Title</span></strong>";
-            // 
-            // proposed_title
-            // 
-            this.proposed_title.CanShrink = true;
-            this.proposed_title.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.99114423990249634D), Telerik.Reporting.Drawing.Unit.Cm(22.153587341308594D));
-            this.proposed_title.Name = "proposed_title";
-            this.proposed_title.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.50885009765625D), Telerik.Reporting.Drawing.Unit.Cm(0.800000011920929D));
-            this.proposed_title.Style.Font.Name = "Courier New";
-            this.proposed_title.Value = "";
             // 
             // panel5
             // 
@@ -1024,15 +1007,15 @@ namespace eMAC.UI.Reports
             this.panel1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.summary_info,
             this.summary_label});
-            this.panel1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(8.1219310760498047D));
+            this.panel1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(8.1000003814697266D));
             this.panel1.Name = "panel1";
-            this.panel1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.579375267028809D), Telerik.Reporting.Drawing.Unit.Cm(1.2486865520477295D));
+            this.panel1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499796867370606D), Telerik.Reporting.Drawing.Unit.Cm(1.3169866800308228D));
             // 
             // summary_info
             // 
             this.summary_info.CanShrink = true;
             this.summary_info.KeepTogether = false;
-            this.summary_info.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.793749988079071D));
+            this.summary_info.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.86205005645751953D));
             this.summary_info.Name = "summary_info";
             this.summary_info.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499797821044922D), Telerik.Reporting.Drawing.Unit.Cm(0.45493656396865845D));
             this.summary_info.Style.BackgroundColor = System.Drawing.Color.Empty;
@@ -1042,11 +1025,37 @@ namespace eMAC.UI.Reports
             // 
             // summary_label
             // 
-            this.summary_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.15874999761581421D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.summary_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.17573606967926025D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
             this.summary_label.Name = "summary_label";
             this.summary_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.297805786132813D), Telerik.Reporting.Drawing.Unit.Cm(0.45493453741073608D));
             this.summary_label.Style.Font.Name = "Courier New";
             this.summary_label.Value = "&nbsp;&nbsp;&nbsp;<strong><span><em>Summary</em></span></strong>";
+            // 
+            // panel6
+            // 
+            this.panel6.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.proposed_title,
+            this.title_label});
+            this.panel6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(21.530000686645508D));
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.540927886962891D), Telerik.Reporting.Drawing.Unit.Cm(1.4173610210418701D));
+            // 
+            // proposed_title
+            // 
+            this.proposed_title.CanShrink = true;
+            this.proposed_title.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.97895830869674683D), Telerik.Reporting.Drawing.Unit.Cm(0.61736106872558594D));
+            this.proposed_title.Name = "proposed_title";
+            this.proposed_title.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.50885009765625D), Telerik.Reporting.Drawing.Unit.Cm(0.800000011920929D));
+            this.proposed_title.Style.Font.Name = "Courier New";
+            this.proposed_title.Value = "";
+            // 
+            // title_label
+            // 
+            this.title_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.title_label.Name = "title_label";
+            this.title_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499999046325684D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
+            this.title_label.Style.Font.Name = "Courier New";
+            this.title_label.Value = "<strong>4.&nbsp;&nbsp;<span>Title</span></strong>";
             // 
             // PlanningDocument
             // 
@@ -1113,8 +1122,6 @@ namespace eMAC.UI.Reports
         private Telerik.Reporting.HtmlTextBox page_number;
         private Telerik.Reporting.HtmlTextBox part_1_label;
         private Telerik.Reporting.HtmlTextBox background_info_label;
-        private Telerik.Reporting.HtmlTextBox title_label;
-        private Telerik.Reporting.HtmlTextBox proposed_title;
         private Telerik.Reporting.HtmlTextBox background_info;
         private Telerik.Reporting.HtmlTextBox meeting_title;
         private Telerik.Reporting.Panel panel2;
@@ -1178,5 +1185,8 @@ namespace eMAC.UI.Reports
         private Telerik.Reporting.Panel panel1;
         private Telerik.Reporting.HtmlTextBox summary_info;
         private Telerik.Reporting.HtmlTextBox summary_label;
+        private Telerik.Reporting.Panel panel6;
+        private Telerik.Reporting.HtmlTextBox proposed_title;
+        private Telerik.Reporting.HtmlTextBox title_label;
     }
 }

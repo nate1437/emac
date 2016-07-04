@@ -55,13 +55,13 @@
             }
 
         /* END PRIVATE VARIABLES */
-        
         $scope.$watch(function () { return eMacFactory.Config(); }, function (n, o) {
             if (Object.keys(n).length > 0) {
                 $scope.models = angular.extend($scope.models, {
                     states: typeof (n.ctryList) == "string" ? JSON.parse(n.ctryList) : n.ctryList,
                     units: typeof (n.orgUnitList) == "string" ? JSON.parse(n.orgUnitList) : n.orgUnitList,
                     officers: typeof (n.officerList) == "string" ? JSON.parse(n.officerList) : n.officerList,
+                    mtg_assistants: typeof (n.assistantList) == "string" ? JSON.parse(n.assistantList) : n.assistantList,
                     years: typeof (n.yearFilter) == "string" ? JSON.parse(n.yearFilter) : n.yearFilter,
                     selectedYear: setYear(),
                 });
@@ -378,6 +378,7 @@
                 $scope.models.newMeeting = {};
                 $scope.models.newMeeting.mtg_no = "NEW";
                 $scope.models.newMeeting.status = meetingStatus.draft;
+                $scope.models.newMeeting.mtg_assistant = eMacFactory.User("data").user_name;
                 var elem = angular.element("#newMtgForm")
                 elem.on("shown.bs.modal", function () {
                     $(this).find("input[name=title]").focus();
@@ -393,6 +394,7 @@
                     toastr.warning("The meeting with this title already exists", "Duplicate");
                     return;
                 }
+
                 function DateFormat(a) {
                     return kendo.toString(new Date(a.value), a.format);
                 }
@@ -406,10 +408,12 @@
                 record.curr_user = eMacFactory.User("data").user_name;
 
                 if ($scope.formEntry.$valid) {
+                    eMacFactory.Loader.show();
                     eMacFactory.Save({
                         url: "api/Meeting/Save",
                         data: JSON.stringify(record)
                     }).then(function (done) {
+                        eMacFactory.Loader.hide();
                         if (done && done.mtg_id) {
                             $scope.events.reset();
                             toastr.success("Saving Success!", "Saved");

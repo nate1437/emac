@@ -18,6 +18,7 @@ namespace eMAC.Domain.Entities
         public string org_unit { get; set; }
         public string resp_officer { get; set; }
         public string co_resp_officer { get; set; }
+        public string mtg_assistant { get; set; }
         public string venue { get; set; }
         public string ctry_code { get; set; }
         public string mtg_type { get; set; }
@@ -47,6 +48,7 @@ namespace eMAC.Domain.Entities
         public string org_unit { get; set; }
         public string resp_officer { get; set; }
         public string co_resp_officer { get; set; }
+        public string mtg_assistant { get; set; }
         public string venue { get; set; }
         public string ctry_code { get; set; }
         public string mtg_type { get; set; }

@@ -24,7 +24,11 @@
        {           
            templateUrl: base + 'home/home',
            controller: 'mtgsController'
-       })
+       }).when(base + 'meetings/reports/:meetingType',
+        {
+            templateUrl: base + 'meetings/reports/',
+            controller: 'mtgReportsController'
+        })
         .otherwise(
        {          
            redirectTo: '/'
