@@ -158,7 +158,7 @@
                             </div>
                             <div class="banner-content">
                                 
-                                <h4>@System.Web.Configuration.WebConfigurationManager.AppSettings["SiteTitle"]</h4>
+                                <h4>@System.Web.Configuration.WebConfigurationManager.AppSettings["SiteTitle"].ToString()</h4>
                                 <p>Meetings and Courses System </p>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularjs")
     <script src="~/Scripts/bootstrap-dropdownhover.js"></script>
-    <script src="//@System.Configuration.ConfigurationManager.AppSettings["tableauServer"].ToString()/javascripts/api/tableau_v8.js"></script>
+    @*<script src="//@System.Configuration.ConfigurationManager.AppSettings["tableauServer"].ToString()/javascripts/api/tableau_v8.js"></script>*@
     <script src="~/Scripts/kendo/kendo.all.min.js"></script>
     <script src="~/Scripts/grid-commons.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
