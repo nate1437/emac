@@ -8,9 +8,8 @@
     files.$inject = ['$scope', '$compile', 'fileManager'];
 
     function files($scope, $compile, fileManager) {
-        
-        var mtgId = $scope.mtgId;
-        var mtgNumber = $scope.meeting.mtg_no;
+        //var mtgId = $scope.mtgId;
+        //var mtgNumber = $scope.meeting.mtg_no;
         var butonTemplates = {
             deleteAttachment: $("<button type='button'>")
                 .addClass("k-button k-button-icontext k-grid-delete")
@@ -22,8 +21,6 @@
         };
         
         var attr = { style: "" };
-        fileManager.mtgId = mtgId;
-        fileManager.mtgNumber = mtgNumber;
         
         $scope.delete = function (e) {
             console.log(e);
@@ -49,17 +46,27 @@
         vm.uploadTypes = [{ "ref_code": "link", "ref_name": "Link" }, { "ref_code": "file", "ref_name": "File" }, { "ref_code": "unc", "ref_name": "Shared folder" }];
         vm.uploadObj.doc_type = vm.uploadTypes[1].ref_code;
         vm.uploadObj.upload_type = vm.uploadTypes[1].ref_code;
-        vm.uploadObj.mtg_id = mtgId;
+        vm.uploadObj.mtg_id = $scope.mtgId;;
         vm.uploadObj.doc_title = "";
 
-        //vm.uploadLink = "";
         fileManager.uploadObj = vm.uploadObj;
         
+        $scope.$watch("meeting", function (n, o) {
+            if (n != undefined) {
+                if (n != o) {
+                    fileManager.meeting = n;
+                    if (Object.keys(fileManager.meeting).length > 0) {
+                        fileManager.load();
+                    }
+                }
+            }
+        }, true);
+
         $scope.$watchCollection("vm.files", function (n, o) {
             
             var overrideTemplate = $("#attachmentActions")
                 .append($(butonTemplates.downloadAttachment)
-                        .attr("ng-click", "vm.downloadAttachment('#= mtg_id #', '#= file_name #', '#= upload_type #', '#= meeting_document_id #' )"))
+                        .attr("ng-click", "vm.downloadAttachment('#= file_name #', '#= upload_type #', '#= meeting_document_id #' )"))
                 .append($(butonTemplates.deleteAttachment)
                         .attr("eg-confirm-click", "Remove attachment ?")
                         .attr("confirmed-click", "vm.removeAttachment('#= meeting_document_id #', '#= file_name #')")
@@ -155,21 +162,20 @@
             //$compile($("#attachmentGrid"))($scope);
         });
 
-        activate();
+        //activate();
         
-        function activate() {
-            fileManager.load();
+        //function activate() {
+        //    fileManager.load();
             
-        }
+        //}
 
         function removeItemGrid(docId, item) {
             fileManager.remove(docId, item);
         }
 
-        function getItemGrid(id, item, type, e) {
+        function getItemGrid(item, type, e) {
             
             fileManager.download({
-                mtgId: id,
                 file_name: item,
                 upload_type: type,
                 meeting_document_id: e

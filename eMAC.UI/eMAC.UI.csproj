@@ -174,6 +174,7 @@
     <Compile Include="AttachmentHelper\LocalPhotoManager.cs" />
     <Compile Include="AttachmentHelper\PhotoActionResult.cs" />
     <Compile Include="AttachmentHelper\PhotoMultipartFormDataStreamProvider.cs" />
+    <Compile Include="Controllers\baseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MeetingsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -285,7 +286,6 @@
     <Content Include="Client\services\mtgServices.js" />
     <Content Include="Client\services\userService.js" />
     <Content Include="Content\animate.css" />
-    <Content Include="Content\bootstrap-dropdownhover.css" />
     <Content Include="Content\build.css" />
     <Content Include="Content\customKendo.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -304,8 +304,6 @@
     <Content Include="xml\end_notes_default.xml" />
     <Content Include="xml\notifications.xml" />
     <None Include="Client\views\upload.cshtml" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bluimp\jquery.fileupload-ui-noscript.css" />
@@ -1211,7 +1209,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />

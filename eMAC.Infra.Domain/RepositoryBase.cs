@@ -30,7 +30,6 @@ namespace eMAC.Infra.Domain
             return _context.GetTable(procName, parameters);
         }
 
-
         public DataSet GetEntity(string procName, Dictionary<string, object> parameters)
         {
             var param = new List<SqlParameter>();

@@ -2,11 +2,10 @@
         //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" data-ng-app="eMacApp">
 <head>
-    <title>eMAC</title>
+    <title>@System.Configuration.ConfigurationManager.AppSettings["SiteHeader"].ToString()</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
     <base href="/eMac">
@@ -92,7 +91,53 @@
 
     </style>
 </head>
-<body   data-ng-controller="AuthenticationController">
+<body data-ng-controller="AuthenticationController">
+    <nav class="wpro-header navbar navbar-default">
+        <div class="container-fluid" style="padding-right: 0px;">
+            <div class="navbar-header">
+                <a ng-click="events.viewHome($event)" class="navbar-brand" >
+                    <img alt="World Health Organization" class="pull-left" src="~/Images/custom/wpro_logo_en2.png" style="display:inline-block" />
+                    <img class="pull-right" alt="World Health Organization" src="~/Images/custom/line3.png" style="margin-top: -8px; margin-left: 10px; height: 50px; width: 1px; float: left; display: inline-block" />
+                </a>
+                <p class="navbar-text">
+                    <span class="navbar-text-header">@System.Configuration.ConfigurationManager.AppSettings["SiteTitle"].ToString()</span><br />
+                    <span class="navbar-text-description">Meetings and Courses System</span>
+                </p>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#emac_menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="emac_menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ng-click="events.viewHome($event)">
+                        <span class="fa fa-home fa-menu" style="font-size: 3em;"></span>
+                        <br />
+                        <span>Home</span></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-toggle-type="hover" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="fa fa-file-text-o" style="font-size: 3em;"></span><br />
+                            <span>Reports</span></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="events.viewReport('meeting')">Meeting statistics</a></li>
+                            <li><a ng-click="events.viewReport('participant')">Participant statistics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row" style="background-color: #CDCFD0; ">
+        <div class="col-lg-12">
+            <span class="pull-right" style="color: #000; padding: 5px;">
+                <span class="glyphicon glyphicon-user"></span>
+                <span>Current user: @System.Web.HttpContext.Current.Session["USER"].ToString()</span>
+            </span>
+        </div>
+        <div id="curr_user" style="display: none">@System.Web.HttpContext.Current.Session["USER"].ToString()</div>
+    </div>
    @* <div class="row" id="banner">
 
         <div class="row">
@@ -143,7 +188,9 @@
             </div>
         </div>
     </nav>*@
-    <div class="container">
+
+    @* OLD HEADER *@
+    @*<div class="container">
         <!-- HEADER AND NAVBAR -->
         <header>
             <nav class="navbar navbar-fixed-top">
@@ -174,10 +221,10 @@
                                 <a >
                                     <span class="fa fa-file-text-o"></span>&nbsp<span class="navbar-item-text">Reports</span>&nbsp
                                 </a>
-                                @*<ul class="dropdown-menu">
+                                <ul class="dropdown-menu">
                                     <li><a ng-click="events.viewReport('meeting')">Meeting statistics</a></li>
                                     <li><a ng-click="events.viewReport('participant')">Participant statistics</a></li>
-                                </ul>*@
+                                </ul>
                             </div>
                             <span class="pull-right" style="color: #000; padding: 5px;">
                                 <span class="glyphicon glyphicon-user"></span>
@@ -189,8 +236,9 @@
                 </div>
             </nav>
         </header>
-    </div>
-    <div class="container body-content">
+    </div>*@
+
+    <div class="container-fluid body-content">
         <div data-ng-view="" autoscroll="" ng-if="!isRouteLoading">
         </div>
     </div>
@@ -213,7 +261,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularjs")
     <script src="~/Scripts/bootstrap-dropdownhover.js"></script>
-    @*<script src="//@System.Configuration.ConfigurationManager.AppSettings["tableauServer"].ToString()/javascripts/api/tableau_v8.js"></script>*@
+    <script src="//@System.Configuration.ConfigurationManager.AppSettings["tableauServer"].ToString()/javascripts/api/tableau_v8.js"></script>
     <script src="~/Scripts/kendo/kendo.all.min.js"></script>
     <script src="~/Scripts/grid-commons.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>

@@ -2,6 +2,7 @@
 using eMAC.Infra.Common;
 using eMAC.Infra.Domain;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,76 +125,61 @@ namespace eMAC.UI.api
 
         // PUT api/meeting/5
         [ActionName("Notify")]
-        public void Post(int id, [FromBody]dynamic value)
-        {             
-            if (id != 0)
+        public void Post(JObject jsonparam)
+        {
+            Meeting meetingEntity = jsonparam["meeting"].ToObject<Meeting>(new JsonSerializer() { DateFormatString = "dd/MM/yyyy" });
+            if (meetingEntity.mtg_id != 0)
             {
-                var parameters = new Dictionary<string, object>();
-                var userParameters = new Dictionary<string, object>();
-                var mtgReportParameters = new Dictionary<string, object>();
-
-                parameters.Add("@mtg_id", id);
-                var mtgHeader = _mtgRepo.GetEntity(StoredProcs.MtgGetHeader, parameters);
-
-                var meetingObject = JsonConvert.SerializeObject(mtgHeader.Tables[0]);
-                var meetingObjectData = JsonConvert.DeserializeObject<List<MeetingGet>>(meetingObject.ToString()).FirstOrDefault();
-
-                userParameters.Add("@user_name", meetingObjectData.resp_officer);
-                var userResult = _userRepo.GetEntity(StoredProcs.LibUserGet, userParameters);
-                var userObject = JsonConvert.SerializeObject(userResult.Tables[0]);
-                var userObjectData = JsonConvert.DeserializeObject<List<User>>(userObject.ToString()).FirstOrDefault();
-
-                // get co-responsible user data
-                // get meeting creator data
 
                 if (AllowNotify)
                 {
                     Email_Repository email_repo = new Email_Repository(NotificationXML, WebsiteURL, ApplicationName);
-                    if (value["mtgActionObj"] != null)
+                    if (jsonparam["action"] != null)
                     {
-                        NotifyObject notifyObject = JsonConvert.DeserializeObject<NotifyObject>(Convert.ToString(value["mtgActionObj"]));
-                                                
+                        NotifyObject notifyEntity = jsonparam["action"].ToObject<NotifyObject>();//JsonConvert.DeserializeObject<NotifyObject>(Convert.ToString(value["action"]));
 
-                        if (notifyObject.status.ToLower().Equals("submitted for spmc") ||
-                            notifyObject.status.ToLower().Equals("submitted for finalization"))
+
+                        if (notifyEntity.status.ToLower().Equals("submitted for spmc") ||
+                            notifyEntity.status.ToLower().Equals("submitted for finalization"))
                         {
                             sendTo = Email;
-                            sendCc = string.Format("{0};{1}{2}", EmailCc, meetingObjectData.mtg_assistant, AppEmailSuffix);
+                            sendCc = string.Format("{0};{1}", EmailCc, meetingEntity.mtg_assistant_email);
                             EmailBCC = EmailBcc;
-                            email_repo.MeetingUserAction(id, meetingObjectData, notifyObject.action_by, TemplateLink, EmailLink);
+                            email_repo.MeetingUserAction(meetingEntity.mtg_id, meetingEntity, notifyEntity.action_by, TemplateLink, EmailLink);
                         }
 
-                        else if (notifyObject.status.ToLower().Equals("approved for spmc") ||
-                            notifyObject.status.ToLower().Equals("finalized") ||
-                            (notifyObject.status.ToLower().Equals("revise for spmc") || notifyObject.status.ToLower().Equals("revise for finalization")))
+                        else if (notifyEntity.status.ToLower().Equals("approved for spmc") ||
+                            notifyEntity.status.ToLower().Equals("finalized") ||
+                            (notifyEntity.status.ToLower().Equals("revise for spmc") || notifyEntity.status.ToLower().Equals("revise for finalization")))
                         {
-                            sendTo = userObjectData.email;
-                            sendCc = string.Format("{0};{1}{2}", EmailCc, meetingObjectData.mtg_assistant, AppEmailSuffix);
+                            sendTo = meetingEntity.resp_officer_email;
+                            sendCc = string.Format("{0};{1}", EmailCc, meetingEntity.mtg_assistant_email);
                             EmailBCC = EmailBcc;
 
-                            email_repo.MeetingMacAction(id, notifyObject.status, meetingObjectData, TemplateLink, EmailLink, (notifyObject.status.ToLower().Equals("revise for spmc") || notifyObject.status.ToLower().Equals("revise for finalization")) ? notifyObject.remarks : "");
+                            email_repo.MeetingMacAction(meetingEntity.mtg_id, notifyEntity.status, meetingEntity, TemplateLink, EmailLink, (notifyEntity.status.ToLower().Equals("revise for spmc") || notifyEntity.status.ToLower().Equals("revise for finalization")) ? notifyEntity.remarks : "");
                         }
           
                     }
 
-                    if (value["mtgReportData"] != null || value["finMtgReportData"] != null)
+                    if (jsonparam["mtgReportData"] != null || jsonparam["finMtgReportData"] != null)
                     {
+                        var dsMeetingReport = _mtgReportRepo.GetEntity(StoredProcs.MtgReportObjectGet,
+                            new Dictionary<string, object>() 
+                            { 
+                            
+                            { "@mtg_id", meetingEntity.mtg_id}
+                            });
 
-                        mtgReportParameters.Add("@mtg_id", id);
-                        var mtgReportObjData = _mtgReportRepo.GetEntity(StoredProcs.MtgReportObjectGet, mtgReportParameters);
-                        var mtgReportObject = JsonConvert.SerializeObject(mtgReportObjData.Tables[0]);
-                        var mtgReportObjectData = JsonConvert.DeserializeObject<List<MeetingSummaryReport>>(mtgReportObject.ToString()).FirstOrDefault();
-
-                        //var teststr = Convert.ToString(value["newParticipants"]);
-                        NotifyObject notifyObject = JsonConvert.DeserializeObject<NotifyObject>(Convert.ToString(value["mtgReportData"] != null ? value["mtgReportData"] : value["finMtgReportData"]));
+                        var meetingReportEntity = JsonConvert.DeserializeObject<List<MeetingSummaryReport>>(JsonConvert.SerializeObject(dsMeetingReport.Tables[0])).FirstOrDefault();
+                        NotifyObject notifyObject = JsonConvert.DeserializeObject<NotifyObject>(Convert.ToString(jsonparam["mtgReportData"] != null ? jsonparam["mtgReportData"] : jsonparam["finMtgReportData"]));
 
                         //set up mail recipients
                         sendTo = Email;
-                        sendCc = string.Format("{0};{1}{2}", EmailCc, meetingObjectData.mtg_assistant, AppEmailSuffix);
+                        sendCc = string.Format("{0};{1}", EmailCc, meetingEntity.mtg_assistant_email);
                         EmailBCC = EmailCc;
 
                         // send aproval
-                        email_repo.MeetingReportAction(id, value["mtgReportData"] != null ? "SUMM_REP_SUBMISSION" : "FINAL_REP_SUBMISSION", meetingObjectData, mtgReportObjectData.summary_report_uploaded_by, TemplateLink, EmailLink);
+                        email_repo.MeetingReportAction(meetingEntity.mtg_id, jsonparam["mtgReportData"] != null ? "SUMM_REP_SUBMISSION" : "FINAL_REP_SUBMISSION", meetingEntity, meetingReportEntity.summary_report_uploaded_by, TemplateLink, EmailLink);
                     }
 
                     EmailSender sender = new EmailSender(SMTPServer, AdminEmail, AdminEmailName);

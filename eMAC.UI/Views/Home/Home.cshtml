@@ -109,7 +109,7 @@
                                             <div class="form-group clearfix required">                                       
                                                 <label class="col-lg-3 control-label" for="mtgNumber" style="padding-right: 0px;">Title</label>                                                
                                                 <div class="col-lg-9">
-                                                    <input ng-model="models.newMeeting.mtg_title" type="text" class="form-control" name="title" required maxlength="250">
+                                                    <input ng-blur="events.properCase()" ng-model="models.newMeeting.mtg_title" type="text" class="form-control" name="title" required maxlength="250">
                                                 </div>                                   
                                             </div>
                                         </div>

@@ -10,22 +10,11 @@
     function fileManagerClient($resource, $http, $q) {
         var base = $("#linkRoot").attr("href");
 
-        //return $resource(
-        //        base + "api/attachment",
-        //        { id: "@dir" },
-        //        {
-        //            'query': { method: 'GET', url: base + 'api/attachment/get' },
-        //            'remove': { method: 'POST', url: base + 'api/attachment/delete', params: { mtgId: '@mtgId', fileName: '@fileName', fileObj: '@fileObj' } },
-        //            'save': { method: 'POST', url: base + 'api/attachment/save', transformRequest: angular.identity, headers: { 'Content-Type': undefined } },
-        //            //'download': { method: 'GET', url: base + 'meetings/DownloadFile', params: { mtgId: '@mtgId', fileName: '@fileName' } }
-        //            'download': { method: 'GET', url: base + 'api/attachment/download', params: { mtgId: '@mtgId', fileName: '@fileName' } }
-        //        });
-
         return {
             query: function (param) {
                 var deferred = $q.defer();
 
-                $http({ method: 'GET', url: base + 'api/attachment/get?mtgId=' + param.mtgId })
+                $http({ method: 'GET', url: base + 'api/attachment/get?mtgId=' + param.mtgId + '&mtgNo=' + param.mtgNo })
                 .success(function (data, status, header, config) {
                     deferred.resolve(data);
                 })
@@ -38,9 +27,9 @@
             save: function (params, formData) {
                 var deferred = $q.defer();
 
-                $http.post(base + 'api/attachment/save?mtgId=' + params.mtgId + '&value=' + JSON.stringify(params.value) + '&fileName=' + params.fileName, formData, {
+                $http.post(base + "api/attachment/save?mtgId=" + params.mtgId + "&mtgNo=" + params.mtgNo  + "&value=" + JSON.stringify(params.value) + "&fileName=" + params.fileName, formData, {
                     transformRequest: angular.identity,
-                    headers: { 'Content-Type': undefined }
+                    headers: { "Content-Type": undefined }
                 })
                 .success(function (data, status, header, config) {
                     deferred.resolve(data);

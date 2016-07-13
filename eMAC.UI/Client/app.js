@@ -349,21 +349,22 @@ eMacApp.controller("AuthenticationController",
             }).then(function (result) {
                 if (result != undefined) {
                     if (result.op) {
-                        debugger;
+                        
                         $scope.factories.app.User("data", result.user_details);
 
                             $scope.models.settings = {
                                 isAdmin: (result.user_details.user_level >= 90),
-                                isApprover: (result.user_details.user_level >= 80) || (result.user_details.user_level >= 90),
-                                isUser: (result.user_details.user_level < 80),
+                                isApprover: (result.user_details.user_level > 80) || (result.user_details.user_level >= 90),
+                                isUser: (result.user_details.user_level == 0),
+                                reportViewAll: (result.user_details.user_level >= 80),
                                 addButton: true,
                                 saveDetail: true,
-                                sumbitDetail: (result.user_details.user_level < 80),
-                                approveDetail: (result.user_details.user_level >= 80) || (result.user_details.user_level >= 90),
-                                rejecteDetail: (result.user_details.user_level >= 80) || (result.user_details.user_level >= 90),
-                                finalDetail: (result.user_details.user_level >= 80) || (result.user_details.user_level >= 90),
-                                reviseDetail: (result.user_details.user_level >= 80) || (result.user_details.user_level >= 90),
-                                cancelDetail: (result.user_details.user_level >= 80) || (result.user_details.user_level >= 90)
+                                sumbitDetail: (result.user_details.user_level == 0),
+                                approveDetail: (result.user_details.user_level > 80) || (result.user_details.user_level == 90),
+                                rejecteDetail: (result.user_details.user_level > 80) || (result.user_details.user_level == 90),
+                                finalDetail: (result.user_details.user_level > 80) || (result.user_details.user_level == 90),
+                                reviseDetail: (result.user_details.user_level > 80) || (result.user_details.user_level == 90),
+                                cancelDetail: (result.user_details.user_level > 80) || (result.user_details.user_level == 90)
                             };
                     }
                     else {
@@ -374,10 +375,18 @@ eMacApp.controller("AuthenticationController",
 
             $scope.events = {
                 viewReport: function (e) {
-                    $location.path(base + "meetings/reports/" + e);
+                    if ($location.path() != base + "meetings/reports/" + e) {
+                        eMacFactory.Loader.show();
+                        $location.path(base + "meetings/reports/" + e);
+                    }
                 },
                 viewHome: function (e) {
-                    $location.path(base);
+                    if ($location.path() != base) {
+                        eMacFactory.Loader.show();
+                        angular.element(".body-content").removeClass("tableau-open");
+                        $location.path(base);
+                    }
+
                 }
             }
             
@@ -392,77 +401,87 @@ eMacApp.controller("AuthenticationController",
 
                             $scope.currUserOrgUnit = user_data.org_unit
 
+                            $scope.isAdmin = user_data.user_level > 90;
+                            $scope.isApprover = user_data.user_level == 90;
+                            $scope.isUser = user_data.user_level == 80 || user_data.user_level == 0;
+                            $scope.addButtonEnable = true;
+                            $scope.saveDetailBtnEnable = user_data.user_level == 0;
+                            $scope.submitDetailBtnEnable = user_data.user_level == 0;
+                            $scope.approveDetailBtnEnable = user_data.user_level == 90;
+                            $scope.rejectDetailBtnEnable = user_data.user_level == 90;
+                            $scope.finalDetailBtnEnable = user_data.user_level == 90;
+                            $scope.cancelDetailBtnEnable = user_data.user_level == 90;
 
-                            // isAdmin 
-                            if (user_data.user_level >= 90) {
+                            //// isAdmin 
+                            //if (user_data.user_level >= 90) {
                                 
-                                $scope.isAdmin = true;
-                                $scope.isApprover = true;
-                                $scope.addButtonEnable = true;
-                                $scope.saveDetailBtnEnable = true;
-                                $scope.submitDetailBtnEnable = false;
-                                $scope.approveDetailBtnEnable = true;
-                                $scope.rejectDetailBtnEnable = true;
-                                $scope.finalDetailBtnEnable = true;
-                                $scope.reviseDetailBtnEnable = true;
-                                $scope.cancelDetailBtnEnable = true;
-                                //toastr.success("User Authenticated", "Authentication");
-                            }
-                            // isApprover (usually MAC)
-                            else if (user_data.user_level >= 80) {
-                                $scope.isApprover = true;
-                                $scope.addButtonEnable = true;
-                                $scope.saveDetailBtnEnable = true;
-                                $scope.submitDetailBtnEnable = false;
-                                $scope.approveDetailBtnEnable = true;
-                                $scope.rejectDetailBtnEnable = true;
-                                $scope.finalDetailBtnEnable = true;
-                                $scope.reviseDetailBtnEnable = true;
-                                $scope.cancelDetailBtnEnable = true;
-                                //$scope.mtgReportDelBtn = false;
-                                //toastr.success("User Authenticated", "Authentication");
-                            }
-                            // user 
-                            else if (user_data.user_level < 80) {
-                                $scope.isUser = true;
-                                $scope.addButtonEnable = true;
-                                $scope.saveDetailBtnEnable = true;
-                                $scope.submitDetailBtnEnable = true;
-                                $scope.approveDetailBtnEnable = false;
-                                $scope.rejectDetailBtnEnable = false;
-                                $scope.finalDetailBtnEnable = false;
-                                $scope.reviseDetailBtnEnable = false;
-                                $scope.cancelDetailBtnEnable = false;
-                                //$scope.mtgReportDelBtn = false;
-                                //toastr.success("User Authenticated", "Authentication");
-                                //$scope.submitView = false;
-                                //$scope.approveRejectView = false;
-                                //$scope.populateShow = false;
-                            }
-                            // no specific access level - treat as user
-                            else {
-                                $scope.isUser = true;
-                                $scope.addButtonEnable = true;
-                                $scope.saveDetailBtnEnable = true;
-                                $scope.submitDetailBtnEnable = true;
-                                $scope.approveDetailBtnEnable = false;
-                                $scope.rejectDetailBtnEnable = false;
-                                $scope.finalDetailBtnEnable = false;
-                                $scope.reviseDetailBtnEnable = false;
-                                $scope.cancelDetailBtnEnable = false;
-                                //no user access
-                                //$scope.unAuthorized = true;
-                                //$scope.addButtonEnable = false;
-                                //$scope.saveDetailBtnEnable = false;
-                                //$scope.approveDetailBtnEnable = false;
-                                //$scope.rejectDetailBtnEnable = false;
-                                //$scope.finalDetailBtnEnable = false;
-                                //$scope.reviseDetailBtnEnable = false;
-                                //$scope.cancelDetailBtnEnable = false;
-                                //$scope.mtgReportDelBtn = true;
-                                //toastr.error("You are not an authenticated user");
-                            }
-                        });;
+                            //    $scope.isAdmin = true;
+                            //    $scope.isApprover = true;
+                            //    $scope.addButtonEnable = true;
+                            //    $scope.saveDetailBtnEnable = true;
+                            //    $scope.submitDetailBtnEnable = false;
+                            //    $scope.approveDetailBtnEnable = true;
+                            //    $scope.rejectDetailBtnEnable = true;
+                            //    $scope.finalDetailBtnEnable = true;
+                            //    $scope.reviseDetailBtnEnable = true;
+                            //    $scope.cancelDetailBtnEnable = true;
+                            //    //toastr.success("User Authenticated", "Authentication");
+                            //}
+                            //// isApprover (usually MAC)
+                            //else if (user_data.user_level >= 80) {
+                            //    $scope.isApprover = true;
+                            //    $scope.addButtonEnable = true;
+                            //    $scope.saveDetailBtnEnable = true;
+                            //    $scope.submitDetailBtnEnable = false;
+                            //    $scope.approveDetailBtnEnable = true;
+                            //    $scope.rejectDetailBtnEnable = true;
+                            //    $scope.finalDetailBtnEnable = true;
+                            //    $scope.reviseDetailBtnEnable = true;
+                            //    $scope.cancelDetailBtnEnable = true;
+                            //    //$scope.mtgReportDelBtn = false;
+                            //    //toastr.success("User Authenticated", "Authentication");
+                            //}
+                            //// user 
+                            //else if (user_data.user_level < 80) {
+                            //    $scope.isUser = true;
+                            //    $scope.addButtonEnable = true;
+                            //    $scope.saveDetailBtnEnable = true;
+                            //    $scope.submitDetailBtnEnable = true;
+                            //    $scope.approveDetailBtnEnable = false;
+                            //    $scope.rejectDetailBtnEnable = false;
+                            //    $scope.finalDetailBtnEnable = false;
+                            //    $scope.reviseDetailBtnEnable = false;
+                            //    $scope.cancelDetailBtnEnable = false;
+                            //    //$scope.mtgReportDelBtn = false;
+                            //    //toastr.success("User Authenticated", "Authentication");
+                            //    //$scope.submitView = false;
+                            //    //$scope.approveRejectView = false;
+                            //    //$scope.populateShow = false;
+                            //}
+                            //// no specific access level - treat as user
+                            //else {
+                            //    $scope.isUser = true;
+                            //    $scope.addButtonEnable = true;
+                            //    $scope.saveDetailBtnEnable = true;
+                            //    $scope.submitDetailBtnEnable = true;
+                            //    $scope.approveDetailBtnEnable = false;
+                            //    $scope.rejectDetailBtnEnable = false;
+                            //    $scope.finalDetailBtnEnable = false;
+                            //    $scope.reviseDetailBtnEnable = false;
+                            //    $scope.cancelDetailBtnEnable = false;
+                            //    //no user access
+                            //    //$scope.unAuthorized = true;
+                            //    //$scope.addButtonEnable = false;
+                            //    //$scope.saveDetailBtnEnable = false;
+                            //    //$scope.approveDetailBtnEnable = false;
+                            //    //$scope.rejectDetailBtnEnable = false;
+                            //    //$scope.finalDetailBtnEnable = false;
+                            //    //$scope.reviseDetailBtnEnable = false;
+                            //    //$scope.cancelDetailBtnEnable = false;
+                            //    //$scope.mtgReportDelBtn = true;
+                            //    //toastr.error("You are not an authenticated user");
+                            //}
+                        });
                 }
             });
         }]);

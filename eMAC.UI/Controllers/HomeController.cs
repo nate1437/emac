@@ -6,22 +6,16 @@ using System.Web.Mvc;
 
 namespace eMAC.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : baseController
     {
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string impersonate)
         {
-            var test = User.Identity.Name;
-            
             return View();
         }
 
         public ActionResult Home()
         {
-            ViewBag.Title = "Home Page";
-
-           
-
             return PartialView();
         }
     }

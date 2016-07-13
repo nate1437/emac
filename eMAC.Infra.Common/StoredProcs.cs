@@ -23,7 +23,7 @@ namespace eMAC.Infra.Common
         //usp_meeting_get
         public static readonly string MtgGet = "[eMAC].[dbo].[usp_meeting_get]";
         // usp_meeting_get_header
-        public static readonly string MtgGetHeader = "[eMAC].[dbo].[usp_meeting_get_header]";
+        //public static readonly string MtgGetHeader = "[eMAC].[dbo].[usp_meeting_get_header]";
         // usp_next_mtg_no_get
         public static readonly string MtgNumberGet = "[eMAC].[dbo].[usp_next_mtg_no_get]";
         // usp_lib_data_get

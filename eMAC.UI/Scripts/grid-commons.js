@@ -1,4 +1,30 @@
-﻿
+﻿$(function () {
+
+    $(".dropdown").hover(function (e) {
+        if ($(this).find("a[data-toggle-type=hover]")) {
+            if (!$(this).hasClass("open") && e.type == "mouseenter") {
+                $(this).addClass("open");
+            }
+            else { $(this).removeClass("open"); }
+        }
+        //if ($(this).data("toggle-type") == "hover") {
+        //    var $parent = $(this).parent("li");
+        //    if (!$parent.hasClass("open") && e.type == "mouseenter") {
+        //        $parent.addClass("open");
+        //    }
+        //}
+    });
+
+    //$(".dropdown-toggle").hover(function (e) {
+    //    if ($(this).data("toggle-type") == "hover") {
+    //        var $parent = $(this).parent("li");
+    //        if (!$parent.hasClass("open") && e.type == "mouseenter") {
+    //            $parent.addClass("open");
+    //        }
+    //    }
+    //});
+});
+
 function DateFormat(a) {
     return kendo.toString(new Date(a.value), a.format);
 }
@@ -492,5 +518,27 @@ function SetupGrid(param, target) {
             }
         }
     };
+
+    $.toProper = function (source) {
+        var _properString = [];
+        var _noCaps = ["of","a","the","and","an","am","or","nor","but","is","if","then", 
+    "else","when","at","from","by","on","off","for","in","out","to","into","with"];
+        $.each(source.split(" "), function (index, value) {
+            var nValue = value;
+            // CHECK IF ALL CAPS
+            if (nValue.match(/[A-Z]*/) != nValue) {
+                if (_noCaps.indexOf(nValue) == -1 && nValue.search(/^[A-Z](?=[a-z])/) == -1) {
+                    _properString.push(nValue.replace(/^[a-z]/g, nValue.substr(0, 1).toUpperCase()));
+                }
+                else {
+                    _properString.push(nValue);
+                }
+            }
+            else {
+                _properString.push(nValue);
+            }
+        });
+        return _properString.join(" ");
+    }
 
 })(jQuery);

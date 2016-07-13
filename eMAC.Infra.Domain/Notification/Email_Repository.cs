@@ -43,7 +43,7 @@ namespace eMAC.Infra.Domain
         }
         // submit meeting
 
-        public void MeetingUserAction(int mtgId, MeetingGet meetingObjectData, string actionBy, string templateURL, string dataURL)
+        public void MeetingUserAction(int mtgId, Meeting meetingObjectData, string actionBy, string templateURL, string dataURL)
         //public void SubmitMeeting(string mtgId, MeetingGet meetingObjectData, string actionBy, string templateURL, string dataURL)
         {
             XMLLoader loader = new XMLLoader();
@@ -58,7 +58,7 @@ namespace eMAC.Infra.Domain
                     .Replace("[MEETING_NAME]", meetingObjectData.mtg_title);
 
                 message
-                    .Replace("[AUTHOR]", meetingObjectData.updated_by)
+                    .Replace("[AUTHOR]", actionBy)
                     .Replace("[TEMPLATE_URL]", templateURL + mtgId.ToString())
                     .Replace("[APP_URL]", WebsiteURL)
                     .Replace("[MEETING_NUMBER]", meetingObjectData.mtg_no)
@@ -72,7 +72,7 @@ namespace eMAC.Infra.Domain
             }
         }
 
-        public void MeetingMacAction(int mtgId, string code, MeetingGet meetingObjectData, string templateURL, string dataURL, string remarks = "")
+        public void MeetingMacAction(int mtgId, string code, Meeting meetingObjectData, string templateURL, string dataURL, string remarks = "")
         {
             XMLLoader loader = new XMLLoader();
             StringBuilder message = new StringBuilder();
@@ -103,7 +103,7 @@ namespace eMAC.Infra.Domain
             }
         }
 
-        public void MeetingReportAction(int mtgId, string reportType, MeetingGet mtgDetails, string uploadedBy, string templateURL, string dataURL)
+        public void MeetingReportAction(int mtgId, string reportType, Meeting mtgDetails, string uploadedBy, string templateURL, string dataURL)
         {
             XMLLoader loader = new XMLLoader();
             StringBuilder message = new StringBuilder();

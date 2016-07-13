@@ -68,7 +68,7 @@
             var base = $("#linkRoot").attr("href");
             var deferred = $q.defer();
 
-            $http({ method: 'POST', url: base + 'api/Meeting/Update/' +id, data: JSON.stringify(params) })
+            $http({ method: 'POST', url: base + 'api/Meeting/Update?id=' +id, data: JSON.stringify(params) })
             .success(function (data, status, header, config) {
                 deferred.resolve(data);
                 waitingDialog.hide();
@@ -94,12 +94,12 @@
             });
             return deferred.promise;
         },
-        sendNotif: function (id, params) {
-
+        sendNotif: function (params) {
+            debugger;
             var base = $("#linkRoot").attr("href");
             var deferred = $q.defer();
 
-            $http({ method: 'POST', url: base + 'api/Notification/Notify/' + id, data: kendo.stringify(params) })
+            $http({ method: 'POST', url: base + 'api/Notification/Notify/', data: kendo.stringify(params) })
             .success(function (data, status, header, config) {
                 deferred.resolve(data);
                 waitingDialog.hide();

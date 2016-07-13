@@ -22,16 +22,22 @@
         })
          .when(base,
        {           
-           templateUrl: base + 'home/home',
+           templateUrl: base + 'index',
            controller: 'mtgsController'
-       }).when(base + 'meetings/reports/:meetingType',
+       })
+        .when(base + 'home/:impersonate',
+       {
+           templateUrl: base + 'index',
+           controller: 'mtgsController'
+       })
+        .when(base + 'meetings/reports/:meetingType',
         {
             templateUrl: base + 'meetings/reports/',
             controller: 'mtgReportsController'
         })
         .otherwise(
        {          
-           redirectTo: '/'
+           redirectTo: base
        });
 
     // use the HTML5 History API

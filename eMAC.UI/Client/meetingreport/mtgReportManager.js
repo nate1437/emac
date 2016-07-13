@@ -592,11 +592,13 @@
                 jsonData['mtgReportData'] = data;
             else
                 jsonData['finMtgReportData'] = data;
-
-            mtgFactory.sendNotif(service.mtgId, jsonData)
-                .then(function () {
-                    // sent notif
-                });
+            debugger;
+            mtgFactory.sendNotif({
+                meeting: scope.meeting,
+                action: jsonData
+            }).then(function () {
+                // sent notif
+            });
         }
 
         function fileExists(fileName) {

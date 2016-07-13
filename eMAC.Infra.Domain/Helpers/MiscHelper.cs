@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,10 @@ namespace eMAC.Infra.Domain
         public static string GetFileExtension(string filename)
         {
             return Path.GetExtension(filename);
+        }
+
+        public static void CloseSqlConnection(this SqlCommand command)
+        {
         }
 
         public static byte[] ReadStream(this Stream source)
@@ -35,6 +40,7 @@ namespace eMAC.Infra.Domain
                 .Select(row => dt.Columns.Cast<DataColumn>()
                     .ToDictionary(column => column.ColumnName, column => row[column] as object)).ToList();
         }
+
 
         public static string GetJsonRequest(this WebRequest request, byte[] requestData, NetworkCredential credential)
         {

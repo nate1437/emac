@@ -443,8 +443,6 @@
 
         $scope.save = function () {
             mtgFactory.showLoader(true);
-            //displayOverlay();
-            //$('#newMtgForm').modal('show');
             var jsonData = {};
 
             if ($scope.meeting.mtg_assistant == undefined ||
@@ -522,13 +520,6 @@
                     status: $scope.meeting.status
                 }
 
-                /*actionObject.mtg_id = $scope.meeting.mtg_id;
-                actionObject.action = $scope.meeting.status;
-                actionObject.action_by = curr_user;
-                actionObject.remarks = "Status changed to " + "\'" + $scope.meeting.status + "\' by " + curr_user;
-                actionObject.status = $scope.meeting.status;
-
-                jsonData['mtgActionObj'] = actionObject;*/
             }
             else {
                 if (mtgDetailObjectChanged || mtgObjectChanged) {
@@ -740,16 +731,10 @@
 
                 if (value === false)
                     delete $scope.selectedCoreFx[name];
-
-                //name // the property name
-                //value // the value of that property
-                //index // the counter
             });
 
             if (!angular.equals($scope.selectedCorefxCopy, $scope.selectedCoreFx)) {
 
-                //jsonData['insCoreFunctions'] = $scope.selectedCoreFx;
-                /*$scope.selectedCorefxCopy = angular.copy($scope.selectedCoreFx);*/
                 var a = $scope.selectedCorefxCopy;
                 $.each(a, function (key, value) {
                     $scope.selectedCorefxCopy[key] = false;
@@ -799,11 +784,6 @@
                 };
                 jsonData['insPbCategories'] = angular.extend({}, $scope.selectedPbCatCopy, $scope.selectedPbCategory);
 
-                /*
-                deleted by rainier m. bacareza
-                jsonData['delPbCategories'] = $scope.selectedPbCatCopy;
-                jsonData['insPbCategories'] = $scope.selectedPbCategory;
-                $scope.selectedPbCatCopy = angular.copy($scope.selectedPbCategory);*/
             }
 
             // pb outcomes
@@ -812,10 +792,6 @@
 
                 if (value === false)
                     delete $scope.selectedPbOutcome[name];
-
-                //name // the property name
-                //value // the value of that property
-                //index // the counter
             });
 
             if (!angular.equals($scope.selectedPbOutcomeCopy, $scope.selectedPbOutcome)) {
@@ -832,12 +808,6 @@
                 };
                 jsonData['insPbOutcomes'] = angular.extend({}, $scope.selectedPbOutcomeCopy, $scope.selectedPbOutcome);
 
-                /*
-                deleted by rainier m. bacareza
-                jsonData['delPbOutcomes'] = $scope.selectedPbOutcomeCopy;
-                jsonData['insPbOutcomes'] = $scope.selectedPbOutcome;
-                $scope.selectedPbOutcomeCopy = angular.copy($scope.selectedPbOutcome);
-                */
             }
 
             // pb outputs
@@ -846,10 +816,6 @@
 
                 if (value === false)
                     delete $scope.selectedPbOutput[name];
-
-                //name // the property name
-                //value // the value of that property
-                //index // the counter
             });
 
             if (!angular.equals($scope.selectedPbOutputCopy, $scope.selectedPbOutput)) {
@@ -866,34 +832,24 @@
                 };
                 jsonData['insPbOutputs'] = angular.extend({}, $scope.selectedPbOutputCopy, $scope.selectedPbOutput);
 
-                /*
-                deleted by rainier m. bacareza
-                jsonData['delPbOutputs'] = $scope.selectedPbOutputCopy;
-                jsonData['insPbOutputs'] = $scope.selectedPbOutput;
-                $scope.selectedPbOutputCopy = angular.copy($scope.selectedPbOutput);
-                */
             }
 
-            //$scope.modal.dismiss();
-            //$('.modal').modal('hide');
-            // call to update
             mtgFactory.update(mtgId, jsonData)
                 .then(function () {
-                    // redirect back to home page
+                    debugger;
                     setTimeout(function () {
                         var actionObject = logAction ? jsonData.mtgUpdateStatusObj : jsonData.mtgActionOnlyObj;
                         mtgFactory.showLoader(false);
                         $("#actionhistorygrid").data("kendoGrid").refresh();
-                        //removeOverlay();
                         toastr.success("Saving Success!", "Saved");
-
                         getMtgDetail(mtgId);
-
-                        // send notification                        
+            
                         if (actionObject.status == 'Submitted for SPMC'
                             || actionObject.status == 'Submitted for Finalization') {
-                            // send 'submitted' notification
-                            sendNotification(actionObject);
+                            sendNotification({
+                                action: actionObject,
+                                meeting: $scope.meeting
+                            });
                         }
 
                     }, 2000);
@@ -902,7 +858,7 @@
 
         // save log action
         $scope.saveLogAction = function (remarks) {
-            debugger;
+            
             var jsonData = {
                 mtgUpdateStatusObj: {
                     mtg_id: $scope.meeting.mtg_id,
@@ -929,25 +885,19 @@
                     setTimeout(function (actionObject) {
 
                         getMtgDetail(mtgId);
-
-                        // send notification                        
                         if (actionObject.status == 'Submitted for SPMC'
                             || actionObject.status == 'Revise for SPMC'
                             || actionObject.status == 'Approved for SPMC'
                             || actionObject.status == 'Revise for Finalization'
                             || actionObject.status == 'Submitted for Finalization'
                             || actionObject.status == 'Finalized') {
-                            // send 'submitted' notification
-                            sendNotification(actionObject);
+                            sendNotification({
+                                action: actionObject,
+                                meeting: $scope.meeting
+                            });
                         }
-                        //if (actionObject.status == 'Revise for SPMC') {
-                        //    // send 'submitted' notification
-                        //    sendNotification(actionObject);
-                        //}
-
                         mtgFactory.showLoader(false);
                         $("#actionhistorygrid").data("kendoGrid").refresh();
-                        //removeOverlay();
                     }, 2000, actionObject);
                 });
         }
@@ -1301,6 +1251,9 @@
                     $scope.meeting = meetingObject.filter(function (el) {
                         return el.mtg_id == mtgId;
                     })[0];
+
+                    //$scope.meeting.mtg_title = $.toProper($scope.meeting.mtg_title);
+
                     // parse dates data
                     $scope.meeting.date_updated = moment($scope.meeting.date_updated).format('DD MMM YYYY h:mm:ss a');
 
@@ -1549,6 +1502,7 @@
 
                 $scope.meeting.start_date = kendo.toString(kendo.parseDate($scope.meeting.start_date, 'yyyy-MM-dd'), 'dd MMM yyyy');
                 $scope.meeting.end_date = kendo.toString(kendo.parseDate($scope.meeting.end_date, 'yyyy-MM-dd'), 'dd MMM yyyy');
+                //$scope.meeting.mtg_title = $.toProper($scope.meeting.mtg_title);
                 $scope.meetingDetail.planning_mtg_date = kendo.toString(kendo.parseDate($scope.meetingDetail.planning_mtg_date, 'yyyy-MM-dd'), 'dd MMM yyyy');
                 //renderKdatePicker("myPicker");
 
@@ -1838,7 +1792,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.present = this.value();
@@ -1861,7 +1815,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.absent = this.value();
@@ -1884,7 +1838,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.background_info = this.value();
@@ -1914,7 +1868,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.summary = this.value();
@@ -1945,7 +1899,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.objectives = this.value();
@@ -1968,7 +1922,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.criteria_for_invited_participants = this.value();
@@ -2015,7 +1969,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.representatives_observers = this.value();
@@ -2038,7 +1992,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.secretariat_wpro = this.value();
@@ -2061,7 +2015,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.secretariat_co = this.value();
@@ -2084,7 +2038,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.secretariat_hq = this.value();
@@ -2107,7 +2061,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.secretariat_other_regions = this.value();
@@ -2130,7 +2084,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.secretariat_other_un_agencies = this.value();
@@ -2153,7 +2107,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.secretarial_assistance = this.value();
@@ -2177,7 +2131,7 @@
                     change: function () {
                         if (IsIE()) {
                             $("iframe").each(function () {
-                                debugger;
+                                
                             });
                         }
                         // GO HERE
@@ -2246,7 +2200,7 @@
 
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     if ($scope.isApprover) {
@@ -2279,7 +2233,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.comment_on_dates = this.value();
@@ -2303,7 +2257,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.offsite_reason = this.value();
@@ -2326,7 +2280,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.other_facilities_reason = this.value();
@@ -2350,7 +2304,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.courtesy_expense = this.value();
@@ -2374,7 +2328,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.daily_allowance = this.value();
@@ -2397,7 +2351,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.supplies_and_equipment = this.value();
@@ -2420,7 +2374,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.cosponsorship = this.value();
@@ -2443,7 +2397,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            debugger;
+                            
                         });
                     }
                     $scope.meetingDetail.logo_request = this.value();
@@ -2458,13 +2412,9 @@
 
         // function route notifications
         function sendNotification(data) {
-            var jsonData = {};
-
-            jsonData['mtgActionObj'] = data;
-
-            mtgFactory.sendNotif(mtgId, jsonData)
-                .then(function () {
-                    // sent notif
+            mtgFactory.sendNotif(data)
+                .then(function (e) {
+                    console.log(e.message);
                 });
         }
 
@@ -2880,7 +2830,7 @@ eMacApp.controller('objectivesController', function ($scope, $rootScope, $locati
     }
     $scope.save = function (update) {
 
-        debugger;
+        
         $scope.objectivesDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -3036,7 +2986,7 @@ eMacApp.controller('participantsController', function ($scope, $rootScope, $loca
 
     }
     $scope.save = function (update) {
-        debugger;
+        
         update.ctry_name = $scope.states.filter(function (el) {
             return el.ctry_code == update.ctry_code;
         })[0].ctry_name;
@@ -3400,7 +3350,7 @@ eMacApp.controller('relmtgsController', function ($scope, $rootScope, $location,
 
     }
     $scope.save = function (update) {
-        debugger;
+        
         //$scope.relmtgsDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -3620,7 +3570,7 @@ eMacApp.controller('tempadviserController', function ($scope, $rootScope, $locat
     }
     $scope.save = function (update) {
 
-        debugger;
+        
         $scope.tempAdviserDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -3830,7 +3780,7 @@ eMacApp.controller('observersController', function ($scope, $rootScope, $locatio
     }
     $scope.save = function (update) {
 
-        debugger;
+        
         $scope.representativeDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -3976,7 +3926,7 @@ eMacApp.controller('budgetsController', function ($scope, $rootScope, $timeout, 
     }
     $scope.save = function (update) {
 
-        debugger;
+        
         if (!isUpdate) {
             // set new record ids to 0
             update.id = 0;

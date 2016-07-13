@@ -17,8 +17,7 @@
             download: download,
             uploadLink:uploadLink,
             fileExists: fileExists,
-            mtgId: {},
-            mtgNumber:{},
+            meeting: {},
             uploadObj:{},
             status: {
                 uploading: false
@@ -29,44 +28,40 @@
 
         function load() {
            // appInfo.setInfo({ busy: true, message: "loading photos" })
+            
+            if (service.files.length == 0) {
 
-            service.files.length = 0;
+                return fileManagerClient.query({
+                    mtgId: service.meeting.mtg_id,
+                    mtgNo: service.meeting.mtg_no
+                }).then(function (result) {
+                    if (result && result.mtg_docs) {
 
-            return fileManagerClient.query({mtgId:service.mtgId})
-                                .then(function (result) {
-                                    if (result && result.mtg_docs) {
-                                        //result.photos.forEach(function (photo) {
-                                        //    if (!fileExists(photo.Name)) {
-                                        //        service.files.push(photo);
-                                        //    }
-                                        //});
-                                        JSON.parse(result.mtg_docs).forEach(function (mtg_doc) {
-                                            if (!fileExists(mtg_doc.file_name)) {
-                                                service.files.push(mtg_doc);
-                                            }
-                                        });
-                                    }
+                        debugger;
+                        JSON.parse(result.mtg_docs).forEach(function (mtg_doc) {
+                            if (!fileExists(mtg_doc.file_name)) {
+                                service.files.push(mtg_doc);
+                            }
+                        });
+                    }
+                    return result.$promise;
+                },
+                function (result) {
+                    return $q.reject(result);
+                })
+                ['finally'](
+                function () {
 
-                                    //appInfo.setInfo({ message: "photos loaded successfully" });
-
-                                    return result.$promise;
-                                },
-                                function (result) {
-                                    //appInfo.setInfo({ message: "something went wrong: " + result.data.message });
-                                    return $q.reject(result);
-                                })
-                                ['finally'](
-                                function () {
-                                    //appInfo.setInfo({ busy: false });
-                                });
+                });
+            }
+            return;
         }
 
         function download(request) {
+            debugger;
             var base = $("#linkRoot").attr("href");
-
-
             if (request.upload_type == 'file')
-                $window.open(base + "api/Attachment/Download?mtgId=" + request.mtgId + "&fileName=" + request.file_name, "_self");
+                $window.open(base + "api/Attachment/Download?mtgId=" + service.meeting.mtg_id + "&mtgNo=" + service.meeting.mtg_no + "&fileName=" + request.file_name, "_self");
             else if (request.upload_type == "link")
                 $window.open(request.file_name, "_blank");
             else if (request.upload_type == "unc") {
@@ -87,8 +82,6 @@
 
             mtgFactory.showLoader(true); 
             service.status.uploading = true;
-            //appInfo.setInfo({ busy: true, message: "uploading photos" });
-
             var formData = new FormData();
 
             angular.forEach(files, function (file) {
@@ -96,53 +89,37 @@
                 service.uploadObj.file_name = file.name;
             });
 
-            //if (service.uploadObj.upload_type == 'link')
-            //    service.uploadObj.file_name = service.uploadObj.doc_title;
-
-            // fill up upload object
             service.uploadObj.user_name = $('#curr_user').text();
 
             //jsonData['upload_object'] = service.uploadObj;
 
-            return fileManagerClient.save({ fileName: service.uploadObj.file_name, mtgId: service.mtgId, value: service.uploadObj }, formData)                                        
-                                        .then(function (result) {
-                                            if (result && result.mtg_docs) {
-                                                //result.photos.forEach(function (photo) {
-                                                //    if (!fileExists(photo.Name)) {
-                                                //        service.files.push(photo);
-                                                //    }
-                                                //});
-                                                angular.forEach(result.mtg_docs, function (mtg_doc) {
-                                                    if (!fileExists(mtg_doc.file_name)) {
-                                                        service.files.push(mtg_doc);
-                                                    }
-                                                });
-                                            }
+            return fileManagerClient.save({
+                fileName: service.uploadObj.file_name, mtgId: service.meeting.mtg_id, mtgNo: service.meeting.mtg_no, value: service.uploadObj
+            }, formData)
+                .then(function (result) {
+                    if (result && result.mtg_docs) {
+                        angular.forEach(result.mtg_docs, function (mtg_doc) {
+                            if (!fileExists(mtg_doc.file_name)) {
+                                service.files.push(mtg_doc);
+                            }
+                        });
+                    }
 
-                                            $('.modal').modal('hide');
-                                            // hide spinner
-                                            mtgFactory.showLoader(false);
-                                            // toast
-                                            toastr.success("File Uploaded!", "Saved");
+                    $('.modal').modal('hide');
+                    mtgFactory.showLoader(false);
+                    toastr.success("File Uploaded!", "Saved");
+                    return result.$promise;
+                },
+                function (result) {
+                    mtgFactory.showLoader(false);
+                    toastr.error("File Upload Failed");
+                    return $q.reject(result);
+                })
+                ['finally'](
+                function () {
+                    service.status.uploading = false;
 
-                                            //appInfo.setInfo({ message: "photos uploaded successfully" });
-
-                                            return result.$promise;
-                                        },
-                                        function (result) {
-                                            // hide spinner
-                                            mtgFactory.showLoader(false);
-                                            // toast
-                                            toastr.error("File Upload Failed");
-                                            //appInfo.setInfo({ message: "something went wrong: " + result.data.message });
-                                            return $q.reject(result);
-                                        })
-                                        ['finally'](
-                                        function () {
-                                            //appInfo.setInfo({ busy: false });
-                                            service.status.uploading = false;
-                                            
-                                        });
+                });
         }
 
         function uploadLink(file) {
@@ -164,7 +141,7 @@
 
             //jsonData['upload_object'] = service.uploadObj;
 
-            return fileManagerClient.save({ fileName: file.file_name, mtgId: service.mtgId, value: file }, formData)
+            return fileManagerClient.save({ fileName: file.file_name, mtgId: service.meeting.mtg_id, mtgNo: service.meeting.mtg_no, value: file }, formData)
                                         .then(function (result) {
                                             if (result && result.mtg_docs) {
 

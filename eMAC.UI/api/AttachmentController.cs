@@ -60,83 +60,64 @@ namespace eMAC.UI.api
 
         // GET api/attachment/5
         [ActionName("Get")]
-        public async Task<HttpResponseMessage> GetById(int mtgId)
+        public async Task<HttpResponseMessage> GetById(int mtgId, string mtgNo)
         {
-            var parameters = new Dictionary<string, object>();
-            var mtgGetParams = new Dictionary<string, object>();
-            var mtgDocObject = "[]";
             var attachments = new List<UploadGetNeeded>();
-
             try
             {
-                // get meeting data
-                mtgGetParams.Add("@mtg_id", mtgId);
-                var mtgList = _meetingRepo.GetEntity(StoredProcs.MtgGetHeader, mtgGetParams);
-                var mtgNumber = mtgList.Tables[0].Rows[0]["mtg_no"].ToString();
-
-                //bool isDirAvailable = _attachmentManager.CheckTargetMtgDirectory(mtgId);
-                bool isDirAvailable = _attachmentManager.CheckTargetMtgDirectory(mtgNumber);
+                bool isDirAvailable = _attachmentManager.CheckTargetMtgDirectory(mtgNo);
 
                 if (isDirAvailable)
                 {
-                    //var results = await _attachmentManager.GetById(mtgId);
-                    //return (new { photos = results });
+                    var dsMeetingDocuments = _attachmentRepo.GetEntity(
+                        StoredProcs.MtgDocumentsObjectGet,
+                        new Dictionary<string, object>() 
+                        { 
+                            {"@mtg_id", mtgId}
+                        }
+                    );
 
-                    // get file record
-                    parameters.Add("@mtg_id", mtgId);
-                    var mtgDocData = _attachmentRepo.GetEntity(StoredProcs.MtgDocumentsObjectGet, parameters);
-
-                    var meetingAttachmentObject = JsonConvert.SerializeObject(mtgDocData.Tables[0]);
-                    var attachObjects = JsonConvert.DeserializeObject<List<UploadGetNeeded>>(meetingAttachmentObject.ToString());
-
-                    foreach (var attachment in attachObjects)
+                    if (dsMeetingDocuments != null)
                     {
-                        if (attachment.upload_type == "file")
+                        var meetingDocsEntity = JsonConvert.DeserializeObject<List<UploadGetNeeded>>(JsonConvert.SerializeObject(dsMeetingDocuments.Tables[0]));
+                        foreach (var attachment in meetingDocsEntity)
                         {
-                            var docFileName = attachment.file_name;
+                            if (attachment.upload_type == "file")
+                            {
+                                var docFileName = attachment.file_name;
 
-                            if (this._attachmentManager.FileExists(mtgNumber, docFileName))
+                                if (this._attachmentManager.FileExists(mtgNo, docFileName))
+                                {
+                                    attachments.Add(attachment);
+                                }
+                            }
+                            else if (attachment.upload_type == "link" || attachment.upload_type == "unc")
                             {
                                 attachments.Add(attachment);
                             }
                         }
-                        else if (attachment.upload_type == "link" || attachment.upload_type == "unc")
-                        {
-                            attachments.Add(attachment);
-                        }
 
-                        mtgDocObject = JsonConvert.SerializeObject(attachments);
+                        return this.Request.CreateResponse(HttpStatusCode.OK, new { mtg_docs = JsonConvert.SerializeObject(attachments) });
                     }
-
-                    //return this.Request.CreateResponse(HttpStatusCode.OK, new { photos = results });
-                    return this.Request.CreateResponse(HttpStatusCode.OK, new { mtg_docs = mtgDocObject });
                 }
-                else
-                    return this.Request.CreateResponse(HttpStatusCode.NotFound, new { });
+                return this.Request.CreateResponse(HttpStatusCode.NotFound, new { });
             }
             catch (Exception ex)
             {
                 return this.Request.CreateResponse(HttpStatusCode.BadRequest, ex.GetBaseException().Message);
             }
         }
-        // download
+
         [ActionName("Download")]
-        public HttpResponseMessage Get(int mtgId, string fileName)
+        public HttpResponseMessage Get(int mtgId, string mtgNo, string fileName)
         {
-            var mtgGetParams = new Dictionary<string, object>();
 
-            // get meeting data
-            mtgGetParams.Add("@mtg_id", mtgId);
-            var mtgList = _meetingRepo.GetEntity(StoredProcs.MtgGetHeader, mtgGetParams);
-            var mtgNumber = mtgList.Tables[0].Rows[0]["mtg_no"].ToString();
-
-
-            if (!this._attachmentManager.FileExists(mtgNumber, fileName))
+            if (!this._attachmentManager.FileExists(mtgNo, fileName))
             {
                 return this.Request.CreateResponse(HttpStatusCode.NotFound, "Not found");
             }
 
-            var path = this._attachmentManager.GetFilePath(mtgNumber, fileName);
+            var path = this._attachmentManager.GetFilePath(mtgNo, fileName);
 
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
             var stream = _attachmentManager.GetAttachmentFileStream(path);
@@ -146,59 +127,37 @@ namespace eMAC.UI.api
 
             result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
             result.Content.Headers.ContentDisposition.FileName = fileName;
-            //HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-            //response.Content = new StreamContent(new FileStream(localFilePath, FileMode.Open, FileAccess.Read));
-            //response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-            //response.Content.Headers.ContentDisposition.FileName = fileName;
-
-
-
             return result;
         }
 
         // POST: api/Photo
         [ActionName("Save")]
-        public async Task<HttpResponseMessage> PostSave(int mtgId, string fileName, string value)
+        public async Task<HttpResponseMessage> PostSave(int mtgId, string mtgNo, string fileName, string value)
         {
-            Upload uploadObj = JsonConvert.DeserializeObject<Upload>(value);
-            var mtgDocObject = "[]";
-            IDictionary<string, object> parameters;
-            var getParams = new Dictionary<string, object>();
-            var upDateParams = new Dictionary<string, object>();
-            var mtgGetParams = new Dictionary<string, object>();
-            var meetingDocumentParam = new Dictionary<string, object>();
+            //Upload uploadObj = JsonConvert.DeserializeObject<Upload>(value);
+            //var mtgDocObject = "[]";
+            //IDictionary<string, object> parameters;
+            //var getParams = new Dictionary<string, object>();
+            //var upDateParams = new Dictionary<string, object>();
+            //var mtgGetParams = new Dictionary<string, object>();
+            //var meetingDocumentParam = new Dictionary<string, object>();
 
             try
             {
-                // get meeting data
-                mtgGetParams.Add("@mtg_id", mtgId);
-                var mtgList = _meetingRepo.GetEntity(StoredProcs.MtgGetHeader, mtgGetParams);
-                var mtgNumber = mtgList.Tables[0].Rows[0]["mtg_no"].ToString();
-                
-                if (uploadObj.upload_type == "file")
+                Upload uploadEntity = JsonConvert.DeserializeObject<Upload>(value);
+                uploadEntity.mtg_id = mtgId;
+                if (uploadEntity.upload_type == "file")
                 {
-                    // Check if the request contains multipart/form-data.
                     if (!Request.Content.IsMimeMultipartContent("form-data"))
                     {
-                        //eturn BadRequest("Unsupported media type");
                         return this.Request.CreateResponse(HttpStatusCode.BadRequest, "Unsupported media type");
                     }
 
-                    if (!this._attachmentManager.FileExists(mtgNumber, fileName))
+                    if (!this._attachmentManager.FileExists(mtgNo, fileName))
                     {
-                        uploadObj.mtg_id = mtgId;
-                        //if (uploadObj.upload_type == "link")
-                        //    uploadObj.file_name = uploadObj.doc_title;
-
-                        parameters = uploadObj.AsDictionary();
-                        // insert row data
-                        var result = _attachmentRepo.InsertEntity(StoredProcs.MtgDocumentsObjectSave, (Dictionary<string, object>)parameters);
-
-                        // create the file
-                        var files = await _attachmentManager.AddToDir(mtgNumber, Request);
-
-                        // log action
-                        LogMeetingAction(uploadObj);
+                        int result = _attachmentRepo.InsertEntity(StoredProcs.MtgDocumentsObjectSave, (Dictionary<string,object>)uploadEntity.AsDictionary());
+                        var files = await _attachmentManager.AddToDir(mtgNo, Request);
+                        LogMeetingAction(uploadEntity);
 
                         //return Ok(new { Message = "Photos uploaded ok", Photos = photos });
                         return this.Request.CreateResponse(HttpStatusCode.OK, new
@@ -213,62 +172,26 @@ namespace eMAC.UI.api
                                     doc_type = "file",
                                     mtg_id = mtgId,
                                     file_name = fileName,
-                                    updated_by = uploadObj.user_name,
+                                    updated_by = uploadEntity.user_name,
                                     upload_type = "file"
                                 }
                             }
                         });
                     }
-                    /*else
-                    {
-                        meetingDocumentParam.Add("@mtg_id", mtgId);
-                        var getFileList = _attachmentRepo.GetEntity(StoredProcs.MtgDocumentsObjectGet, meetingDocumentParam);
-                        var fileList = getFileList.Tables.Count > 0 ? ((JArray)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(getFileList.Tables[0]))).ToObject<IEnumerable<UploadGetNeeded>>() : null;
-
-                        if (fileList != null)
-                        {
-                            var filter = fileList.Where(x => x.file_name == fileName).SingleOrDefault();
-
-                            upDateParams.Add("@mtg_doc_id", filter.meeting_document_id);
-                            upDateParams.Add("@user_name", uploadObj.user_name);
-                            _attachmentRepo.UpdateEntity(StoredProcs.MtgDocumentUpdate, upDateParams);
-
-                            // create the file
-                            var files = await _attachmentManager.AddToDir(mtgNumber, Request);
-
-                            // log action
-                            LogMeetingAction(uploadObj);
-
-                            //return Ok(new { Message = "Photos uploaded ok", Photos = photos });
-                            return this.Request.CreateResponse(HttpStatusCode.OK, new
-                            {
-                                mtg_docs = filter
-                            });
-                        }
-                        return this.Request.CreateResponse(HttpStatusCode.BadRequest, "Failed to update attachment. File already exists");
-                    }*/
-
                     return this.Request.CreateResponse(HttpStatusCode.BadRequest, "Failed to update attachment. File already exists");
                 }
-                // link
                 else
                 {
-                    uploadObj.mtg_id = mtgId;
-                    parameters = uploadObj.AsDictionary();
-
-                    // insert row data
-                    var result = _attachmentRepo.InsertEntity(StoredProcs.MtgDocumentsObjectSave, (Dictionary<string, object>)parameters);
-
-                    meetingDocumentParam.Add("@mtg_id", mtgId);
-                    var getFileList = _attachmentRepo.GetEntity(StoredProcs.MtgDocumentsObjectGet, meetingDocumentParam);
+                    var result = _attachmentRepo.InsertEntity(StoredProcs.MtgDocumentsObjectSave, (Dictionary<string, object>)uploadEntity.AsDictionary());
+                    var getFileList = _attachmentRepo.GetEntity(StoredProcs.MtgDocumentsObjectGet, new Dictionary<string, object>()
+                        {
+                            {"@mtg_id", mtgId}
+                        });
                     var fileList = getFileList.Tables.Count > 0 ? ((JArray)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(getFileList.Tables[0]))).ToObject<IEnumerable<UploadGetNeeded>>() : null;
                     if (fileList != null)
                     {
                         var filter = fileList.Where(x => x.meeting_document_id == result).ToList();
-                        // log action
-                        LogMeetingAction(uploadObj);
-
-                        //return Ok(new { Message = "Photos uploaded ok", Photos = photos });
+                        LogMeetingAction(uploadEntity);
                         return this.Request.CreateResponse(HttpStatusCode.OK, new { mtg_docs = filter });
                     }
                     return this.Request.CreateResponse(HttpStatusCode.BadRequest, "Failed to save attachment.");
@@ -283,107 +206,60 @@ namespace eMAC.UI.api
 
         // DELETE: api/Photo/5
         [ActionName("Delete")]
-        public async Task<HttpResponseMessage> PostDel(int mtgDocId, int mtgId, string fileName)//int mtgId, string fileName, string fileObj)
+        public async Task<HttpResponseMessage> PostDel(int mtgDocId, int mtgId, string mtgNo, string fileName)//int mtgId, string fileName, string fileObj)
         {
-            /* NEW HANDLING */
+            DataSet dsMeetingDocuments = _attachmentRepo.GetEntity(StoredProcs.MtgDocumentsObjectGet, new Dictionary<string, object>() { 
+                {"@mtg_id", mtgId}
+            });
 
-            var getDocumentParam = new Dictionary<string, object>();
+            List<UploadGetNeeded> meetingDocumentsEntity = dsMeetingDocuments != null ?
+                dsMeetingDocuments.Tables.Count > 0 ? ((JArray)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dsMeetingDocuments.Tables[0]))).ToObject<List<UploadGetNeeded>>() : null : null;
 
-            getDocumentParam.Add("@mtg_id", mtgId);
-
-            var mtgDocs = _attachmentRepo.GetEntity(StoredProcs.MtgDocumentsObjectGet, getDocumentParam);
-            var mtgDocsDictionary = mtgDocs.Tables.Count > 0 ? ((JArray)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(mtgDocs.Tables[0]))).ToObject<IEnumerable<UploadGetNeeded>>() : null;
-
-            if (mtgDocsDictionary != null)
+            if (meetingDocumentsEntity != null)
             {
-                
-                var deleteDoc = mtgDocsDictionary.Where(x => x.meeting_document_id == mtgDocId).SingleOrDefault();
+
+                UploadGetNeeded deleteDoc = meetingDocumentsEntity.Where(x => x.meeting_document_id == mtgDocId).SingleOrDefault();
                 if (deleteDoc != null)
                 {
                     if (deleteDoc.upload_type == "file")
                     {
-                        var mtg = _meetingRepo.GetEntity(StoredProcs.MtgGetHeader, new Dictionary<string, object>() { { "@mtg_id", mtgId } });
-                        var mtgNumber = mtg.Tables[0].Rows[0]["mtg_no"].ToString();
                         AttachmentActionResult result = null;
-                        if (this._attachmentManager.FileExists(mtgNumber, fileName))
+                        if (this._attachmentManager.FileExists(mtgNo, fileName))
                         {
-                            result = await this._attachmentManager.DeleteByMtgNumber(mtgNumber, fileName);
+                            result = await this._attachmentManager.DeleteByMtgNumber(mtgNo, fileName);
 
                             if (result.Successful)
                             {
-                                var deleteParam = new Dictionary<string, object>()
+                                _attachmentRepo.DeleteEntity(StoredProcs.MtgDocumentDelete, new Dictionary<string, object>()
                                 {
                                     {"@meeting_document_id", mtgDocId}
-                                };
-                                _attachmentRepo.DeleteEntity(StoredProcs.MtgDocumentDelete, deleteParam);
+                                });
 
                                 return this.Request.CreateResponse(HttpStatusCode.OK, 
                                     new 
                                     { 
                                         message = result.Message,
-                                        doclist = mtgDocsDictionary.Where(x=> x.meeting_document_id != deleteDoc.meeting_document_id).ToList()
+                                        doclist = meetingDocumentsEntity.Where(x => x.meeting_document_id != deleteDoc.meeting_document_id).ToList()
                                     });
                             }
                         }
                     }
                     else
                     {
-                        var deleteParam = new Dictionary<string, object>()
+                        _attachmentRepo.DeleteEntity(StoredProcs.MtgDocumentDelete, new Dictionary<string, object>()
                                 {
                                     {"@meeting_document_id", mtgDocId}
-                                };
-                        _attachmentRepo.DeleteEntity(StoredProcs.MtgDocumentDelete, deleteParam);
+                                });
                         return this.Request.CreateResponse(HttpStatusCode.OK, 
                             new { 
-                                message = deleteDoc.doc_title + " deleted successfully", 
-                                doclist = mtgDocsDictionary.Where(x=> x.meeting_document_id != deleteDoc.meeting_document_id).ToList() });
+                                message = deleteDoc.doc_title + " deleted successfully",
+                                doclist = meetingDocumentsEntity.Where(x => x.meeting_document_id != deleteDoc.meeting_document_id).ToList()
+                            });
                     }
                 }
             }
 
             return this.Request.CreateResponse(HttpStatusCode.NotFound, "Not found");
-
-            /*
-            UploadGet uploadObj = JsonConvert.DeserializeObject<UploadGet>(fileObj);
-            var parameters = new Dictionary<string, object>();
-            var mtgGetParams = new Dictionary<string, object>();
-
-            // get meeting data
-            mtgGetParams.Add("@mtg_id", mtgId);
-            var mtgList = _meetingRepo.GetEntity(StoredProcs.MtgGetHeader, mtgGetParams);
-            var mtgNumber = mtgList.Tables[0].Rows[0]["mtg_no"].ToString();
-
-            if (uploadObj.upload_type == "file")
-            {
-                if (!this._attachmentManager.FileExists(mtgNumber, fileName))
-                {
-                    return this.Request.CreateResponse(HttpStatusCode.NotFound, "Not found");
-                }
-
-                var result = await this._attachmentManager.DeleteByMtgNumber(mtgNumber, fileName);
-
-                if (result.Successful)
-                {
-                    parameters.Add("@meeting_document_id", uploadObj.meeting_document_id);
-                    _attachmentRepo.DeleteEntity(StoredProcs.MtgDocumentDelete, parameters);
-
-                    //return Ok(new { message = result.Message });
-                    return this.Request.CreateResponse(HttpStatusCode.OK, new { message = result.Message });
-                }
-                else
-                {
-                    //return BadRequest(result.Message);
-                    return this.Request.CreateResponse(HttpStatusCode.BadRequest, result.Message);
-                }
-            }
-            else
-            {
-                parameters.Add("@meeting_document_id", uploadObj.meeting_document_id);
-                _attachmentRepo.DeleteEntity(StoredProcs.MtgDocumentDelete, parameters);
-
-                //return Ok(new { message = result.Message });
-                return this.Request.CreateResponse(HttpStatusCode.OK, new { message = uploadObj.doc_title + "deleted successfully" });
-            }*/
         }
 
         // PUT api/attachment/5
@@ -398,7 +274,6 @@ namespace eMAC.UI.api
 
         private void LogMeetingAction(Upload uploadObj)
         {
-            IDictionary<string, object> parameters;
             MeetingActionHistoryInsert actionInsert = new MeetingActionHistoryInsert()
             {
                 mtg_id = uploadObj.mtg_id,
@@ -409,10 +284,8 @@ namespace eMAC.UI.api
 
             //iterate thru list
             if (actionInsert != null)
-            {
-                parameters = actionInsert.AsDictionary();
-                // update row data                       
-                _meetingActionRepository.UpdateEntity(StoredProcs.MtgActionInsert, (Dictionary<string, object>)parameters);
+            {        
+                _meetingActionRepository.UpdateEntity(StoredProcs.MtgActionInsert, (Dictionary<string, object>)actionInsert.AsDictionary());
             }
         }
     }

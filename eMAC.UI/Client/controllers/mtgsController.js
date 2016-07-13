@@ -268,12 +268,13 @@
 
                     if ($scope.models.unitFilter != undefined || $scope.models.unitFilter != "") {
                         var parseFilter = $scope.models.unitFilter == "all" ? "" : eMacFactory.User("data").org_unit == undefined ? "" : eMacFactory.User("data").org_unit;
+                        var x = $scope.models.unitFilter;
                         if (parseFilter != undefined && parseFilter != "") {
                             eMacDataFactory.eMacMainGridSource({
                                 pageSize: eMacFactory.LocalStorage.Get("eMac_MainGridItems").count,
                                 year: n.year_created,
-                                divisionCode: parseFilter.substr(0, 3),
-                                unitCode: parseFilter
+                                divisionCode: x == "mydivision" ? parseFilter.substr(0, 3) : "",//parseFilter.substr(0, 3),
+                                unitCode: x == "myunit" ? parseFilter : "" //n == "myunit" ? parseFilter : ""parseFilter
                             }).then(function (result) {
                                 $scope.kendo.kendogrid.dataSource = result;
                                 $scope.kendo.kendogrid.elem.refresh();
@@ -470,6 +471,9 @@
             },
             no: function () {
                 $scope.models.modal.dismiss("cancel");
+            },
+            properCase: function () {
+                $scope.models.newMeeting.mtg_title = $.toProper($scope.models.newMeeting.mtg_title);
             }
         }
 

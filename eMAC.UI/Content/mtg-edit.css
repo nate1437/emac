@@ -534,22 +534,22 @@ button#btnSelect {
   padding:6px 12px;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
   margin-left: 15px;
-}
+}*/
 
-.dropdown-menu li {
+/*.dropdown-menu li {
   cursor: pointer;
   padding: 5px;
-}
+}*/
 
-.dropdown-menu li.selected {
+/*.dropdown-menu li.selected {
   background-color: #ddefdd;
 }
 
 .dropdown-menu li:hover {
   background-color: #e9e9e9;
-}
+}*/
 
 section {
   margin: 25px 0 0 15px !important;
