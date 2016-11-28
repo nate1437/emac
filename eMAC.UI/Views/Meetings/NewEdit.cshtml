@@ -48,12 +48,12 @@
             <div class="pull-right">
                 <button type="button" class="btn btn-default btn-xs"
                     ng-click="save()"
-                    ng-disabled="isUser && (isAccessible || meeting.status=='Submitted for SPMC' || meeting.status=='Submitted for Finalization' || meeting.status=='Approved for SPMC' || meeting.status=='Finalized' || meeting.status=='Cancelled')"
-                    ng-show="saveDetailBtnEnable">
+                    ng-disabled="(isUser || !isApprover) && (isAccessible || meeting.status=='Submitted for SPMC' || meeting.status=='Submitted for Finalization' || meeting.status=='Approved for SPMC' || meeting.status=='Finalized' || meeting.status=='Cancelled')"
+                    ng-show="saveDetailBtnEnable || (isUser || isApprover)">
                     <span class="glyphicon glyphicon-ok-circle"></span> Save</button>
                 <button type="button" class="btn btn-default btn-xs"
                     ng-click="confirmSubmit()"
-                    ng-disabled="isUser 
+                    ng-disabled="isUser
                     && (
                         isAccessible  
                         || meeting.status=='Submitted for SPMC'
