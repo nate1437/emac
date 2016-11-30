@@ -297,6 +297,7 @@
     <Content Include="Scripts\grid-commons.js" />
     <Content Include="Scripts\jszip\jszip.js" />
     <Content Include="Scripts\jszip\jszip.min.js" />
+    <Content Include="Scripts\tableau_v8.js" />
     <Content Include="Scripts\wpro-commons.js" />
     <Content Include="Views\Meetings\NewEdit.cshtml">
       <SubType>Code</SubType>

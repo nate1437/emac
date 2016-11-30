@@ -1,6 +1,31 @@
-﻿eMacApp.controller('mtgReportsController',
+﻿
+
+eMacApp.controller('mtgReportsController',
     ["$scope", "$document", "$routeParams", "$window", "$location", "$filter", "$timeout", "UserRole", "UserData", "mtgDataSource", "mtgFactory", "libFactory", "configData", "rootUrl", "meetingStatus", "$modal", "$compile", "eMacFactory",
     function ($scope, $document, $routeParams, $window, $location, $filter, $timeout, UserRole, UserData, mtgDataSource, mtgFactory, libFactory, configData, rootUrl, meetingStatus, $modal, $compile, eMacFactory) {
+
+        var getReportType = function (type) {
+            switch (type) {
+                case "meeting_report":
+                    return "Meeting report statistics";
+                case "meeting":
+                    return "Meeting statistics";
+                case "participant":
+                    return "Participants statistics";
+            }
+            
+        }
+        var getReportUrl = function (type) {
+            switch (type) {
+                case "meeting_report":
+                    return "views/meeting_report_statistics/Overview";
+                case "meeting":
+                    return "views/meeting_statistics/Overview";
+                case "participant":
+                    return "views/meeting_participants_statistics/Overview";
+            }
+            
+        }
 
         if (!angular.element(".body-content").hasClass("tableau-open")) {
             angular.element(".body-content").addClass("tableau-open");
@@ -8,9 +33,8 @@
 
         $scope.models = {
             meetingType: $routeParams.meetingType,
-            reportTitle: $routeParams.meetingType == "meeting" ? "Meeting statistics" : "Participants statistics"
+            reportTitle: getReportType($routeParams.meetingType)// == "meeting" ? "Meeting statistics" : "Participants statistics"
         };
-
 
         $scope.$watch(function () { return eMacFactory.User("data"); }, function (n, o) {
             if (Object.keys(n).length > 0) {
@@ -25,9 +49,9 @@
         
         $scope.$watch("models.tableauUrl", function (n, o) {
             if (n != undefined) {
-                var workbook, worksheet, viz;
+                var workbook, worksheet;
                 var getViz = function () {
-                    workbook = viz.getWorkbook();
+                    workbook = $scope.models.viz.getWorkbook();
                     worksheet = workbook.getActiveSheet();
                 };
 
@@ -44,6 +68,17 @@
                                 "Year",
                                 new Date().getFullYear(),
                                 tableauSoftware.FilterUpdateType.REPLACE);
+
+                            worksheetArray[i].applyFilterAsync(
+                                "Mtg Year",
+                                new Date().getFullYear(),
+                                tableauSoftware.FilterUpdateType.REPLACE);
+
+                            worksheetArray[i].applyFilterAsync(
+                                "mtg_year",
+                                new Date().getFullYear(),
+                                tableauSoftware.FilterUpdateType.REPLACE);
+
                         }
                     }
                 }
@@ -66,11 +101,11 @@
                     options["Unit"] = $scope.models.unit;
                 }
 
-                if (viz) {
-                    viz.dispose();
+                if ($scope.models.viz) {
+                    $scope.models.viz.dispose();
                 }
 
-                viz = new tableauSoftware.Viz(container, url, options);
+                $scope.models.viz = new tableauSoftware.Viz(container, url, options);
             }
         });
 
@@ -79,13 +114,23 @@
             formLoad: function (e) {
                 eMacFactory.Save({
                     url: "service/Report/RequestTableauUrl",
-                    data: JSON.stringify({ url: $scope.models.meetingType == "meeting" ? "views/meeting_statistics/Overview" : "views/meeting_participants_statistics/Overview" })
+                    data: JSON.stringify({ url: getReportUrl($scope.models.meetingType )})//== "meeting" ?  })
                 })
                 .then(function (e) {
                     $scope.models.tableauUrl = e;
                 });
+            },
+            exportPdf: function () {
+                $scope.models.viz.showExportPDFDialog();
+            },
+            exportImage: function () {
+                $scope.models.viz.showExportImageDialog();
+            },
+            exportCrossTab: function () {
+                $scope.models.viz.showExportCrossTabDialog();
+            },
+            exportData: function () {
+                $scope.models.viz.showExportDataDialog();
             }
         };
-
-
     }]);

@@ -116,13 +116,14 @@
                         <span class="fa fa-home fa-menu" style="font-size: 3em;"></span>
                         <br />
                         <span>Home</span></a></li>
-                    <li class="dropdown">
+                    <li  class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-toggle-type="hover" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="fa fa-file-text-o" style="font-size: 3em;"></span><br />
                             <span>Reports</span></span></a>
                         <ul class="dropdown-menu">
                             <li><a ng-click="events.viewReport('meeting')">Meeting statistics</a></li>
                             <li><a ng-click="events.viewReport('participant')">Participant statistics</a></li>
+                            <li><a ng-click="events.viewReport('meeting_report')">Meeting report statistics</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -261,7 +262,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularjs")
     <script src="~/Scripts/bootstrap-dropdownhover.js"></script>
-    <script src="//@System.Configuration.ConfigurationManager.AppSettings["tableauServer"].ToString()/javascripts/api/tableau_v8.js"></script>
+    <script src="~/Scripts/tableau_v8.js"></script>
+    @*<script src="@System.Configuration.ConfigurationManager.AppSettings["tableauServerScript"].ToString()"></script>*@
     <script src="~/Scripts/kendo/kendo.all.min.js"></script>
     <script src="~/Scripts/grid-commons.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>

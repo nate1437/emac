@@ -1,8 +1,26 @@
 ﻿<div ng-init="events.formLoad($event)">
     <div class="panel panel-primary">
         <div class="panel-heading">
+
             <span class="fa fa-bar-chart" style="font-size: 1.5em;"></span>
             <span class="title" style="font-size: 12px;"">{{models.reportTitle}}</span>
+
+            <div class="btn-group pull-right" style="margin-top: -4px!important;">
+                <button type="button" title="Tools" class="btn btn-success btn-xs" style="padding-left: 10px;padding-right: 10px;"><i class="fa fa-cog"></i></button>
+                <button type="button" title="Tools" class="btn btn-success dropdown-toggle btn-xs" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="min-width: 98px; font-size: 11px;">
+                    <li><a id="fa_excel" ng-click="events.exportPdf()" class="fa-dashboard-icon"><i class="fa fa-file-excel-o"></i>
+                        &nbsp;Excel</a></li>
+                    <li><a ng-click="events.exportCrossTab()" id="fa_pdf" class="fa-dashboard-icon"><i class="fa fa-file-pdf-o"></i>
+                        &nbsp;PDF</a></li>
+                    <li><a ng-click="events.exportImage()" id="fa_image" class="fa-dashboard-icon"><i class="fa fa-file-image-o"></i>
+                        &nbsp;Image</a></li>
+                    <li><a ng-click="events.exportData()" id="fa_refresh" class="fa-dashboard-icon"><i class="fa fa-refresh"></i>
+                        &nbsp;Refresh</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div id="tableauViz" style="margin-top: 10px; height: 900px; width: 1200px;">

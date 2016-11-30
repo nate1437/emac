@@ -16,9 +16,10 @@
     /*padding-right: 25px!important;*/
 }
 
-.body-content.tableau-open {
-    
+.dropdown-menu > li  {
+    cursor:pointer;
 }
+
 
 #menu a {
     color: #000!important;

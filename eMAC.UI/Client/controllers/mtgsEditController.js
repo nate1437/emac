@@ -516,6 +516,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: $scope.meeting.status,
                     user_name: curr_user,
+                    action_by: curr_user,
                     remarks: "Status changed to " + "\'" + $scope.meeting.status + "\' by " + curr_user,
                     status: $scope.meeting.status
                 }
