@@ -89,7 +89,9 @@ namespace eMAC.UI.Reports
                     {
                         meeting_date.Value = Convert.ToDateTime(meeting_dur[0]).ToString("dd MMMM yyyy");
                     }*/
-                    meeting_date.Value = _meeting.Rows[0]["mtg_duration"].ToString();
+                    meeting_date.Value =
+                        string.Format("{0} <br>{1}", _meeting.Rows[0]["mtg_duration"].ToString(),
+                        _meeting_details.Rows[0]["comment_on_dates"].ToString());
                     meeting_venue.Value = _meeting.Rows[0]["venue"].ToString() + ", " + _meeting.Rows[0]["ctry_name"].ToString();
 
                     working_language.Value = _meeting.Rows[0]["working_language"].ToString();

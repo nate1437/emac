@@ -1,6 +1,7 @@
 ﻿body
 {
     font-size:11px;
+    font-family: "Courier New", Courier, monospace !important;
 }
 p {
     margin: 0 !important;

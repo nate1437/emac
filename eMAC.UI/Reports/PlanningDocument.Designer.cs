@@ -33,12 +33,12 @@ namespace eMAC.UI.Reports
             this.related_meetings_header2 = new Telerik.Reporting.TextBox();
             this.htmlTextBox4 = new Telerik.Reporting.HtmlTextBox();
             this.htmlTextBox3 = new Telerik.Reporting.HtmlTextBox();
-            this.linkage_resolution_header1 = new Telerik.Reporting.TextBox();
-            this.linkage_resolution_header2 = new Telerik.Reporting.TextBox();
-            this.htmlTextBox2 = new Telerik.Reporting.HtmlTextBox();
             this.participants_header1 = new Telerik.Reporting.TextBox();
             this.participants_header2 = new Telerik.Reporting.TextBox();
             this.participants_header3 = new Telerik.Reporting.TextBox();
+            this.linkage_resolution_header1 = new Telerik.Reporting.TextBox();
+            this.linkage_resolution_header2 = new Telerik.Reporting.TextBox();
+            this.htmlTextBox2 = new Telerik.Reporting.HtmlTextBox();
             this.detail = new Telerik.Reporting.DetailSection();
             this.panel3 = new Telerik.Reporting.Panel();
             this.objectives = new Telerik.Reporting.HtmlTextBox();
@@ -61,13 +61,10 @@ namespace eMAC.UI.Reports
             this.background_info_label = new Telerik.Reporting.HtmlTextBox();
             this.background_info = new Telerik.Reporting.HtmlTextBox();
             this.panel5 = new Telerik.Reporting.Panel();
-            this.dates_sites_label = new Telerik.Reporting.HtmlTextBox();
             this.avail_webex = new Telerik.Reporting.HtmlTextBox();
             this.avail_webex_label = new Telerik.Reporting.HtmlTextBox();
             this.site_label = new Telerik.Reporting.HtmlTextBox();
             this.meeting_venue = new Telerik.Reporting.HtmlTextBox();
-            this.meeting_date = new Telerik.Reporting.HtmlTextBox();
-            this.dates_label = new Telerik.Reporting.HtmlTextBox();
             this.offsite_reason_label = new Telerik.Reporting.HtmlTextBox();
             this.offsite_reason = new Telerik.Reporting.HtmlTextBox();
             this.working_language = new Telerik.Reporting.HtmlTextBox();
@@ -98,14 +95,18 @@ namespace eMAC.UI.Reports
             this.linkage_resolution_field2 = new Telerik.Reporting.TextBox();
             this.linkage_resolution_field3 = new Telerik.Reporting.TextBox();
             this.htmlTextBox1 = new Telerik.Reporting.HtmlTextBox();
-            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
-            this.page_number = new Telerik.Reporting.HtmlTextBox();
             this.panel1 = new Telerik.Reporting.Panel();
             this.summary_info = new Telerik.Reporting.HtmlTextBox();
             this.summary_label = new Telerik.Reporting.HtmlTextBox();
             this.panel6 = new Telerik.Reporting.Panel();
             this.proposed_title = new Telerik.Reporting.HtmlTextBox();
             this.title_label = new Telerik.Reporting.HtmlTextBox();
+            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
+            this.page_number = new Telerik.Reporting.HtmlTextBox();
+            this.panel7 = new Telerik.Reporting.Panel();
+            this.meeting_date = new Telerik.Reporting.HtmlTextBox();
+            this.dates_label = new Telerik.Reporting.HtmlTextBox();
+            this.dates_sites_label = new Telerik.Reporting.HtmlTextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // related_meetings_header1
@@ -168,49 +169,6 @@ namespace eMAC.UI.Reports
             this.htmlTextBox3.StyleName = "";
             this.htmlTextBox3.Value = "Recommendations<br />followed-up?<br />Y/N &amp; comment";
             // 
-            // linkage_resolution_header1
-            // 
-            this.linkage_resolution_header1.Name = "linkage_resolution_header1";
-            this.linkage_resolution_header1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.99316960573196411D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
-            this.linkage_resolution_header1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.linkage_resolution_header1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.linkage_resolution_header1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            // 
-            // linkage_resolution_header2
-            // 
-            this.linkage_resolution_header2.Name = "linkage_resolution_header2";
-            this.linkage_resolution_header2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.19378662109375D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
-            this.linkage_resolution_header2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.linkage_resolution_header2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_header2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
-            this.linkage_resolution_header2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.linkage_resolution_header2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
-            this.linkage_resolution_header2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.linkage_resolution_header2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.linkage_resolution_header2.Value = "Resolution Reference and Title";
-            // 
-            // htmlTextBox2
-            // 
-            this.htmlTextBox2.Name = "htmlTextBox2";
-            this.htmlTextBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3220565319061279D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
-            this.htmlTextBox2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.htmlTextBox2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            this.htmlTextBox2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
-            this.htmlTextBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.htmlTextBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.htmlTextBox2.StyleName = "";
-            this.htmlTextBox2.Value = "(G)lobal<br />or<br />(R)egional";
-            // 
             // participants_header1
             // 
             this.participants_header1.KeepTogether = false;
@@ -258,6 +216,49 @@ namespace eMAC.UI.Reports
             this.participants_header3.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
             this.participants_header3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.participants_header3.Value = "Funding Source";
+            // 
+            // linkage_resolution_header1
+            // 
+            this.linkage_resolution_header1.Name = "linkage_resolution_header1";
+            this.linkage_resolution_header1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.99316960573196411D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
+            this.linkage_resolution_header1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.linkage_resolution_header1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.linkage_resolution_header1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            // 
+            // linkage_resolution_header2
+            // 
+            this.linkage_resolution_header2.Name = "linkage_resolution_header2";
+            this.linkage_resolution_header2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.19378662109375D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
+            this.linkage_resolution_header2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.linkage_resolution_header2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_header2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(5D);
+            this.linkage_resolution_header2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.linkage_resolution_header2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(10D);
+            this.linkage_resolution_header2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.linkage_resolution_header2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.linkage_resolution_header2.Value = "Resolution Reference and Title";
+            // 
+            // htmlTextBox2
+            // 
+            this.htmlTextBox2.Name = "htmlTextBox2";
+            this.htmlTextBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3220565319061279D), Telerik.Reporting.Drawing.Unit.Cm(1.111249566078186D));
+            this.htmlTextBox2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.htmlTextBox2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            this.htmlTextBox2.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Pixel(1D);
+            this.htmlTextBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.htmlTextBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.htmlTextBox2.StyleName = "";
+            this.htmlTextBox2.Value = "(G)lobal<br />or<br />(R)egional";
             // 
             // detail
             // 
@@ -526,13 +527,10 @@ namespace eMAC.UI.Reports
             // panel5
             // 
             this.panel5.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.dates_sites_label,
             this.avail_webex,
             this.avail_webex_label,
             this.site_label,
             this.meeting_venue,
-            this.meeting_date,
-            this.dates_label,
             this.offsite_reason_label,
             this.offsite_reason,
             this.working_language,
@@ -545,18 +543,11 @@ namespace eMAC.UI.Reports
             this.participants_invite_label,
             this.participants_criteria,
             this.participants_criteria_label,
-            this.participants_label});
+            this.participants_label,
+            this.panel7});
             this.panel5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.014470880851149559D), Telerik.Reporting.Drawing.Unit.Cm(25.457950592041016D));
             this.panel5.Name = "panel5";
-            this.panel5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.526457786560059D), Telerik.Reporting.Drawing.Unit.Cm(17.426794052124023D));
-            // 
-            // dates_sites_label
-            // 
-            this.dates_sites_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.026458332315087318D), Telerik.Reporting.Drawing.Unit.Cm(-1.3141996380028331E-09D));
-            this.dates_sites_label.Name = "dates_sites_label";
-            this.dates_sites_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499999046325684D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
-            this.dates_sites_label.Style.Font.Name = "Courier New";
-            this.dates_sites_label.Value = "<strong>6.&nbsp;&nbsp;<span>Dates and site</span></strong>";
+            this.panel5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.537613868713379D), Telerik.Reporting.Drawing.Unit.Cm(17.426794052124023D));
             // 
             // avail_webex
             // 
@@ -579,7 +570,7 @@ namespace eMAC.UI.Reports
             // 
             // site_label
             // 
-            this.site_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.026458332315087318D), Telerik.Reporting.Drawing.Unit.Cm(1.3758331537246704D));
+            this.site_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.026458332315087318D), Telerik.Reporting.Drawing.Unit.Cm(1.3934720754623413D));
             this.site_label.Name = "site_label";
             this.site_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.3000009059906006D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
             this.site_label.Style.Font.Name = "Courier New";
@@ -587,27 +578,11 @@ namespace eMAC.UI.Reports
             // 
             // meeting_venue
             // 
-            this.meeting_venue.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.3425693511962891D), Telerik.Reporting.Drawing.Unit.Cm(1.37583327293396D));
+            this.meeting_venue.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.3425693511962891D), Telerik.Reporting.Drawing.Unit.Cm(1.3934721946716309D));
             this.meeting_venue.Name = "meeting_venue";
             this.meeting_venue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.9196987152099609D), Telerik.Reporting.Drawing.Unit.Cm(0.59990012645721436D));
             this.meeting_venue.Style.Font.Name = "Courier New";
             this.meeting_venue.Value = "";
-            // 
-            // meeting_date
-            // 
-            this.meeting_date.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.3425693511962891D), Telerik.Reporting.Drawing.Unit.Cm(0.66145837306976318D));
-            this.meeting_date.Name = "meeting_date";
-            this.meeting_date.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.9196987152099609D), Telerik.Reporting.Drawing.Unit.Cm(0.59990012645721436D));
-            this.meeting_date.Style.Font.Name = "Courier New";
-            this.meeting_date.Value = "";
-            // 
-            // dates_label
-            // 
-            this.dates_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.026458332315087318D), Telerik.Reporting.Drawing.Unit.Cm(0.66145837306976318D));
-            this.dates_label.Name = "dates_label";
-            this.dates_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.3000006675720215D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
-            this.dates_label.Style.Font.Name = "Courier New";
-            this.dates_label.Value = "&nbsp;&nbsp;&nbsp;&nbsp;6a. Dates:";
             // 
             // offsite_reason_label
             // 
@@ -901,7 +876,7 @@ namespace eMAC.UI.Reports
             // 
             this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(0.99300789833068848D)));
             this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.19378662109375D)));
-            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.3220558166503906D)));
+            this.linkage_resolution.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.3220555782318115D)));
             this.linkage_resolution.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.88194400072097778D)));
             this.linkage_resolution.Body.SetCellContent(0, 0, this.linkage_resolution_field1);
             this.linkage_resolution.Body.SetCellContent(0, 1, this.linkage_resolution_field2);
@@ -984,24 +959,6 @@ namespace eMAC.UI.Reports
             this.htmlTextBox1.Style.Font.Name = "Courier New";
             this.htmlTextBox1.Value = "&nbsp;&nbsp;&nbsp;&nbsp;2c. Linkages to global and regional resolutions";
             // 
-            // pageHeaderSection1
-            // 
-            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.1000001430511475D);
-            this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.page_number});
-            this.pageHeaderSection1.Name = "pageHeaderSection1";
-            this.pageHeaderSection1.PrintOnFirstPage = false;
-            // 
-            // page_number
-            // 
-            this.page_number.CanShrink = true;
-            this.page_number.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00020024616969749332D), Telerik.Reporting.Drawing.Unit.Cm(0.00010002215276472271D));
-            this.page_number.Name = "page_number";
-            this.page_number.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.60246467590332D), Telerik.Reporting.Drawing.Unit.Cm(1.0999001264572144D));
-            this.page_number.Style.Font.Name = "Courier New";
-            this.page_number.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.page_number.Value = "=\"-\" + PageNumber + \"-\"";
-            // 
             // panel1
             // 
             this.panel1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
@@ -1056,6 +1013,58 @@ namespace eMAC.UI.Reports
             this.title_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499999046325684D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
             this.title_label.Style.Font.Name = "Courier New";
             this.title_label.Value = "<strong>4.&nbsp;&nbsp;<span>Title</span></strong>";
+            // 
+            // pageHeaderSection1
+            // 
+            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.1000001430511475D);
+            this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.page_number});
+            this.pageHeaderSection1.Name = "pageHeaderSection1";
+            this.pageHeaderSection1.PrintOnFirstPage = false;
+            // 
+            // page_number
+            // 
+            this.page_number.CanShrink = true;
+            this.page_number.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00020024616969749332D), Telerik.Reporting.Drawing.Unit.Cm(0.00010002215276472271D));
+            this.page_number.Name = "page_number";
+            this.page_number.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.60246467590332D), Telerik.Reporting.Drawing.Unit.Cm(1.0999001264572144D));
+            this.page_number.Style.Font.Name = "Courier New";
+            this.page_number.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.page_number.Value = "=\"-\" + PageNumber + \"-\"";
+            // 
+            // panel7
+            // 
+            this.panel7.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.meeting_date,
+            this.dates_label,
+            this.dates_sites_label});
+            this.panel7.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(5.2567983299667276E-10D), Telerik.Reporting.Drawing.Unit.Cm(-3.3643509311787057E-08D));
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.519973754882813D), Telerik.Reporting.Drawing.Unit.Cm(1.2349998950958252D));
+            // 
+            // meeting_date
+            // 
+            this.meeting_date.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.3337497711181641D), Telerik.Reporting.Drawing.Unit.Cm(0.63499975204467773D));
+            this.meeting_date.Name = "meeting_date";
+            this.meeting_date.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(11.163865089416504D), Telerik.Reporting.Drawing.Unit.Cm(0.59990012645721436D));
+            this.meeting_date.Style.Font.Name = "Courier New";
+            this.meeting_date.Value = "";
+            // 
+            // dates_label
+            // 
+            this.dates_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.017638888210058212D), Telerik.Reporting.Drawing.Unit.Cm(0.63499981164932251D));
+            this.dates_label.Name = "dates_label";
+            this.dates_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.3000006675720215D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
+            this.dates_label.Style.Font.Name = "Courier New";
+            this.dates_label.Value = "&nbsp;&nbsp;&nbsp;&nbsp;6a. Dates:";
+            // 
+            // dates_sites_label
+            // 
+            this.dates_sites_label.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(-9.7250769215406763E-08D));
+            this.dates_sites_label.Name = "dates_sites_label";
+            this.dates_sites_label.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(14.499999046325684D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
+            this.dates_sites_label.Style.Font.Name = "Courier New";
+            this.dates_sites_label.Value = "<strong>6.&nbsp;&nbsp;<span>Dates and site</span></strong>";
             // 
             // PlanningDocument
             // 
@@ -1139,13 +1148,10 @@ namespace eMAC.UI.Reports
         private Telerik.Reporting.HtmlTextBox objectives;
         private Telerik.Reporting.HtmlTextBox objectives_label;
         private Telerik.Reporting.Panel panel5;
-        private Telerik.Reporting.HtmlTextBox dates_sites_label;
         private Telerik.Reporting.HtmlTextBox avail_webex;
         private Telerik.Reporting.HtmlTextBox avail_webex_label;
         private Telerik.Reporting.HtmlTextBox site_label;
         private Telerik.Reporting.HtmlTextBox meeting_venue;
-        private Telerik.Reporting.HtmlTextBox meeting_date;
-        private Telerik.Reporting.HtmlTextBox dates_label;
         private Telerik.Reporting.HtmlTextBox offsite_reason_label;
         private Telerik.Reporting.HtmlTextBox offsite_reason;
         private Telerik.Reporting.HtmlTextBox contribution_info_label;
@@ -1188,5 +1194,9 @@ namespace eMAC.UI.Reports
         private Telerik.Reporting.Panel panel6;
         private Telerik.Reporting.HtmlTextBox proposed_title;
         private Telerik.Reporting.HtmlTextBox title_label;
+        private Telerik.Reporting.Panel panel7;
+        private Telerik.Reporting.HtmlTextBox meeting_date;
+        private Telerik.Reporting.HtmlTextBox dates_label;
+        private Telerik.Reporting.HtmlTextBox dates_sites_label;
     }
 }

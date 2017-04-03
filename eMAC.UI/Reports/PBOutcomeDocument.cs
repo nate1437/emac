@@ -43,7 +43,7 @@ using eMAC.Domain.Entities;
                     if (j.Value.Count() > 0)
                     {
                         outCome.Append(string.Join("<br />", j.Value));
-                        if (i.Value.Count > 1)
+                        if (j.Value.Count > 1)
                         {
                             outCome.Append("<br/><br/>");
                         }

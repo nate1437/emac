@@ -857,7 +857,7 @@ namespace eMAC.UI.Reports
             // 
             // budget_info
             // 
-            this.budget_info.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(5.1383628845214844D)));
+            this.budget_info.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(5.1383624076843262D)));
             this.budget_info.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(8.4618387222290039D)));
             this.budget_info.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.73201262950897217D)));
             this.budget_info.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.60999947786331177D)));
@@ -1083,14 +1083,14 @@ namespace eMAC.UI.Reports
             // end_notes
             // 
             this.end_notes.CanShrink = false;
-            this.end_notes.KeepTogether = false;
+            this.end_notes.KeepTogether = true;
             this.end_notes.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.87312501668930054D), Telerik.Reporting.Drawing.Unit.Cm(11.5D));
             this.end_notes.Name = "end_notes";
             this.end_notes.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(13.591730117797852D), Telerik.Reporting.Drawing.Unit.Cm(0.55825334787368774D));
             this.end_notes.Style.Font.Name = "Courier New";
             this.end_notes.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            this.end_notes.Value = "<span style=\"font-size: 8pt; padding-right: 5px; padding-left: 5px;\">@endNotes</s" +
-    "pan>";
+            this.end_notes.Value = "<span style=\"font-size: 8pt; padding-right: 35px; padding-left: 5px;\">@endNotes</" +
+    "span>";
             // 
             // end_notes_title
             // 
