@@ -5,7 +5,7 @@
         $scope.dirtyModels = [];
         eMacFactory.Get({
             url: "api/Meeting/MeetingDetails?mtg_id=" + $routeParams.id
-        }).then(function(result){
+        }).then(function (result) {
             if (result != undefined) {
                 if (result.op) {
                     angular.forEach(result.value, function (val, key) {
@@ -22,7 +22,7 @@
                 }
             }
         });
-        
+
         $scope.$watch("models.meeting", function (n, o) {
             if (n != undefined) {
                 if (Object.keys(n).length > 0) {
@@ -39,7 +39,7 @@
                 }
             }
         }, true);
-        
+
         $scope.kendo = {
             dataSources: {
                 //participantGrid: 
@@ -108,6 +108,24 @@
                 },
                 no: function () {
                     $scope.modal.dismiss();
+                }
+            },
+            openLinkagesModal: function () {
+
+                $scope.modal = $modal.open({
+                    animation: true,
+                    templateUrl: "linkages-modal.html",
+                    windowClass: "modal-linkages",
+                    scope: $scope,
+                });
+            },
+            checkBoxCheckChanged: function (item) {
+
+                if (item) {
+                    $scope.checkBoxChecked++;
+                }
+                else {
+                    $scope.checkBoxChecked--;
                 }
             }
 
@@ -202,6 +220,7 @@
         $scope.pbCategoriesList = [];
         $scope.pbOutcomesList = [];
         $scope.pbOutputsList = [];
+        $scope.checkBoxlimit = 4;
 
         // temp del records
         $scope.delParticipantRecords = [];
@@ -414,6 +433,16 @@
             }
         });
 
+        $scope.$watch('mtgCoreFxObject', function (items) {
+            $scope.checkBoxChecked = 0;
+            angular.forEach(items, function (item) {
+                if (item.is_selected) {
+                    $scope.checkBoxChecked++;
+                }
+            })
+
+        })
+
         // print 
         $scope.print = function () {
             var path = '';
@@ -528,7 +557,7 @@
                         mtg_id: $scope.meeting.mtg_id,
                         action: "Update Meeting",
                         action_by: curr_user,
-                        remarks: "Meeting details updated by " + curr_user
+                        remarks: "Meeting details updated" // by " + curr_user
                     };
                 }
             }
@@ -561,7 +590,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
                 jsonData['newParticipants'] = newPrecords;
             }
@@ -580,7 +609,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
                 jsonData['delParticipants'] = delPrecords;
             }
@@ -600,7 +629,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
             // get modified linkages records
@@ -614,7 +643,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
 
@@ -628,7 +657,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
 
@@ -647,7 +676,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
             // get modified related meeting records
@@ -661,7 +690,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
 
@@ -675,7 +704,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
 
@@ -694,7 +723,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
             // get modified funding records
@@ -707,7 +736,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
 
@@ -722,7 +751,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
             }
 
@@ -744,7 +773,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
                 jsonData['insCoreFunctions'] = angular.extend({}, $scope.selectedCorefxCopy, $scope.selectedCoreFx);
             }
@@ -754,7 +783,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
                 jsonData['updCoreFunctions'] = $scope.selMtgCoreFx;
             }
@@ -781,7 +810,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
                 jsonData['insPbCategories'] = angular.extend({}, $scope.selectedPbCatCopy, $scope.selectedPbCategory);
 
@@ -805,7 +834,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
                 jsonData['insPbOutcomes'] = angular.extend({}, $scope.selectedPbOutcomeCopy, $scope.selectedPbOutcome);
 
@@ -829,7 +858,7 @@
                     mtg_id: $scope.meeting.mtg_id,
                     action: "Update Meeting",
                     action_by: curr_user,
-                    remarks: "Meeting details updated by " + curr_user
+                    remarks: "Meeting details updated" // by " + curr_user
                 };
                 jsonData['insPbOutputs'] = angular.extend({}, $scope.selectedPbOutputCopy, $scope.selectedPbOutput);
 
@@ -844,7 +873,7 @@
                         $("#actionhistorygrid").data("kendoGrid").refresh();
                         toastr.success("Saving Success!", "Saved");
                         getMtgDetail(mtgId);
-            
+
                         if (actionObject.status == 'Submitted for SPMC'
                             || actionObject.status == 'Submitted for Finalization') {
                             sendNotification({
@@ -859,7 +888,7 @@
 
         // save log action
         $scope.saveLogAction = function (remarks) {
-            
+
             var jsonData = {
                 mtgUpdateStatusObj: {
                     mtg_id: $scope.meeting.mtg_id,
@@ -1793,7 +1822,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.present = this.value();
@@ -1816,7 +1845,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.absent = this.value();
@@ -1839,7 +1868,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.background_info = this.value();
@@ -1869,7 +1898,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.summary = this.value();
@@ -1900,7 +1929,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.objectives = this.value();
@@ -1923,7 +1952,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.criteria_for_invited_participants = this.value();
@@ -1970,7 +1999,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.representatives_observers = this.value();
@@ -1993,7 +2022,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.secretariat_wpro = this.value();
@@ -2016,7 +2045,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.secretariat_co = this.value();
@@ -2039,7 +2068,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.secretariat_hq = this.value();
@@ -2062,7 +2091,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.secretariat_other_regions = this.value();
@@ -2085,7 +2114,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.secretariat_other_un_agencies = this.value();
@@ -2094,6 +2123,29 @@
                 tools: editorTools,
                 value: $scope.meetingDetail.secretariat_other_un_agencies
             });
+            $("#sec-f").kendoEditor({
+                stylesheets: [
+               base + "Content/kendo-editor.css"
+                ],
+                paste: function (e) {
+
+                    //("#txtActions").val(CleanWordHTML(e.html));
+                    //e.html = CleanWordHTML(e.html);
+                    e.html = $(e.html).text();
+                },
+                change: function () {
+                    if (IsIE()) {
+                        $("iframe").each(function () {
+
+                        });
+                    }
+                    $scope.meetingDetail.secretariat_other_partners = this.value();
+                    $scope.$apply();
+                },
+                tools: editorTools,
+                value: $scope.meetingDetail.secretariat_other_partners
+            });
+
             // sec-asst
             $("#sec-asst").kendoEditor({
                 stylesheets: [
@@ -2108,7 +2160,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.secretarial_assistance = this.value();
@@ -2132,7 +2184,7 @@
                     change: function () {
                         if (IsIE()) {
                             $("iframe").each(function () {
-                                
+
                             });
                         }
                         // GO HERE
@@ -2184,6 +2236,7 @@
                     }
                 });
             });
+
             // spmc-notes
             $("#spmc-notes").kendoEditor({
                 stylesheets: [
@@ -2201,7 +2254,7 @@
 
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     if ($scope.isApprover) {
@@ -2234,7 +2287,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.comment_on_dates = this.value();
@@ -2258,7 +2311,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.offsite_reason = this.value();
@@ -2281,7 +2334,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.other_facilities_reason = this.value();
@@ -2305,7 +2358,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.courtesy_expense = this.value();
@@ -2329,7 +2382,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.daily_allowance = this.value();
@@ -2352,7 +2405,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.supplies_and_equipment = this.value();
@@ -2375,7 +2428,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.cosponsorship = this.value();
@@ -2398,7 +2451,7 @@
                 change: function () {
                     if (IsIE()) {
                         $("iframe").each(function () {
-                            
+
                         });
                     }
                     $scope.meetingDetail.logo_request = this.value();
@@ -2831,7 +2884,7 @@ eMacApp.controller('objectivesController', function ($scope, $rootScope, $locati
     }
     $scope.save = function (update) {
 
-        
+
         $scope.objectivesDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -2987,7 +3040,7 @@ eMacApp.controller('participantsController', function ($scope, $rootScope, $loca
 
     }
     $scope.save = function (update) {
-        
+
         update.ctry_name = $scope.states.filter(function (el) {
             return el.ctry_code == update.ctry_code;
         })[0].ctry_name;
@@ -3351,7 +3404,7 @@ eMacApp.controller('relmtgsController', function ($scope, $rootScope, $location,
 
     }
     $scope.save = function (update) {
-        
+
         //$scope.relmtgsDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -3571,7 +3624,7 @@ eMacApp.controller('tempadviserController', function ($scope, $rootScope, $locat
     }
     $scope.save = function (update) {
 
-        
+
         $scope.tempAdviserDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -3781,7 +3834,7 @@ eMacApp.controller('observersController', function ($scope, $rootScope, $locatio
     }
     $scope.save = function (update) {
 
-        
+
         $scope.representativeDataSource.add(update);
         //$('#hgrid').data('kendoGrid').dataSource.read();
         //$('#hgrid').data('kendoGrid').refresh();
@@ -3927,7 +3980,7 @@ eMacApp.controller('budgetsController', function ($scope, $rootScope, $timeout, 
     }
     $scope.save = function (update) {
 
-        
+
         if (!isUpdate) {
             // set new record ids to 0
             update.id = 0;

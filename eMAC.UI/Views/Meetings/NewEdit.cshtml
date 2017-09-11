@@ -233,7 +233,7 @@
                         <div class="col-lg-4">
                             <div class="form-group clearfix">
                                 <div class="col-lg-12">
-                                    <label class="col-lg-5 control-label" for="jobNumber">Meeting type</label>
+                                    <label class="col-lg-5 control-label" for="jobNumber">Meeting type <a href="#" target="_blank"><span class="glyphicon glyphicon-file"></span></a></label>
                                     <div class="col-xs-12 col-lg-7">
                                         <select ng-model="meeting.mtg_type" class="form-control ng-pristine ng-untouched ng-valid" ng-options="option.meeting_type_id as option.meeting_type_name for option in types"><option ng-disabled="true" ng-selected="true" value="" class="" selected="selected" disabled="disabled">Select type</option></select>
                                     </div>
@@ -387,12 +387,13 @@
                                                             <tab heading="Core functions">
                                                                 <div class="row" style="margin-top: 10px;">
                                                                     <div class="col-lg-12" style="min-height: 322px !important "> 
-                                                                        <span>2a. Related WHO core functions</span>                                                            
+                                                                        <span>2a. Related WHO core functions (You may select a maximum of four (4) related core functions.)</span>                                                            
                                                                         <hr />
                                                                         <div class="form-group clearfix" ng-repeat="cfx in mtgCoreFxObject">  
                                                                             <div class="col-lg-12 col-xs-12">
                                                                                 <div class="checkbox abc-checkbox abc-checkbox-primary checkbox-inline">
-                                                                                    <input ng-attr-id="{{ cfx.mtg_core_function_id }}" class="styled" type="checkbox" ng-model="selMtgCoreFx[cfx.mtg_core_function_id]" ng-checked="cfx.is_selected">
+                                                                                    <input ng-attr-id="{{ cfx.mtg_core_function_id }}" class="styled" type="checkbox" ng-disabled="checkBoxChecked === checkBoxlimit && !selMtgCoreFx[cfx.mtg_core_function_id]" ng-change="events.checkBoxCheckChanged(selMtgCoreFx[cfx.mtg_core_function_id])" ng-model="selMtgCoreFx[cfx.mtg_core_function_id]" ng-checked="cfx.is_selected">
+                                                                                    @*<input ng-attr-id="{{ cfx.mtg_core_function_id }}" class="styled" type="checkbox" ng-model="selMtgCoreFx[cfx.mtg_core_function_id]" ng-checked="cfx.is_selected">*@
                                                                                     <label ng-attr-for="{{ cfx.mtg_core_function_id }}">{{cfx.core_function_name}}</label>
                                                                                 </div> 
                                                                             </div>                        
@@ -491,7 +492,7 @@
                                                             <tab heading="Linkages to resolutions">
                                                                 <div class="row" style="margin-top: 10px;" ng-controller="resolutionsController">
                                                                     <div class="col-lg-12">
-                                                                        <span>2c. Linkages to global and regional resolutions (where applicable)</span>
+                                                                        <span>2c. Linkages to global and regional resolutions (where applicable) <a ng-click="events.openLinkagesModal();" ><span class="glyphicon glyphicon-file"></span></a></span> 
                                                                     </div>
                                                                     <div class="col-lg-12">
                                                                         <hr />
@@ -1120,6 +1121,16 @@
                                                                         </div>
                                                                     </div> 
                                                                 </tab>
+                                                                <tab heading="Other partners">
+                                                                    <div class="col-lg-12 column">
+                                                                        <div class="form-group">
+                                                                            <div class="col-lg-">
+                                                                                <span>11f. Other partners (at own expense) - e.g. ADB, NCGM, etc</span>
+                                                                                <textarea id="sec-f"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </tab>
                                                             </tabset>
                                                         </div>
                                                     </div>
@@ -1639,20 +1650,29 @@
                                              </div>
                                         </div>
                                     </div> 
+                                    
                                 </div>
-                                <hr />
-                                <div class="">                                    
-                                    <div class="col-lg-12">
-                                        <div class="colg-lg-12">Summary report</div>
-                                        <hr />
-                                        <div ng-repeat="summ_report in vm.reportObjects">                                            
-                                            <div class="form-group clearfix">
-                                                <div class="col-lg-3">                                                   
-                                                    <label class="col-lg-4 control-label" for="jobNumber">Due date</label>
-                                                    <div class="col-lg-8">
-                                                            <input type="text" class="form-control" ng-value="summ_report.summary_report_due_date | date:'dd MMM yyyy'" disabled/>
+                                    <hr />
+                                <div class="">                 
+                                       @* <div class="colg-lg-12">Summary report</div>
+                                        <hr />*@
+                                        <div ng-repeat="summ_report in vm.reportObjects">           
+                                            <div class="form-group">
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="form-inline">
+                                                        
+                                                        <label class="control-label" style="margin-right:7px;">Summary report due date</label>
+                                                        <input type="text" class="form-control" style="margin-top: 3px;width:90px;margin-right:20px;" ng-value="summ_report.summary_report_due_date | date:'dd MMM yyyy'" disabled/>
+                                                                     
+                                                        <label class="control-label" style="margin-right:7px;">Final report due date</label>
+                                                        <input type="text" class="form-control" style="margin-top: 3px;width:90px;" ng-value="summ_report.final_report_due_date | date:'dd MMM yyyy'" disabled/>
                                                     </div>
                                                 </div>
+                                            </div>   
+                                            
+                                            <hr />                              
+                                            <div class="form-group clearfix">
                                                 <div class="col-lg-9 mtg-report">
                                                     <ul class="list-group">
                                                         <li class="list-group-item list-group-item-default">
@@ -1772,18 +1792,17 @@
                                                 </div>                                               
                                             </div>
                                         </div>
-                                    </div>
                                     <div class="col-lg-12" ng-hide="!meeting.needs_final_report"> 
-                                        <div  class="colg-lg-12">Final report</div>
+                                        @*<div  class="colg-lg-12">Final report</div>*@
                                         <hr />
                                         <div ng-repeat="final_report in vm.reportObjects">                                            
                                             <div class="form-group clearfix">
-                                                <div class="col-lg-3">                                                   
+                                               @* <div class="col-lg-3">                                                   
                                                     <label class="col-lg-4 control-label">Due date</label>
                                                     <div class="col-lg-8">
                                                         <input type="text" class="form-control" ng-value="final_report.final_report_due_date | date:'dd MMM yyyy'" disabled/>
                                                     </div>
-                                                </div>
+                                                </div>*@
                                                 <div class="col-lg-9 mtg-report">
                                                     <ul class="list-group">
                                                         <li class="list-group-item list-group-item-default">
